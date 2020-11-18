@@ -57,8 +57,7 @@ references:
 
 # Short description of this project
 description: |-
-  This is `terraform-aws-config` project provides all the scaffolding for a typical well-built Cloud Posse module. It's a template repository you can
-  use when creating new repositories.
+  This module enables AWS Config and optionally sets up an SNS topic to receive notifications of its findings.
 
 # Introduction to the project
 #introduction: |-
@@ -71,7 +70,18 @@ usage: |-
   ```hcl
   module "example" {
     source = "https://github.com/cloudposse/terraform-aws-config.git?ref=master"
-    example = "Hello world!"
+  
+    create_sns_topic = true
+    create_iam_role  = true
+
+    managed_rules = {
+      account-part-of-organizations = {
+        description  = "Checks whether AWS account is part of AWS Organizations. The rule is NON_COMPLIANT if an AWS account is not part of AWS Organizations or AWS Organizations master account ID does not match rule parameter MasterAccountId.",
+        identifier   = "ACCOUNT_PART_OF_ORGANIZATIONS",
+        trigger_type = "PERIODIC"
+        enabled      = true
+      }
+    }
   }
   ```
 

@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
-	"gotest.tools/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 // Test the Terraform module in examples/complete using Terratest.

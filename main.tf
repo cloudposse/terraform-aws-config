@@ -176,7 +176,3 @@ locals {
   findings_notification_arn = local.enable_notifications ? (var.findings_notification_arn != null ? var.findings_notification_arn : module.sns_topic[0].sns_topic.arn) : null
   create_iam_role           = module.this.enabled && var.create_iam_role
 }
-
-data "aws_caller_identity" "this" {}
-data "aws_partition" "this" {}
-data "aws_region" "this" {}

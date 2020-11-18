@@ -59,9 +59,9 @@ resource "aws_config_config_rule" "rules" {
 # Create an S3 Bucket for AWS Config rules to be stored
 # ----------------------------------------------------------------------------------------------------------------------
 module "aws_config_storage" {
-  count = module.this.enabled ? 1 : 0
-  #TODO: switch this once published to the registry
-  source = "git::https://github.com/cloudposse/terraform-aws-config-storage.git?ref=feature/initial-implementation"
+  source  = "cloudposse/config-storage/aws"
+  version = "0.1.0"
+  count   = module.this.enabled ? 1 : 0
 
   force_destroy = var.force_destroy
   tags          = module.this.tags

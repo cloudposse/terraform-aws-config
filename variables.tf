@@ -1,7 +1,7 @@
 variable "create_sns_topic" {
   description = <<-DOC
-  Flag to indicate whether an SNS topic should be created for notifications
-  If you want to send findings to a new SNS topic, set this to true and provide a valid configuration for subscribers
+    Flag to indicate whether an SNS topic should be created for notifications
+    If you want to send findings to a new SNS topic, set this to true and provide a valid configuration for subscribers
   DOC
 
   type    = bool
@@ -15,28 +15,28 @@ variable "subscribers" {
     endpoint_auto_confirms = bool
   }))
   description = <<-DOC
-  A map of subscription configurations for SNS topics
-    
-  For more information, see:
-  https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription#argument-reference
- 
-  protocol:         
-    The protocol to use. The possible values for this are: sqs, sms, lambda, application. (http or https are partially 
-    supported, see link) (email is an option but is unsupported in terraform, see link).
-  endpoint:         
-    The endpoint to send data to, the contents will vary with the protocol. (see link for more information)
-  endpoint_auto_confirms:
-    Boolean indicating whether the end point is capable of auto confirming subscription e.g., PagerDuty. Default is 
-    false
+    A map of subscription configurations for SNS topics
+      
+    For more information, see:
+    https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription#argument-reference
+  
+    protocol:         
+      The protocol to use. The possible values for this are: sqs, sms, lambda, application. (http or https are partially 
+      supported, see link) (email is an option but is unsupported in terraform, see link).
+    endpoint:         
+      The endpoint to send data to, the contents will vary with the protocol. (see link for more information)
+    endpoint_auto_confirms:
+      Boolean indicating whether the end point is capable of auto confirming subscription e.g., PagerDuty. Default is 
+      false
   DOC
   default     = {}
 }
 
 variable "findings_notification_arn" {
   description = <<-DOC
-  The ARN for an SNS topic to send findings notifications to. This is only used if create_sns_topic is false.
-  If you want to send findings to an existing SNS topic, set the value of this to the ARN of the existing topic and set 
-  create_sns_topic to false.
+    The ARN for an SNS topic to send findings notifications to. This is only used if create_sns_topic is false.
+    If you want to send findings to an existing SNS topic, set the value of this to the ARN of the existing topic and set 
+    create_sns_topic to false.
   DOC
   default     = null
   type        = string
@@ -51,11 +51,11 @@ variable "create_iam_role" {
 
 variable "iam_role_arn" {
   description = <<-DOC
-  The ARN for an IAM Role AWS Config uses to make read or write requests to the delivery channel and to describe the 
-  AWS resources associated with the account. This is only used if create_iam_role is false.
+    The ARN for an IAM Role AWS Config uses to make read or write requests to the delivery channel and to describe the 
+    AWS resources associated with the account. This is only used if create_iam_role is false.
   
-  If you want to use an existing IAM Role, set the value of this to the ARN of the existing topic and set 
-  create_iam_role to false.
+    If you want to use an existing IAM Role, set the value of this to the ARN of the existing topic and set 
+    create_iam_role to false.
   DOC
   default     = null
   type        = string

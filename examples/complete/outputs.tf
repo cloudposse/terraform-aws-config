@@ -1,14 +1,9 @@
 output "id" {
-  description = "ID of the created example"
-  value       = module.example.id
+  value       = module.example.aws_config_configuration_recorder_id
+  description = "The id of the AWS Config Recorder that was created"
 }
 
-output "example" {
-  description = "Output \"example\" from example module"
-  value       = module.example.example
-}
-
-output "random" {
-  description = "Output \"random\" from example module"
-  value       = module.example.random
+output "storage_bucket_id" {
+  value       = module.example.storage_bucket_id
+  description = "Bucket Name (aka ID)"
 }

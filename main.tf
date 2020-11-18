@@ -89,7 +89,7 @@ module "aws_config_findings_label" {
   source  = "cloudposse/label/null"
   version = "0.21.0"
 
-  attributes = ["config-findings"]
+  attributes = ["config", "findings"]
   context    = module.this.context
 }
 

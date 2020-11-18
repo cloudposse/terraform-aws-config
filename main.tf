@@ -32,6 +32,28 @@ resource "aws_config_delivery_channel" "channel" {
   ]
 }
 
+resource "aws_config_configuration_recorder_status" "recorder_status" {
+  count      = module.this.enabled ? 1 : 0
+  name       = aws_config_configuration_recorder.recorder[0].name
+  is_enabled = true
+  depends_on = [aws_config_delivery_channel.channel]
+}
+
+resource "aws_config_config_rule" "rules" {
+  for_each   = module.this.enabled ? var.managed_rules : {}
+  depends_on = [aws_config_configuration_recorder_status.recorder_status]
+
+  name        = each.key
+  description = each.value.description
+
+  source {
+    owner             = "AWS"
+    source_identifier = each.value.identifier
+  }
+
+  input_parameters = length(each.value.input_parameters) > 0 ? jsonencode(each.value.input_parameters) : null
+  tags             = module.this.tags
+}
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Create an S3 Bucket for AWS Config rules to be stored
@@ -42,6 +64,7 @@ module "aws_config_storage" {
   source = "git::https://github.com/cloudposse/terraform-aws-config-storage.git?ref=feature/initial-implementation"
 
   force_destroy = var.force_destroy
+  tags          = module.this.tags
 
   context = module.this.context
 }
@@ -57,6 +80,7 @@ module "sns_topic" {
   attributes      = ["config"]
   subscribers     = var.subscribers
   sqs_dlq_enabled = false
+  tags            = module.this.tags
 
   context = module.this.context
 }
@@ -67,51 +91,6 @@ module "aws_config_findings_label" {
 
   attributes = ["config-findings"]
   context    = module.this.context
-}
-
-resource "aws_sns_topic_policy" "sns_topic_publish_policy" {
-  count  = local.create_sns_topic ? 1 : 0
-  arn    = local.findings_notification_arn
-  policy = data.aws_iam_policy_document.sns_topic_policy[0].json
-}
-
-data "aws_iam_policy_document" "sns_topic_policy" {
-  count = local.create_sns_topic ? 1 : 0
-
-  policy_id = "__default_policy_ID"
-  statement {
-
-    actions = [
-      "SNS:Subscribe",
-      "SNS:SetTopicAttributes",
-      "SNS:RemovePermission",
-      "SNS:Receive",
-      "SNS:Publish",
-      "SNS:ListSubscriptionsByTopic",
-      "SNS:GetTopicAttributes",
-      "SNS:DeleteTopic",
-      "SNS:AddPermission",
-    ]
-
-    condition {
-      test     = "StringEquals"
-      variable = "AWS:SourceOwner"
-
-      values = [
-        data.aws_caller_identity.this.account_id
-      ]
-    }
-
-    effect = "Allow"
-
-    principals {
-      type        = "AWS"
-      identifiers = ["*"]
-    }
-
-    resources = [module.sns_topic[0].sns_topic.arn]
-    sid       = "__default_statement_ID"
-  }
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -140,6 +119,17 @@ module "iam_role" {
   context = module.this.context
 }
 
+resource "aws_iam_role_policy_attachment" "config_policy_attachment" {
+  count = local.create_iam_role ? 1 : 0
+
+  role       = module.iam_role[0].name
+  policy_arn = data.aws_iam_policy.aws_config_built_in_role.arn
+}
+
+data "aws_iam_policy" "aws_config_built_in_role" {
+  arn = "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
+}
+
 data "aws_iam_policy_document" "config_s3_policy" {
   count = local.create_iam_role ? 1 : 0
 
@@ -154,8 +144,14 @@ data "aws_iam_policy_document" "config_s3_policy" {
       "s3:PutObject",
       "s3:GetBucketAcl"
     ]
+    condition {
+      test     = "StringLike"
+      variable = "s3:x-amz-acl"
+      values   = ["bucket-owner-full-control"]
+    }
   }
 }
+
 
 data "aws_iam_policy_document" "config_sns_policy" {
   count = local.create_iam_role && local.create_sns_topic ? 1 : 0

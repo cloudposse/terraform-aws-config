@@ -155,9 +155,9 @@ Available targets:
 
 | Name | Description |
 |------|-------------|
-| aws\_config\_configuration\_recorder\_id | The id of the AWS Config Recorder that was created |
-| sns\_topic | The SNS topic that was created |
-| sns\_topic\_subscriptions | The SNS topic that was created |
+| aws\_config\_configuration\_recorder\_id | The ID of the AWS Config Recorder |
+| sns\_topic | SNS topic |
+| sns\_topic\_subscriptions | SNS topic subscriptions |
 | storage\_bucket\_arn | Bucket ARN |
 | storage\_bucket\_id | Bucket Name (aka ID) |
 

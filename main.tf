@@ -22,7 +22,7 @@ resource "aws_config_delivery_channel" "channel" {
   count          = module.this.enabled ? 1 : 0
   name           = module.aws_config_label.id
   s3_bucket_name = module.aws_config_storage[0].bucket_id
-  s3_key_prefix  = "foo"
+  s3_key_prefix  = ""
   sns_topic_arn  = local.findings_notification_arn
 
   depends_on = [

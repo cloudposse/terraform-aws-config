@@ -19,6 +19,6 @@ output "sns_topic" {
 }
 
 output "sns_topic_subscriptions" {
-  description = "The SNS topic that was created"
+  description = "SNS topic subscriptions"
   value       = local.create_sns_topic ? module.sns_topic[0].aws_sns_topic_subscriptions : null
 }

@@ -25,7 +25,7 @@
 
 -->
 
-This module enables AWS Config and optionally sets up an SNS topic to receive notifications of its findings.
+This module enables [AWS Config](https://aws.amazon.com/config/) and optionally sets up an SNS topic to receive notifications of its findings.
 
 
 ---

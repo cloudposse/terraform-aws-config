@@ -37,10 +37,10 @@ func TestExamplesComplete(t *testing.T) {
 	terraform.InitAndApply(t, terraformOptions)
 
 	// Run `terraform output` to get the value of an output variable
-	id := terraform.Output(t, terraformOptions, "id")
+	configRecorderID := terraform.Output(t, terraformOptions, "config_recorder_id")
 	bucketID := terraform.Output(t, terraformOptions, "storage_bucket_id")
 
-	// Ensure we get the attribute included in the ID
-	assert.Equal(t, "eg-ue2-test-config-"+randID, id)
+	// Ensure we get the attribute included in the IDs
+	assert.Equal(t, "eg-ue2-test-config-"+randID, configRecorderID)
 	assert.Equal(t, "eg-ue2-test-aws-config-"+randID, bucketID)
 }

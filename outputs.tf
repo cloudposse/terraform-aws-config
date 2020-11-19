@@ -14,7 +14,7 @@ output "storage_bucket_arn" {
 }
 
 output "sns_topic" {
-  description = "The SNS topic that was created"
+  description = "SNS topic"
   value       = local.create_sns_topic ? module.sns_topic[0].sns_topic : null
 }
 

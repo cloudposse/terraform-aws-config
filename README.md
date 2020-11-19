@@ -114,13 +114,13 @@ Available targets:
 | Name | Version |
 |------|---------|
 | terraform | >= 0.13.0 |
-| aws | >=2 |
+| aws | >= 2 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >=2 |
+| aws | >= 2 |
 
 ## Inputs
 
@@ -174,6 +174,9 @@ Are you using this project or any of our other projects? Consider [leaving a tes
 Check out these related projects.
 
 - [terraform-null-label](https://github.com/cloudposse/terraform-null-label) - Terraform module designed to generate consistent names and tags for resources. Use terraform-null-label to implement a strict naming convention.
+- [terraform-aws-config-storage](https://github.com/cloudposse/terraform-aws-config-storage) - Terraform module that creates an S3 bucket suitable for storing AWS Config data.
+- [terraform-aws-guardduty](https://github.com/cloudposse/terraform-aws-guardduty) - Terraform module that enables and configures AWS GuardDuty.
+- [terraform-aws-security-hub](https://github.com/cloudposse/terraform-aws-security-hub) - Terraform module that enables and configures AWS Security Hub.
 
 
 
@@ -182,10 +185,7 @@ Check out these related projects.
 
 For additional context, refer to some of these links.
 
-- [Terraform Standard Module Structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure) - HashiCorp's standard module structure is a file and directory layout we recommend for reusable modules distributed in separate repositories.
-- [Terraform Module Requirements](https://www.terraform.io/docs/registry/modules/publish.html#requirements) - HashiCorp's guidance on all the requirements for publishing a module. Meeting the requirements for publishing a module is extremely easy.
-- [Terraform `random_integer` Resource](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer) - The resource random_integer generates random values from a given range, described by the min and max attributes of a given resource.
-- [Terraform Version Pinning](https://www.terraform.io/docs/configuration/terraform.html#specifying-a-required-terraform-version) - The required_version setting can be used to constrain which versions of the Terraform CLI can be used with your configuration
+- [List of AWS Config Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html) - A list of rules AWS Config currently supports in the analytics; compute; cryptography and PKI; database; machine learning; management and governance; migration and transfer; network and content delivery; security; identity and compliance; and storage categories.
 
 
 ## Help

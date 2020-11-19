@@ -39,22 +39,22 @@ related:
   - name: "terraform-null-label"
     description: "Terraform module designed to generate consistent names and tags for resources. Use terraform-null-label to implement a strict naming convention."
     url: "https://github.com/cloudposse/terraform-null-label"
+  - name: "terraform-aws-config-storage"
+    description: "Terraform module that creates an S3 bucket suitable for storing AWS Config data." 
+    url: "https://github.com/cloudposse/terraform-aws-config-storage"
+  - name: "terraform-aws-guardduty"
+    description: "Terraform module that enables and configures AWS GuardDuty." 
+    url: "https://github.com/cloudposse/terraform-aws-guardduty"
+  - name: "terraform-aws-security-hub"
+    description: "Terraform module that enables and configures AWS Security Hub." 
+    url: "https://github.com/cloudposse/terraform-aws-security-hub"
 
 # List any resources helpful for someone to get started. For example, link to the hashicorp documentation or AWS documentation.
 references:
-  - name: "Terraform Standard Module Structure"
-    description: "HashiCorp's standard module structure is a file and directory layout we recommend for reusable modules distributed in separate repositories."
-    url: "https://www.terraform.io/docs/modules/index.html#standard-module-structure"
-  - name: "Terraform Module Requirements"
-    description: "HashiCorp's guidance on all the requirements for publishing a module. Meeting the requirements for publishing a module is extremely easy."
-    url: "https://www.terraform.io/docs/registry/modules/publish.html#requirements"
-  - name: "Terraform `random_integer` Resource"
-    description: "The resource random_integer generates random values from a given range, described by the min and max attributes of a given resource."
-    url: "https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer"
-  - name: "Terraform Version Pinning"
-    description: "The required_version setting can be used to constrain which versions of the Terraform CLI can be used with your configuration"
-    url: "https://www.terraform.io/docs/configuration/terraform.html#specifying-a-required-terraform-version"
-
+  - name: "List of AWS Config Managed Rules"
+    description: "A list of rules AWS Config currently supports in the analytics; compute; cryptography and PKI; database; machine learning; management and governance; migration and transfer; network and content delivery; security; identity and compliance; and storage categories."
+    url: "https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html"
+  
 # Short description of this project
 description: |-
   This module enables AWS Config and optionally sets up an SNS topic to receive notifications of its findings.

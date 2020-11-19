@@ -75,10 +75,10 @@ variable "force_destroy" {
 
 variable "managed_rules" {
   description = <<-DOC
-  A list of AWS Managed Rules that should be enabled on the account. 
+    A list of AWS Managed Rules that should be enabled on the account. 
 
-  See the following for a list of possible rules to enable:
-  https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html
+    See the following for a list of possible rules to enable:
+    https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html
   DOC
   type = map(object({
     description      = string
@@ -86,6 +86,20 @@ variable "managed_rules" {
     trigger_type     = string
     input_parameters = any
     enabled          = bool
-  }, ))
+  }))
   default = {}
+}
+
+variable "s3_key_prefix" {
+  type        = string
+  description = <<-DOC
+    The prefix for AWS Config objects stored in the the S3 bucket. If this variable is set to null, the default, no 
+    prefix will be used.
+    
+    Examples: 
+    
+    with prefix:    {S3_BUCKET NAME}:/{S3_KEY_PREFIX}/AWSLogs/{ACCOUNT_ID}/Config/*. 
+    without prefix: {S3_BUCKET NAME}:/AWSLogs/{ACCOUNT_ID}/Config/*. 
+  DOC
+  default     = null
 }

@@ -2,7 +2,7 @@ provider "aws" {
   region = var.region
 }
 
-module "example" {
+module "aws_config" {
   source = "../.."
 
   create_sns_topic = var.create_sns_topic

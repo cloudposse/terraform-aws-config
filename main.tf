@@ -77,7 +77,7 @@ module "sns_topic" {
   version = "0.9.0"
   count   = local.create_sns_topic ? 1 : 0
 
-  attributes      = ["config"]
+  attributes      = concat(module.this.attributes, ["config"])
   subscribers     = var.subscribers
   sqs_dlq_enabled = false
   tags            = module.this.tags

@@ -69,7 +69,7 @@ variable "include_global_resource_types" {
 
 variable "force_destroy" {
   type        = bool
-  description = "(Optional, Default:false ) A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable"
+  description = "A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable"
   default     = false
 }
 

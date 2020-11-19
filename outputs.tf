@@ -1,6 +1,6 @@
 output "aws_config_configuration_recorder_id" {
   value       = join("", aws_config_configuration_recorder.recorder.*.id)
-  description = "The id of the AWS Config Recorder that was created"
+  description = "The ID of the AWS Config Recorder"
 }
 
 output "storage_bucket_id" {

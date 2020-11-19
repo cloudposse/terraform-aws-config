@@ -84,7 +84,7 @@ variable "managed_rules" {
     description      = string
     identifier       = string
     trigger_type     = string
-    input_parameters = any,
+    input_parameters = any
     enabled          = bool
   }, ))
   default = {}

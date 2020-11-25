@@ -52,7 +52,7 @@ resource "aws_config_config_rule" "rules" {
   }
 
   input_parameters = length(each.value.input_parameters) > 0 ? jsonencode(each.value.input_parameters) : null
-  tags             = module.this.tags
+  tags             = merge(module.this.tags, each.value.tags)
 }
 
 # ----------------------------------------------------------------------------------------------------------------------

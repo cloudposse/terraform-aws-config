@@ -8,11 +8,13 @@ create_iam_role  = true
 force_destroy    = true
 
 managed_rules = {
-  account-part-of-organizations = {
-    description      = "Checks whether AWS account is part of AWS Organizations. The rule is NON_COMPLIANT if an AWS account is not part of AWS Organizations or AWS Organizations master account ID does not match rule parameter MasterAccountId.",
-    identifier       = "ACCOUNT_PART_OF_ORGANIZATIONS",
-    trigger_type     = "PERIODIC"
+  mfa-enabled-for-iam-console-access = {
+    description      = "Checks whether AWS Multi-Factor Authentication (MFA) is enabled for all AWS Identity and Access Management (IAM) users that use a console password. The rule is COMPLIANT if MFA is enabled.",
+    identifier       = "MFA_ENABLED_FOR_IAM_CONSOLE_ACCESS",
     input_parameters = {}
-    enabled          = true
+    tags = {
+      "compliance/aws-foundations-cis" : "1.2"
+    }
+    enabled = true
   }
 }

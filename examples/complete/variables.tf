@@ -30,13 +30,13 @@ variable "managed_rules" {
 
     See the following for a list of possible rules to enable:
     https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html
-    DOC
+  DOC
   type = map(object({
     description      = string
     identifier       = string
-    trigger_type     = string
     input_parameters = any
+    tags             = map(string)
     enabled          = bool
-  }, ))
+  }))
   default = {}
 }

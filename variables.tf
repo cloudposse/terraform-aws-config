@@ -83,8 +83,8 @@ variable "managed_rules" {
   type = map(object({
     description      = string
     identifier       = string
-    trigger_type     = string
     input_parameters = any
+    tags             = map(string)
     enabled          = bool
   }))
   default = {}

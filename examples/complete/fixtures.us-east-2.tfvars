@@ -13,7 +13,8 @@ managed_rules = {
     identifier       = "MFA_ENABLED_FOR_IAM_CONSOLE_ACCESS",
     input_parameters = {}
     tags = {
-      "compliance/aws-foundations-cis" : "1.2"
+      "compliance/standards/aws-foundations-cis/1.2": true
+      "compliance/controls/aws-foundations-cis/1.2": "X.X"
     }
     enabled = true
   }

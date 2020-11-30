@@ -1,0 +1,11 @@
+iam-user-no-policies-check:
+  identifier: IAM_USER_NO_POLICIES_CHECK
+  description:
+    Checks that none of your IAM users have policies attached. IAM users must inherit permissions from IAM groups or
+    roles.
+  inputParameters: {}
+  enabled: true
+  tags:
+    compliance/standards/aws-foundations-cis/1.2: true
+    compliance/controls/aws-foundations-cis/1.2: 1.16
+  globalResource: true

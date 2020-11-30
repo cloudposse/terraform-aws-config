@@ -1,0 +1,12 @@
+access-keys-rotated:
+  identifier: ACCESS_KEYS_ROTATED
+  description:
+    Checks whether the active access keys are rotated within the number of days specified in maxAccessKeyAge. The rule
+    is NON_COMPLIANT if the access keys have not been rotated for more than maxAccessKeyAge number of days.
+  inputParameters:
+    maxCredentialUsageAge: 90
+  enabled: true
+  tags:
+    compliance/standards/aws-foundations-cis/1.2: true
+    compliance/controls/aws-foundations-cis/1.2: 1.4
+  globalResource: true

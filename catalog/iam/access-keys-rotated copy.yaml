@@ -1,0 +1,10 @@
+iam-root-access-key-check:
+  identifier: IAM_ROOT_ACCESS_KEY_CHECK
+  description:
+    Checks whether the root user access key is available. The rule is COMPLIANT if the user access key does not exist.
+  inputParameters: {}
+  enabled: true
+  tags:
+    compliance/standards/aws-foundations-cis/1.2: true
+    compliance/controls/aws-foundations-cis/1.2: 1.12
+  globalResource: true

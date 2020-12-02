@@ -1,0 +1,10 @@
+s3-bucket-public-read-prohibited:
+  identifier: S3_BUCKET_PUBLIC_READ_PROHIBITED
+  description:
+    Checks that your Amazon S3 buckets do not allow public read access. The rule checks the Block Public Access
+    settings, the bucket policy, and the bucket access control list (ACL).
+  inputParameters: {}
+  enabled: true
+  tags:
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 2.3

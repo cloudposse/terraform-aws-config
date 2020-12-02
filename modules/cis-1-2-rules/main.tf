@@ -12,10 +12,20 @@ locals {
   cis_1_2_base_rules            = { for key, rule in local.cis_1_2_tagged_rules : key => rule if(! lookup(rule.tags, local.logging_only_tag, false) && ! lookup(rule.tags, local.global_only_tag, false)) }
   cis_1_2_all_rules             = merge(local.cis_1_2_base_rules, local.cis_1_2_logging_account_rules, local.cis_1_2_global_resource_rules)
 
+  cis_params = {
+    iam-policy-in-use: {
+      policyArn: var.support_policy_arn
+    s3-bucket-logging-enabled: {
+      targetBucket: var.cloudtrail_bucket_name
+    multi-region-cloudtrail-enabled:
+      s3BucketName: var.cloudtrail_bucket_name
+    }
+  }
+
   cis_1_2_enabled_rules = { for key, rule in local.cis_1_2_all_rules : key => {
     "description"      = rule.description,
     "identifier"       = rule.identifier,
-    "input_parameters" = merge(rule.inputParameters, lookup(var.parameter_overrides, key, {})),
+    "input_parameters" = merge(rule.inputParameters, local.cis_params, lookup(var.parameter_overrides, key, {})),
     "tags"             = rule.tags,
     "enabled"          = rule.enabled,
   } if module.this.enabled }

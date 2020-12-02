@@ -1,7 +1,36 @@
+variable "support_policy_arn" {
+  description = <<-DOC
+    The ARN of the IAM Policy required for compliance with 1.20 of the Benchmark, which states:
+
+    Ensure a support role has been created to manage incidents with AWS Support
+    
+    AWS provides a support center that can be used for incident notification and response, as well as technical support 
+    and customer services.
+
+    Create an IAM role to allow authorized users to manage incidents with AWS Support. By implementing least privilege 
+    for access control, an IAM role will require an appropriate IAM policy to allow support center access in order to 
+    manage incidents with AWS Support.
+  DOC
+  type        = string
+}
+
+variable "cloudtrail_bucket_name" {
+  description = <<-DOC
+    The name of the S3 bucket where CloudTrail logs are being sent. This is needed to comply with 2.6 of the Benchmark 
+    which states:
+
+    Ensure S3 bucket access logging is enabled on the CloudTrail S3 bucket
+  DOC
+  type        = string
+}
+
 variable "config_rules_paths" {
   default = [
     "../../catalog/cloudtrail/*.yaml",
+    "../../catalog/cmk/*.yaml",
     "../../catalog/iam/*.yaml",
+    "../../catalog/network/*.yaml",
+    "../../catalog/vpc/*.yaml",
   ]
 }
 

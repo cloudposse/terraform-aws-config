@@ -1,0 +1,11 @@
+iam-policy-in-use:
+  identifier: IAM_POLICY_IN_USE
+  description:
+    Checks whether the IAM policy ARN is attached to an IAM user, or an IAM group with one or more IAM users, or an IAM
+    role with one or more trusted entity.
+  inputParameters:
+    policyARN: MANDATORY
+  enabled: true
+  tags:
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 1.20

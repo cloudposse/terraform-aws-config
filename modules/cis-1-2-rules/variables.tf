@@ -1,16 +1,23 @@
 variable "config_rules_paths" {
   default = [
-    "../catalog/cloudtrail/*.yaml",
-    "../catalog/iam/*.yaml",
+    "../../catalog/cloudtrail/*.yaml",
+    "../../catalog/iam/*.yaml",
   ]
 }
 
-variable "enable_cis_1_2" {
+variable "parameter_overrides" {
+  type        = map(map(string))
   description = <<-DOC
-    Flag to indicate if config rules associated with CIS AWS Foundations Benchmark 1.2 should be installed.
+    Map of parameters for interpolation within the YAML config templates
+
+    For example, to override the maxCredentialUsageAge parameter in the access-keys-rotated.yaml rule, you would specify
+    the following: 
+
+    parameter_overrides = {
+      "access-keys-rotated" : { maxCredentialUsageAge : "120" }
+    }
   DOC
-  type        = bool
-  default     = false
+  default     = {}
 }
 
 variable "is_logging_account" {

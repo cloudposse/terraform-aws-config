@@ -11,10 +11,10 @@ locals {
   cis_1_2_enabled_rules = { for key, rule in local.cis_1_2_all_rules : key => {
     "description"      = rule.description,
     "identifier"       = rule.identifier,
-    "input_parameters" = rule.inputParameters,
+    "input_parameters" = merge(rule.inputParameters, lookup(var.parameter_overrides, key, {})),
     "tags"             = rule.tags,
     "enabled"          = rule.enabled,
-  } if var.enable_cis_1_2 }
+  } if module.this.enabled }
 
   all_enabled_rules = merge(local.cis_1_2_enabled_rules)
 }
@@ -30,20 +30,10 @@ module "aws_config_rules_yaml_config" {
   context = module.this.context
 }
 
-# Provision AWS Config for this account/region
-module "aws_config" {
-  enabled = false
-  source  = "../"
-  #version = "0.1.0"
-
-  create_sns_topic = true
-  create_iam_role  = true
-  force_destroy    = true
-  managed_rules    = local.all_enabled_rules
-
-  context = module.this.context
+output "rules" {
+  value = local.all_enabled_rules
 }
 
-output "enabled_rules" {
-  value = local.all_enabled_rules
+output "parameters" {
+  value = var.parameter_overrides
 }

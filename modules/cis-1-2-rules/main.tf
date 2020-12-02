@@ -13,12 +13,14 @@ locals {
   cis_1_2_all_rules             = merge(local.cis_1_2_base_rules, local.cis_1_2_logging_account_rules, local.cis_1_2_global_resource_rules)
 
   cis_params = {
-    iam-policy-in-use: {
-      policyArn: var.support_policy_arn
-    s3-bucket-logging-enabled: {
-      targetBucket: var.cloudtrail_bucket_name
-    multi-region-cloudtrail-enabled:
-      s3BucketName: var.cloudtrail_bucket_name
+    "iam-policy-in-use" : {
+      "policyArn" : var.support_policy_arn
+    }
+    "s3-bucket-logging-enabled" : {
+      "targetBucket" : var.cloudtrail_bucket_name
+    }
+    "multi-region-cloudtrail-enabled" : {
+      "s3BucketName" : var.cloudtrail_bucket_name
     }
   }
 

@@ -18,7 +18,7 @@ When you are using a centralized CloudTrail account, you should only run this ru
 
 #### CIS AWS Foundations Benchmark Controls 1.2-1.14, 1.16, 1.20, 1.22, and 2.5: Global Resources
 
-These controls deal with ensuring various global resources, such as IAM Users, are configured in a way that aligns with the Benchmark. Since these resources are global, there is no reason to have AWS Config check them in each region. One region should be designated as the "Global Region" for AWS Config and checks for these controls should only be run in that region. This set of checks can be enabled in the "Global Region" by setting the `is_global_reource_region` to true and disabled in all other regions by setting `is_global_reource_region` to false or omitting it as false is the default value.
+These controls deal with ensuring various global resources, such as IAM Users, are configured in a way that aligns with the Benchmark. Since these resources are global, there is no reason to have AWS Config check them in each region. One region should be designated as the _Global Region_ for AWS Config and checks for these controls should only be run in that region. This set of checks can be enabled in the _Global Region_ by setting the `is_global_reource_region` to true and disabled in all other regions by setting `is_global_reource_region` to false or omitting it as false is the default value.
 
 ### Parameter Overrides
 

@@ -1,6 +1,6 @@
 # AWS Config Rules for CIS AWS Foundations Benchmark Compliance
 
-This module outputs a map of [AWS Config](https://aws.amazon.com/config) Rules that should be in place as part of acheiving compliance with the [CIS AWS Foundation Benchmak 1.2](https://www.cisecurity.org/cis-benchmarks/#amazon_web_services) standard. These rules are meant to be used as an input to the [Cloud Posse AWS Config Module](../../).
+This module outputs a map of [AWS Config](https://aws.amazon.com/config) Rules that should be in place as part of acheiving compliance with the [CIS AWS Foundation Benchmak 1.2](https://www.cisecurity.org/cis-benchmarks/#amazon_web_services) standard. These rules are meant to be used as an input to the [Cloud Posse AWS Config Module](../../) and are defined in the rules [catalog](../../catalog).
 
 ## Usage
 
@@ -22,7 +22,7 @@ These controls deal with ensuring various global resources, such as IAM Users, a
 
 ### Parameter Overrides
 
-You may also override the values any of the parameters set by the rules by providing a map of maps to the `parameter_overrides` variable. The example below shows overriding the `MaxPasswordAge` of the `iam-password-policy` rule. The rule defaults to 90 days, while in this example we want to set it to 45 days.
+You may also override the values any of the AWS Config Parameters set by the rules from our [catalog](../../catalog) by providing a map of maps to the `parameter_overrides` variable. The example below shows overriding the `MaxPasswordAge` of the `iam-password-policy` rule. The rule defaults to 90 days, while in this example we want to set it to 45 days.
 
 **IMPORTANT:** The `master` branch is used in `source` just as an example. In your code, do not pin to `master` because there may be breaking changes between releases.
 Instead pin to the release tag (e.g. `?ref=tags/x.y.z`) of one of our [latest releases](https://github.com/cloudposse/terraform-aws-config/releases).

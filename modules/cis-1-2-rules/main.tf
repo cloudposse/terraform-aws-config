@@ -9,9 +9,9 @@ locals {
   cis_1_2_tagged_rules          = { for key, rule in local.rules_with_tags : key => rule if lookup(rule.tags, local.cis_1_2_tag, false) == true }
   cis_1_2_logging_account_rules = { for key, rule in local.cis_1_2_tagged_rules : key => rule if var.is_logging_account && lookup(rule.tags, local.logging_only_tag, false) }
   cis_1_2_global_resource_rules = { for key, rule in local.cis_1_2_tagged_rules : key => rule if var.is_global_reource_region && lookup(rule.tags, local.global_only_tag, false) }
+  cis_1_2_base_rules            = { for key, rule in local.cis_1_2_tagged_rules : key => rule if(! lookup(rule.tags, local.logging_only_tag, false) && ! lookup(rule.tags, local.global_only_tag, false)) }
+  cis_1_2_all_rules             = merge(local.cis_1_2_base_rules, local.cis_1_2_logging_account_rules, local.cis_1_2_global_resource_rules)
 
-  cis_1_2_base_rules = { for key, rule in local.cis_1_2_tagged_rules : key => rule if(! lookup(rule.tags, local.logging_only_tag, false) && ! lookup(rule.tags, local.global_only_tag, false)) }
-  cis_1_2_all_rules  = merge(local.cis_1_2_base_rules, local.cis_1_2_logging_account_rules, local.cis_1_2_global_resource_rules)
   cis_1_2_enabled_rules = { for key, rule in local.cis_1_2_all_rules : key => {
     "description"      = rule.description,
     "identifier"       = rule.identifier,

@@ -6,6 +6,6 @@ cloud-trail-encryption-enabled:
   inputParameters: {}
   enabled: true
   tags:
-    compliance/standards/aws-foundations-cis/1.2: true
-    compliance/controls/aws-foundations-cis/1.2: 2.7
-  loggingAccountOnly: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/logging-account-only: true
+    compliance/cis-aws-foundations/1.2/controls: 2.7

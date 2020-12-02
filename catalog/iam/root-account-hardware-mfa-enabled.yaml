@@ -7,6 +7,6 @@ root-account-hardware-mfa-enabled:
   inputParameters: {}
   enabled: true
   tags:
-    compliance/standards/aws-foundations-cis/1.2: true
-    compliance/controls/aws-foundations-cis/1.2: 1.14
-  globalResource: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/global-resource-region-only: true
+    compliance/cis-aws-foundations/1.2/controls: 1.14

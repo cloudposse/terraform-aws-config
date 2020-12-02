@@ -20,6 +20,10 @@ When you are using a centralized CloudTrail account, you should only run this ru
 
 These controls deal with ensuring various global resources, such as IAM Users, are configured in a way that aligns with the Benchmark. Since these resources are global, there is no reason to have AWS Config check them in each region. One reagion should be designated as the "Global Region" for AWS Config and checks for these controls should only be run in that region. This set of checks can be enabled in the "Global Region" by setting the `is_global_reource_region` to true and disabled in all other regions by setting `is_global_reource_region` to false or omitting it as false is the default value.
 
+### Parameter Overrides
+
+You may also override the values any of the parameters set by the rules by providing a map of maps to the `parameter_overrides` variable. The example below shows overriding the `MaxPasswordAge` of the `iam-password-policy` rule. The rule defaults to 90 days, while in this example we want to set it to 45 days.
+
 **IMPORTANT:** The `master` branch is used in `source` just as an example. In your code, do not pin to `master` because there may be breaking changes between releases.
 Instead pin to the release tag (e.g. `?ref=tags/x.y.z`) of one of our [latest releases](https://github.com/cloudposse/terraform-aws-config/releases).
 
@@ -34,6 +38,12 @@ module "cis_1_2_rules" {
 
   is_global_reource_region = true
   is_logging_account       = true
+
+  parameter_overrides = {
+    "iam-password-policy": {
+      "MaxPasswordAge": "45"
+    }
+  }
 }
 
 module "config" {

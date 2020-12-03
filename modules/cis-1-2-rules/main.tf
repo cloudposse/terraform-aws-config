@@ -25,11 +25,11 @@ locals {
   }
 
   cis_1_2_enabled_rules = { for key, rule in local.cis_1_2_all_rules : key => {
-    "description"      = rule.description,
-    "identifier"       = rule.identifier,
-    "input_parameters" = merge(rule.inputParameters, local.cis_params, lookup(var.parameter_overrides, key, {})),
-    "tags"             = rule.tags,
-    "enabled"          = rule.enabled,
+    description      = rule.description,
+    identifier       = rule.identifier,
+    input_parameters = merge(rule.inputParameters, local.cis_params, lookup(var.parameter_overrides, key, {})),
+    tags             = rule.tags,
+    enabled          = rule.enabled,
   } if module.this.enabled }
 
   all_enabled_rules = merge(local.cis_1_2_enabled_rules)

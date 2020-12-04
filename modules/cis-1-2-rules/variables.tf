@@ -26,11 +26,11 @@ variable "cloudtrail_bucket_name" {
 
 variable "config_rules_paths" {
   default = [
-    "../../catalog/cloudtrail/*.yaml",
-    "../../catalog/cmk/*.yaml",
-    "../../catalog/iam/*.yaml",
-    "../../catalog/network/*.yaml",
-    "../../catalog/vpc/*.yaml",
+    "../../catalog/cloudtrail.yaml",
+    "../../catalog/cmk.yaml",
+    "../../catalog/iam.yaml",
+    "../../catalog/network.yaml",
+    "../../catalog/vpc.yaml",
   ]
 }
 

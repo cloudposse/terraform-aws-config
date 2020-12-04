@@ -14,7 +14,7 @@ locals {
 
   cis_params = {
     "iam-policy-in-use" : {
-      "policyArn" : var.support_policy_arn
+      "policyARN" : var.support_policy_arn
     }
     "s3-bucket-logging-enabled" : {
       "targetBucket" : var.cloudtrail_bucket_name
@@ -27,7 +27,7 @@ locals {
   cis_1_2_enabled_rules = { for key, rule in local.cis_1_2_all_rules : key => {
     description      = rule.description,
     identifier       = rule.identifier,
-    input_parameters = merge(rule.inputParameters, local.cis_params, lookup(var.parameter_overrides, key, {})),
+    input_parameters = merge(rule.inputParameters, lookup(local.cis_params, key, {}), lookup(var.parameter_overrides, key, {})),
     tags             = rule.tags,
     enabled          = rule.enabled,
   } if module.this.enabled }

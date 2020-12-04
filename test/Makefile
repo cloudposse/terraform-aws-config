@@ -42,3 +42,7 @@ module: deps
 examples/complete: export TESTS ?= installed lint get-modules get-plugins validate
 examples/complete: deps
 	$(call RUN_TESTS, ../$@)
+
+examples/cis: export TESTS ?= installed lint get-modules get-plugins validate
+examples/cis: deps
+	$(call RUN_TESTS, ../$@)

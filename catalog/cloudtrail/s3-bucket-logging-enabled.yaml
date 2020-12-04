@@ -1,9 +1,0 @@
-s3-bucket-logging-enabled:
-  identifier: S3_BUCKET_LOGGING_ENABLED
-  description: Checks whether logging is enabled for your S3 buckets.
-  inputParameters:
-    targetBucket: MANDATORY_CLOUD_TRAIL_BUCKET_NAME
-  enabled: true
-  tags:
-    compliance/cis-aws-foundations/1.2: true
-    compliance/cis-aws-foundations/1.2/controls: 2.6

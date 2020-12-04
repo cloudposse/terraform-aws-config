@@ -24,21 +24,36 @@ variable "force_destroy" {
   default     = false
 }
 
-variable "managed_rules" {
+variable "cloudtrail_bucket_name" {
   description = <<-DOC
-    A list of AWS Managed Rules that should be enabled on the account. 
+    The name of the S3 bucket where CloudTrail logs are being sent. This is needed to comply with 2.6 of the Benchmark 
+    which states:
 
-    See the following for a list of possible rules to enable:
-    https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html
+    Ensure S3 bucket access logging is enabled on the CloudTrail S3 bucket
   DOC
-  type = map(object({
-    description      = string
-    identifier       = string
-    input_parameters = any
-    tags             = map(string)
-    enabled          = bool
-  }))
-  default = {}
+  type        = string
+}
+
+variable "is_logging_account" {
+  description = <<-DOC
+    Flag to indicate if this instance of AWS Config is being installed into a centralized logging account. If this flag
+    is set to true, then the config rules associated with logging in the catalog (loggingAccountOnly: true) will be 
+    installed. If false, they will not be installed.
+    installed.
+  DOC
+  type        = bool
+  default     = false
+}
+
+variable "is_global_reource_region" {
+  description = <<-DOC
+    Flag to indicate if this instance of AWS Config is being installed to monitor global resources (such as IAM). In
+    order to save money, you can disable the monitoring of global resources in all but region. If this flag is set to 
+    true, then the config rules associated with global resources in the catalog (globalResource: true) will be 
+    installed. If false, they will not be installed.
+  DOC
+  type        = bool
+  default     = false
 }
 
 variable "parameter_overrides" {

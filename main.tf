@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 module "aws_config_label" {
   source  = "cloudposse/label/null"
-  version = "0.21.0"
+  version = "0.22.0"
 
   attributes = ["config"]
   context    = module.this.context
@@ -87,7 +87,7 @@ module "sns_topic" {
 
 module "aws_config_findings_label" {
   source  = "cloudposse/label/null"
-  version = "0.21.0"
+  version = "0.22.0"
 
   attributes = ["config", "findings"]
   context    = module.this.context

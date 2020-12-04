@@ -20,9 +20,7 @@ test/complete: init
 test/cis: init
 	go mod download
 	go test -v -timeout 60m -run TestExamplesCIS
-test:
-	test/complete
-	test/cis
+test: test/complete test/cis
 
 
 ## Run tests in docker container

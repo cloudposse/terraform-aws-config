@@ -10,32 +10,24 @@ access-keys-rotated:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/global-resource-region-only: true
     compliance/cis-aws-foundations/1.2/controls: 1.4
-# This rule is currently disabled because when applying it throws the following exception with every combination of
-# parameters, including no parameters at all:
-#   InvalidParameterValueException: One or more parameter value is invalid
-#
-# We have validated that all of the parameters specified are valid and optional via documentation. We are opening a case
-# with AWS Support and/or a Terraform issue once we can reproduce this issue several ways. This rule will be reenabled
-# once the issue is resolved.
-#
-# iam-password-policy:
-#   identifier: IAM_PASSWORD_POLICY
-#   description: >-
-#     Checks whether the account password policy for IAM users meets the specified requirements indicated in the
-#     parameters. This rule is NON_COMPLIANT if the account password policy does not meet the specified requirements.
-#   inputParameters:
-#     RequireUppercaseCharacters: "true"
-#     RequireLowercaseCharacters: "true"
-#     RequireSymbols: "true"
-#     RequireNumbers: "true"
-#     MinimumPasswordLength: "14"
-#     PasswordReusePrevention: "24"
-#     MaxPasswordAge: "90"
-#   enabled: true
-#   tags:
-#     compliance/cis-aws-foundations/1.2: true
-#     compliance/cis-aws-foundations/filters/global-resource-region-only: true
-#     compliance/cis-aws-foundations/1.2/controls: 1.5,1.6,1.7,1.8,1.9,1.10,1.11
+iam-password-policy:
+  identifier: IAM_PASSWORD_POLICY
+  description: >-
+    Checks whether the account password policy for IAM users meets the specified requirements indicated in the
+    parameters. This rule is NON_COMPLIANT if the account password policy does not meet the specified requirements.
+  inputParameters:
+    RequireUppercaseCharacters: "true"
+    RequireLowercaseCharacters: "true"
+    RequireSymbols: "true"
+    RequireNumbers: "true"
+    MinimumPasswordLength: "14"
+    PasswordReusePrevention: "24"
+    MaxPasswordAge: "90"
+  enabled: true
+  tags:
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/global-resource-region-only: true
+    compliance/cis-aws-foundations/1.2/controls: 1.5 1.6 1.7 1.8 1.9 1.10 1.11
 iam-policy-in-use:
   identifier: IAM_POLICY_IN_USE
   description:

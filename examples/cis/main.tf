@@ -20,7 +20,7 @@ resource "aws_iam_role" "support_role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::226010001608:root"
+        "AWS": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
       },
       "Action": "sts:AssumeRole",
       "Condition": {}
@@ -75,3 +75,5 @@ module "aws_config" {
 
   context = module.this.context
 }
+
+data "aws_caller_identity" "current" {}

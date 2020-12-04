@@ -1,4 +1,4 @@
-- vpc-flow-logs-enabled:
+vpc-flow-logs-enabled:
   identifier: VPC_FLOW_LOGS_ENABLED
   description: Checks whether Amazon Virtual Private Cloud flow logs are found and enabled for Amazon VPC.
   inputParameters:

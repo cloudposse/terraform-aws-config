@@ -57,5 +57,20 @@ cloudwatch-log-group-encrypted:
     #
     # KmsKeyId: Amazon Resource Name (ARN) of an AWS Key Management Service (KMS) key that is used to encrypt the
     #           CloudWatch Logs log group.
+    {}
+  enabled: true
+  tags: {}
+cw-loggroup-retention-period-check:
+  identifier: CW_LOGGROUP_RETENTION_PERIOD_CHECK
+  description:
+    Checks whether Amazon CloudWatch LogGroup retention period is set to specific number of days. The rule is
+    NON_COMPLIANT if the retention period is not set or is less than the configured retention period.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # LogGroupNames:    A comma-separated list of Log Group names to check the retention period.
+    # MinRetentionTime: Specify the retention time. Valid values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365,
+    #                   400, 545, 731, 1827, and 3653. The default retention period is 365 days.
+    {}
   enabled: true
   tags: {}

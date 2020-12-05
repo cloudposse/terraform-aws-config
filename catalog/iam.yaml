@@ -12,7 +12,7 @@ access-keys-rotated:
     compliance/cis-aws-foundations/1.2/controls: 1.4
 iam-password-policy:
   identifier: IAM_PASSWORD_POLICY
-  description: >-
+  description:
     Checks whether the account password policy for IAM users meets the specified requirements indicated in the
     parameters. This rule is NON_COMPLIANT if the account password policy does not meet the specified requirements.
   inputParameters:
@@ -118,3 +118,80 @@ root-account-mfa-enabled:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/global-resource-region-only: true
     compliance/cis-aws-foundations/1.2/controls: 1.13
+iam-customer-policy-blocked-kms-actions:
+  identifier: IAM_CUSTOMER_POLICY_BLOCKED_KMS_ACTIONS
+  description:
+    Checks that the managed AWS Identity and Access Management policies that you create do not allow blocked actions on
+    all AWS AWS KMS keys. The rule is NON_COMPLIANT if any blocked action is allowed on all AWS AWS KMS keys by the
+    managed IAM policy.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # blockedActionsPatterns: Comma-separated list of blocked KMS action patterns, for example, kms:*, kms:Decrypt,
+    #                         kms:ReEncrypt*.
+    blockedActionsPatterns: "kms:*"
+  enabled: true
+  tags: {}
+iam-group-has-users-check:
+  identifier: IAM_GROUP_HAS_USERS_CHECK
+  description: Checks whether IAM groups have at least one IAM user.
+  inputParameters: {}
+  enabled: true
+  tags: {}
+iam-inline-policy-blocked-kms-actions:
+  identifier: IAM_INLINE_POLICY_BLOCKED_KMS_ACTIONS
+  description:
+    Checks that the inline policies attached to your AWS Identity and Access Management users, roles, and groups do not
+    allow blocked actions on all AWS Key Management Service keys. The rule is NON_COMPLIANT if any blocked action is
+    allowed on all AWS KMS keys in an inline policy.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # blockedActionsPatterns: Comma-separated list of blocked KMS action patterns, for example, kms:*, kms:Decrypt,
+    #                         kms:ReEncrypt*.
+    blockedActionsPatterns: "kms:*"
+  enabled: true
+  tags: {}
+iam-no-inline-policy-check:
+  identifier: IAM_NO_INLINE_POLICY_CHECK
+  description:
+    Checks that inline policy feature is not in use. The rule is NON_COMPLIANT if an AWS Identity and Access Management
+    (IAM) user, IAM role or IAM group has any inline policy.
+  inputParameters: {}
+  enabled: true
+  tags: {}
+iam-policy-blacklisted-check:
+  identifier: IAM_POLICY_BLACKLISTED_CHECK
+  description:
+    Checks whether for each IAM resource, a policy ARN in the input parameter is attached to the IAM resource. The rule
+    is NON_COMPLIANT if the policy ARN is attached to the IAM resource. AWS Config marks the resource as COMPLIANT if
+    the IAM resource is part of the exceptionList parameter irrespective of the presence of the policy ARN.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # policyArns:     Comma-separated list of policy ARNs.
+    # exceptionList:  Comma-separated list IAM users, groups, or roles that are exempt from this rule. For example,
+    #                 users:[user1;user2], groups:[group1;group2], roles:[role1;role2;role3].
+    policyArns: ""
+    exceptionList: ""
+  enabled: true
+  tags: {}
+iam-role-managed-policy-check:
+  identifier: IAM_ROLE_MANAGED_POLICY_CHECK
+  description:
+    Checks that AWS Identity and Access Management (IAM) policies in a list of policies are attached to all AWS roles.
+    The rule is NON_COMPLIANT if the IAM managed policy is not attached to the IAM role.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # managedPolicyNames: Comma-separated list of AWS managed policy ARNs.
+    managedPolicyNames: ""
+  enabled: true
+  tags: {}
+iam-user-mfa-enabled:
+  identifier: IAM_USER_MFA_ENABLED
+  description:
+    Checks whether the AWS Identity and Access Management users have multi-factor authentication (MFA) enabled.
+  inputParameters: {}
+  enabled: true
+  tags: {}

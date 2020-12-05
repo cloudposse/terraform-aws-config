@@ -180,3 +180,16 @@ desired-instance-type:
     # instanceType: Comma-separated list of EC2 instance types (for example, "t2.small, m4.large, i2.xlarge").
   enabled: true
   tags: {}
+encrypted-volumes:
+  identifier: ENCRYPTED_VOLUMES
+  description:
+    Checks whether the EBS volumes that are in an attached state are encrypted. If you specify the ID of a KMS key for
+    encryption using the kmsId parameter, the rule checks if the EBS volumes in an attached state are encrypted with
+    that KMS key.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # kmsId: ID or ARN of the KMS key that is used to encrypt the volume.
+    kmsId: ""
+  enabled: true
+  tags: {}

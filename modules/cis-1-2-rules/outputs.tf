@@ -1,3 +1,3 @@
 output "rules" {
-  value = local.all_enabled_rules
+  value = local.enabled_rules
 }

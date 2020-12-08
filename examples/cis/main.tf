@@ -57,10 +57,10 @@ module "cis_rules" {
   source = "../../modules/cis-1-2-rules"
 
   is_global_resource_region = var.is_global_resource_region
-  is_logging_account       = var.is_logging_account
-  support_policy_arn       = aws_iam_policy.support_policy.arn
-  cloudtrail_bucket_name   = var.cloudtrail_bucket_name
-  parameter_overrides      = var.parameter_overrides
+  is_logging_account        = var.is_logging_account
+  support_policy_arn        = aws_iam_policy.support_policy.arn
+  cloudtrail_bucket_name    = var.cloudtrail_bucket_name
+  parameter_overrides       = var.parameter_overrides
 
   context = module.this.context
 }

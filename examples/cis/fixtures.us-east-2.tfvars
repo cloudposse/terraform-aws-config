@@ -8,5 +8,5 @@ create_iam_role  = true
 force_destroy    = true
 
 is_global_resource_region = true
-is_logging_account       = true
-cloudtrail_bucket_name   = "some-valid-bucket-name"
+is_logging_account        = true
+cloudtrail_bucket_name    = "some-valid-bucket-name"

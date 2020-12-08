@@ -8,14 +8,17 @@ create_iam_role  = true
 force_destroy    = true
 
 managed_rules = {
-  mfa-enabled-for-iam-console-access = {
-    description      = "Checks whether AWS Multi-Factor Authentication (MFA) is enabled for all AWS Identity and Access Management (IAM) users that use a console password. The rule is COMPLIANT if MFA is enabled.",
-    identifier       = "MFA_ENABLED_FOR_IAM_CONSOLE_ACCESS",
-    input_parameters = {}
-    tags = {
-      "compliance/cis-aws-foundations/1.2": true
-      "compliance/controls/aws-foundations-cis/1.2": "X.X"
+  access-keys-rotated = {
+    identifier  = "ACCESS_KEYS_ROTATED"
+    description = "Checks whether the active access keys are rotated within the number of days specified in maxAccessKeyAge. The rule is NON_COMPLIANT if the access keys have not been rotated for more than maxAccessKeyAge number of days."
+    inputParameters : {
+      "maxAccessKeyAge" : "90"
     }
     enabled = true
+    tags = {
+      "compliance/cis-aws-foundations/1.2"                                 = true
+      "compliance/cis-aws-foundations/filters/global-resource-region-only" = true
+      "compliance/cis-aws-foundations/1.2/controls"                        = 1.4
+    }
   }
 }

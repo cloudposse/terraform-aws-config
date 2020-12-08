@@ -21,6 +21,7 @@ dynamodb-autoscaling-enabled:
     {}
   enabled: true
   tags: {}
+
 dynamodb-in-backup-plan:
   identifier: DYNAMODB_IN_BACKUP_PLAN
   description:
@@ -29,6 +30,7 @@ dynamodb-in-backup-plan:
   inputParameters: {}
   enabled: true
   tags: {}
+
 dynamodb-pitr-enabled:
   identifier: DYNAMODB_PITR_ENABLED
   description:
@@ -37,6 +39,7 @@ dynamodb-pitr-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 dynamodb-table-encrypted-kms:
   identifier: DYNAMODB_TABLE_ENCRYPTED_KMS
   description:
@@ -49,6 +52,7 @@ dynamodb-table-encrypted-kms:
     # kmsKeyArns: Comma separated list of AWS KMS Key ARN list.
   enabled: true
   tags: {}
+
 dynamodb-table-encryption-enabled:
   identifier: DYNAMODB_TABLE_ENCRYPTION_ENABLED
   description:
@@ -57,6 +61,7 @@ dynamodb-table-encryption-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 dynamodb-throughput-limit-check:
   identifier: DYNAMODB_THROUGHPUT_LIMIT_CHECK
   description:
@@ -72,6 +77,7 @@ dynamodb-throughput-limit-check:
     {}
   enabled: true
   tags: {}
+
 dax-encryption-enabled:
   identifier: DAX_ENCRYPTION_ENABLED
   description:

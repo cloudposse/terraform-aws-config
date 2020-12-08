@@ -14,6 +14,7 @@ emr-kerberos-enabled:
     {}
   enabled: true
   tags: {}
+
 emr-master-no-public-ip:
   identifier: EMR_MASTER_NO_PUBLIC_IP
   description:

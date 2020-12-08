@@ -6,6 +6,7 @@ ec2-ebs-encryption-by-default:
   inputParameters: {}
   enabled: true
   tags: {}
+
 ec2-imdsv2-check:
   identifier: EC2_IMDSV2_CHECK
   description:
@@ -15,6 +16,7 @@ ec2-imdsv2-check:
   inputParameters: {}
   enabled: true
   tags: {}
+
 ec2-instance-detailed-monitoring-enabled:
   identifier: EC2_INSTANCE_DETAILED_MONITORING_ENABLED
   description:
@@ -23,12 +25,14 @@ ec2-instance-detailed-monitoring-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 ec2-instance-managed-by-systems-manager:
   identifier: EC2_INSTANCE_MANAGED_BY_SSM
   description: Checks whether the Amazon EC2 instances in your account are managed by AWS Systems Manager.
   inputParameters: {}
   enabled: true
   tags: {}
+
 ec2-instance-no-public-ip:
   identifier: EC2_INSTANCE_NO_PUBLIC_IP
   description:
@@ -38,6 +42,7 @@ ec2-instance-no-public-ip:
   inputParameters: {}
   enabled: true
   tags: {}
+
 ec2-instances-in-vpc:
   identifier: INSTANCES_IN_VPC
   description:
@@ -49,6 +54,7 @@ ec2-instances-in-vpc:
     # vpcId: The ID of the VPC that contains these instances.
   enabled: true
   tags: {}
+
 ec2-managedinstance-applications-blacklisted:
   identifier: EC2_MANAGEDINSTANCE_APPLICATIONS_BLACKLISTED
   description:
@@ -69,6 +75,7 @@ ec2-managedinstance-applications-blacklisted:
     {}
   enabled: true
   tags: {}
+
 ec2-managedinstance-applications-required:
   identifier: EC2_MANAGEDINSTANCE_APPLICATIONS_REQUIRED
   description:
@@ -88,6 +95,7 @@ ec2-managedinstance-applications-required:
     {}
   enabled: true
   tags: {}
+
 ec2-managedinstance-association-compliance-status-check:
   identifier: EC2_MANAGEDINSTANCE_ASSOCIATION_COMPLIANCE_STATUS_CHECK
   description:
@@ -96,6 +104,7 @@ ec2-managedinstance-association-compliance-status-check:
   inputParameters: {}
   enabled: true
   tags: {}
+
 ec2-managedinstance-inventory-blacklisted:
   identifier: EC2_MANAGEDINSTANCE_INVENTORY_BLACKLISTED
   description:
@@ -103,6 +112,7 @@ ec2-managedinstance-inventory-blacklisted:
   inputParameters: inventoryNames
   enabled: true
   tags: {}
+
 ec2-managedinstance-patch-compliance-status-check:
   identifier: EC2_MANAGEDINSTANCE_PATCH_COMPLIANCE_STATUS_CHECK
   description:
@@ -111,12 +121,14 @@ ec2-managedinstance-patch-compliance-status-check:
   inputParameters: {}
   enabled: true
   tags: {}
+
 ec2-managedinstance-platform-check:
   identifier: EC2_MANAGEDINSTANCE_PLATFORM_CHECK
   description: Checks whether EC2 managed instances have the desired configurations.
   inputParameters: agentVersion
   enabled: true
   tags: {}
+
 ec2-security-group-attached-to-eni:
   identifier: EC2_SECURITY_GROUP_ATTACHED_TO_ENI
   description:
@@ -126,6 +138,7 @@ ec2-security-group-attached-to-eni:
   inputParameters: {}
   enabled: true
   tags: {}
+
 ec2-stopped-instance:
   identifier: EC2_STOPPED_INSTANCE
   description:
@@ -139,6 +152,7 @@ ec2-stopped-instance:
     {}
   enabled: true
   tags:
+
 ec2-volume-inuse-check:
   identifier: EC2_VOLUME_INUSE_CHECK
   description:
@@ -151,6 +165,7 @@ ec2-volume-inuse-check:
     {}
   enabled: true
   tags: {}
+
 desired-instance-tenancy:
   identifier: DESIRED_INSTANCE_TENANCY
   description:
@@ -171,6 +186,7 @@ desired-instance-tenancy:
     tenancy; "DEFAULT"
   enabled: true
   tags: {}
+
 desired-instance-type:
   identifier: DESIRED_INSTANCE_TYPE
   description: Checks whether your EC2 instances are of the specified instance types.
@@ -180,6 +196,7 @@ desired-instance-type:
     # instanceType: Comma-separated list of EC2 instance types (for example, "t2.small, m4.large, i2.xlarge").
   enabled: true
   tags: {}
+
 encrypted-volumes:
   identifier: ENCRYPTED_VOLUMES
   description:

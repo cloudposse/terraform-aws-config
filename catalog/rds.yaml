@@ -6,6 +6,7 @@ rds-cluster-deletion-protection-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 rds-enhanced-monitoring-enabled:
   identifier: RDS_ENHANCED_MONITORING_ENABLED
   description:
@@ -17,6 +18,7 @@ rds-enhanced-monitoring-enabled:
     #                     the database instance. The valid values are 1, 5, 10, 15, 30, and 60.
   enabled: true
   tags: {}
+
 rds-in-backup-plan:
   identifier: RDS_IN_BACKUP_PLAN
   description:
@@ -25,6 +27,7 @@ rds-in-backup-plan:
   inputParameters: {}
   enabled: true
   tags: {}
+
 rds-instance-deletion-protection-enabled:
   identifier: RDS_INSTANCE_DELETION_PROTECTION_ENABLED
   description:
@@ -34,6 +37,7 @@ rds-instance-deletion-protection-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 rds-instance-iam-authentication-enabled:
   identifier: RDS_INSTANCE_IAM_AUTHENTICATION_ENABLED
   description:
@@ -43,6 +47,7 @@ rds-instance-iam-authentication-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 rds-instance-public-access-check:
   identifier: RDS_INSTANCE_PUBLIC_ACCESS_CHECK
   description:
@@ -51,6 +56,7 @@ rds-instance-public-access-check:
   inputParameters: {}
   enabled: true
   tags: {}
+
 rds-logging-enabled:
   identifier: RDS_LOGGING_ENABLED
   description:
@@ -59,12 +65,14 @@ rds-logging-enabled:
   inputParameters: additionalLogs (Optional)
   enabled: true
   tags: {}
+
 rds-multi-az-support:
   identifier: RDS_MULTI_AZ_SUPPORT
   description: Checks whether high availability is enabled for your RDS DB instances.
   inputParameters: {}
   enabled: true
   tags: {}
+
 rds-snapshot-encrypted:
   identifier: RDS_SNAPSHOT_ENCRYPTED
   description:
@@ -73,6 +81,7 @@ rds-snapshot-encrypted:
   inputParameters: {}
   enabled: true
   tags: {}
+
 rds-snapshots-public-prohibited:
   identifier: RDS_SNAPSHOTS_PUBLIC_PROHIBITED
   description:
@@ -81,6 +90,7 @@ rds-snapshots-public-prohibited:
   inputParameters: {}
   enabled: true
   tags: {}
+
 rds-storage-encrypted:
   identifier: RDS_STORAGE_ENCRYPTED
   description: Checks whether storage encryption is enabled for your RDS DB instances.
@@ -91,6 +101,7 @@ rds-storage-encrypted:
     kmsKeyId: ""
   enabled: true
   tags: {}
+
 db-instance-backup-enabled:
   identifier: DB_INSTANCE_BACKUP_ENABLED
   description:

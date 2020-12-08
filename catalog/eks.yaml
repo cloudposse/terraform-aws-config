@@ -6,6 +6,7 @@ eks-endpoint-no-public-access:
   inputParameters: {}
   enabled: true
   tags: {}
+
 eks-secrets-encrypted:
   identifier: EKS_SECRETS_ENCRYPTED
   description:

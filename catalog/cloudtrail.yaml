@@ -8,6 +8,7 @@ cloud-trail-cloud-watch-logs-enabled:
   tags:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 2.4
+
 cloud-trail-encryption-enabled:
   identifier: CLOUD_TRAIL_ENCRYPTION_ENABLED
   description:
@@ -19,6 +20,7 @@ cloud-trail-encryption-enabled:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/logging-account-only: true
     compliance/cis-aws-foundations/1.2/controls: 2.7
+
 cloud-trail-log-file-validation-enabled:
   identifier: CLOUD_TRAIL_LOG_FILE_VALIDATION_ENABLED
   description:
@@ -29,6 +31,7 @@ cloud-trail-log-file-validation-enabled:
   tags:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 2.2
+
 multi-region-cloudtrail-enabled:
   identifier: MULTI_REGION_CLOUD_TRAIL_ENABLED
   description:
@@ -47,6 +50,7 @@ multi-region-cloudtrail-enabled:
   tags:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 2.1
+
 s3-bucket-public-read-prohibited:
   identifier: S3_BUCKET_PUBLIC_READ_PROHIBITED
   description:
@@ -57,6 +61,7 @@ s3-bucket-public-read-prohibited:
   tags:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 2.3
+
 s3-bucket-public-write-prohibited:
   identifier: S3_BUCKET_PUBLIC_WRITE_PROHIBITED
   description:
@@ -67,6 +72,7 @@ s3-bucket-public-write-prohibited:
   tags:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 2.3
+
 cloudtrail-enabled:
   identifier: CLOUD_TRAIL_ENABLED
   description:
@@ -80,6 +86,7 @@ cloudtrail-enabled:
     # cloudWatchLogsLogGroupArn: The ARN of the Amazon CloudWatch log group for AWS CloudTrail to send data to.
   enabled: true
   tags: {}
+
 cloudtrail-s3-dataevents-enabled:
   identifier: CLOUDTRAIL_S3_DATAEVENTS_ENABLED
   description:
@@ -92,6 +99,7 @@ cloudtrail-s3-dataevents-enabled:
     #                behavior checks for all S3 buckets.
   enabled: true
   tags: {}
+
 cloudtrail-security-trail-enabled:
   identifier: CLOUDTRAIL_SECURITY_TRAIL_ENABLED
   description:

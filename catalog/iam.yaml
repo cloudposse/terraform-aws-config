@@ -10,6 +10,7 @@ access-keys-rotated:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/global-resource-region-only: true
     compliance/cis-aws-foundations/1.2/controls: 1.4
+
 iam-password-policy:
   identifier: IAM_PASSWORD_POLICY
   description:
@@ -28,6 +29,7 @@ iam-password-policy:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/global-resource-region-only: true
     compliance/cis-aws-foundations/1.2/controls: 1.5 1.6 1.7 1.8 1.9 1.10 1.11
+
 iam-policy-in-use:
   identifier: IAM_POLICY_IN_USE
   description:
@@ -40,6 +42,7 @@ iam-policy-in-use:
   tags:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 1.20
+
 iam-policy-no-statements-with-admin-access:
   identifier: IAM_POLICY_NO_STATEMENTS_WITH_ADMIN_ACCESS
   description: >-
@@ -51,6 +54,7 @@ iam-policy-no-statements-with-admin-access:
   tags:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 1.22
+
 iam-root-access-key-check:
   identifier: IAM_ROOT_ACCESS_KEY_CHECK
   description:
@@ -61,6 +65,7 @@ iam-root-access-key-check:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/global-resource-region-only: true
     compliance/cis-aws-foundations/1.2/controls: 1.12
+
 iam-user-no-policies-check:
   identifier: IAM_USER_NO_POLICIES_CHECK
   description:
@@ -72,6 +77,7 @@ iam-user-no-policies-check:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/global-resource-region-only: true
     compliance/cis-aws-foundations/1.2/controls: 1.16
+
 iam-user-unused-credentials-check:
   identifier: IAM_USER_UNUSED_CREDENTIALS_CHECK
   description:
@@ -84,6 +90,7 @@ iam-user-unused-credentials-check:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/global-resource-region-only: true
     compliance/cis-aws-foundations/1.2/controls: 1.3
+
 mfa-enabled-for-iam-console-access:
   identifier: MFA_ENABLED_FOR_IAM_CONSOLE_ACCESS
   description:
@@ -95,6 +102,7 @@ mfa-enabled-for-iam-console-access:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/global-resource-region-only: true
     compliance/cis-aws-foundations/1.2/controls: 1.2
+
 root-account-hardware-mfa-enabled:
   identifier: ROOT_ACCOUNT_HARDWARE_MFA_ENABLED
   description:
@@ -107,6 +115,7 @@ root-account-hardware-mfa-enabled:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/global-resource-region-only: true
     compliance/cis-aws-foundations/1.2/controls: 1.14
+
 root-account-mfa-enabled:
   identifier: ROOT_ACCOUNT_MFA_ENABLED
   description:
@@ -118,6 +127,7 @@ root-account-mfa-enabled:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/global-resource-region-only: true
     compliance/cis-aws-foundations/1.2/controls: 1.13
+
 iam-customer-policy-blocked-kms-actions:
   identifier: IAM_CUSTOMER_POLICY_BLOCKED_KMS_ACTIONS
   description:
@@ -132,12 +142,14 @@ iam-customer-policy-blocked-kms-actions:
     blockedActionsPatterns: "kms:*"
   enabled: true
   tags: {}
+
 iam-group-has-users-check:
   identifier: IAM_GROUP_HAS_USERS_CHECK
   description: Checks whether IAM groups have at least one IAM user.
   inputParameters: {}
   enabled: true
   tags: {}
+
 iam-inline-policy-blocked-kms-actions:
   identifier: IAM_INLINE_POLICY_BLOCKED_KMS_ACTIONS
   description:
@@ -152,6 +164,7 @@ iam-inline-policy-blocked-kms-actions:
     blockedActionsPatterns: "kms:*"
   enabled: true
   tags: {}
+
 iam-no-inline-policy-check:
   identifier: IAM_NO_INLINE_POLICY_CHECK
   description:
@@ -160,6 +173,7 @@ iam-no-inline-policy-check:
   inputParameters: {}
   enabled: true
   tags: {}
+
 iam-policy-blacklisted-check:
   identifier: IAM_POLICY_BLACKLISTED_CHECK
   description:
@@ -176,6 +190,7 @@ iam-policy-blacklisted-check:
     exceptionList: ""
   enabled: true
   tags: {}
+
 iam-role-managed-policy-check:
   identifier: IAM_ROLE_MANAGED_POLICY_CHECK
   description:
@@ -188,6 +203,7 @@ iam-role-managed-policy-check:
     managedPolicyNames: ""
   enabled: true
   tags: {}
+
 iam-user-mfa-enabled:
   identifier: IAM_USER_MFA_ENABLED
   description:

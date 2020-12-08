@@ -10,6 +10,7 @@ efs-encrypted-check:
     # KmsKeyId: Amazon Resource Name (ARN) of the AWS KMS key that is used to encrypt the Amazon EFS file system.
   enabled: true
   tags: {}
+
 efs-in-backup-plan:
   identifier: EFS_IN_BACKUP_PLAN
   description:

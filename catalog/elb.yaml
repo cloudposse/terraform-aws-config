@@ -31,6 +31,7 @@ elb-deletion-protection-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 elb-logging-enabled:
   identifier: ELB_LOGGING_ENABLED
   description:
@@ -44,6 +45,7 @@ elb-logging-enabled:
     {}
   enabled: true
   tags: {}
+
 elb-predefined-security-policy-ssl-check:
   identifier: ELB_PREDEFINED_SECURITY_POLICY_SSL_CHECK
   description:
@@ -56,6 +58,7 @@ elb-predefined-security-policy-ssl-check:
     predefinedPolicyName: ""
   enabled: true
   tags: {}
+
 elb-tls-https-listeners-only:
   identifier: ELB_TLS_HTTPS_LISTENERS_ONLY
   description:

@@ -12,6 +12,7 @@ codepipeline-deployment-count-check:
     {}
   enabled: true
   tags: {}
+
 codepipeline-region-fanout-check:
   identifier: CODEPIPELINE_REGION_FANOUT_CHECK
   description:

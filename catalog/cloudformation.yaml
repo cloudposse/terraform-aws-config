@@ -12,6 +12,7 @@ cloudformation-stack-drift-detection-check:
     cloudformationRoleArn
   enabled: true
   tags: {}
+
 cloudformation-stack-notification-check:
   identifier: CLOUDFORMATION_STACK_NOTIFICATION_CHECK
   description:

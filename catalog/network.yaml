@@ -10,6 +10,7 @@ restricted-common-ports:
   tags:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 4.2
+
 restricted-ssh:
   identifier: INCOMING_SSH_DISABLED
   description:
@@ -20,6 +21,7 @@ restricted-ssh:
   tags:
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 4.1
+
 vpc-default-security-group-closed:
   identifier: VPC_DEFAULT_SECURITY_GROUP_CLOSED
   description:

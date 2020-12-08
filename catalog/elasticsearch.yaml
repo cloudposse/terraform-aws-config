@@ -6,6 +6,7 @@ elasticsearch-encrypted-at-rest:
   inputParameters: {}
   enabled: true
   tags: {}
+
 elasticsearch-in-vpc-only:
   identifier: ELASTICSEARCH_IN_VPC_ONLY
   description:
@@ -14,6 +15,7 @@ elasticsearch-in-vpc-only:
   inputParameters: {}
   enabled: true
   tags: {}
+
 elasticsearch-node-to-node-encryption-check:
   identifier: ELASTICSEARCH_NODE_TO_NODE_ENCRYPTION_CHECK
   description:

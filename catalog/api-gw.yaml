@@ -6,6 +6,7 @@ api-gw-cache-enabled-and-encrypted:
   inputParameters: {}
   enabled: true
   tags: {}
+
 api-gw-endpoint-type-check:
   identifier: API_GW_ENDPOINT_TYPE_CHECK
   description:
@@ -18,6 +19,7 @@ api-gw-endpoint-type-check:
     endpointConfigurationTypes: ""
   enabled: true
   tags: {}
+
 api-gw-execution-logging-enabled:
   identifier: API_GW_EXECUTION_LOGGING_ENABLED
   description:

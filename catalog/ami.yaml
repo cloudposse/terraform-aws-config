@@ -10,6 +10,7 @@ approved-amis-by-id:
     amiIds: ""
   enabled: true
   tags: {}
+
 approved-amis-by-tag:
   identifier: APPROVED_AMIS_BY_TAG
   description:

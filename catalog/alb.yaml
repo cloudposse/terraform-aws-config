@@ -6,6 +6,7 @@ alb-http-drop-invalid-header-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 alb-http-to-https-redirection-check:
   identifier: ALB_HTTP_TO_HTTPS_REDIRECTION_CHECK
   description:
@@ -15,6 +16,7 @@ alb-http-to-https-redirection-check:
   inputParameters: {}
   enabled: true
   tags: {}
+
 alb-waf-enabled:
   identifier: ALB_WAF_ENABLED
   description:

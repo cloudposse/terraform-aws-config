@@ -11,6 +11,7 @@ guardduty-enabled-centralized:
     {}
   enabled: true
   tags: {}
+
 guardduty-non-archived-findings:
   identifier: GUARDDUTY_NON_ARCHIVED_FINDINGS
   description:

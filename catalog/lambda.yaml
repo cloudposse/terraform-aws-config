@@ -10,6 +10,7 @@ lambda-concurrency-check:
     # ConcurrencyLimitHigh: Maximum concurrency execution limit
   enabled: true
   tags: {}
+
 lambda-dlq-check:
   identifier: LAMBDA_DLQ_CHECK
   description:
@@ -21,6 +22,7 @@ lambda-dlq-check:
     # dlqArns: Comma-separated list of Amazon SQS and Amazon SNS ARNs that must be configured as the Lambda function dead-letter queue target.
   enabled: true
   tags: {}
+
 lambda-function-public-access-prohibited:
   identifier: LAMBDA_FUNCTION_PUBLIC_ACCESS_PROHIBITED
   description:
@@ -29,6 +31,7 @@ lambda-function-public-access-prohibited:
   inputParameters: {}
   enabled: true
   tags: {}
+
 lambda-function-settings-check:
   identifier: LAMBDA_FUNCTION_SETTINGS_CHECK
   description:
@@ -46,6 +49,7 @@ lambda-function-settings-check:
     memorySize: "1024"
   enabled: true
   tags: {}
+
 lambda-inside-vpc:
   identifier: LAMBDA_INSIDE_VPC
   description:

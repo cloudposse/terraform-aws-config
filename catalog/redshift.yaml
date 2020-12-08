@@ -11,6 +11,7 @@ redshift-backup-enabled:
     # MaxRetentionPeriod: Maximum value for the retention period. Maximum value is 35.
   enabled: true
   tags: {}
+
 redshift-cluster-configuration-check:
   identifier: REDSHIFT_CLUSTER_CONFIGURATION_CHECK
   description: Checks whether Amazon Redshift clusters have the specified settings.
@@ -22,6 +23,7 @@ redshift-cluster-configuration-check:
     # loggingEnabled: Audit logging is enabled.
   enabled: true
   tags: {}
+
 redshift-cluster-maintenancesettings-check:
   identifier: REDSHIFT_CLUSTER_MAINTENANCESETTINGS_CHECK
   description: Checks whether Amazon Redshift clusters have the specified maintenance settings.
@@ -36,6 +38,7 @@ redshift-cluster-maintenancesettings-check:
     automatedSnapshotRetentionPeriod: "30"
   enabled: true
   tags: {}
+
 redshift-cluster-public-access-check:
   identifier: REDSHIFT_CLUSTER_PUBLIC_ACCESS_CHECK
   description:

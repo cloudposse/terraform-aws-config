@@ -10,6 +10,7 @@ account-part-of-organizations:
     {}
   enabled: true
   tags: {}
+
 root-account-hardware-mfa-enabled:
   identifier: ROOT_ACCOUNT_HARDWARE_MFA_ENABLED
   description:
@@ -19,6 +20,7 @@ root-account-hardware-mfa-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 root-account-mfa-enabled:
   identifier: ROOT_ACCOUNT_MFA_ENABLED
   description:

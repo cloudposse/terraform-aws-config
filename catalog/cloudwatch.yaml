@@ -16,6 +16,7 @@ cloudwatch-alarm-action-check:
     okActionRequired: "false"
   enabled: true
   tags: {}
+
 cloudwatch-alarm-resource-check:
   identifier: CLOUDWATCH_ALARM_RESOURCE_CHECK
   description:
@@ -31,6 +32,7 @@ cloudwatch-alarm-resource-check:
     metricName: ""
   enabled: true
   tags: {}
+
 cloudwatch-alarm-settings-check:
   identifier: CLOUDWATCH_ALARM_SETTINGS_CHECK
   description: Checks whether CloudWatch alarms with the given metric name have the specified settings.
@@ -47,6 +49,7 @@ cloudwatch-alarm-settings-check:
     {}
   enabled: true
   tags: {}
+
 cloudwatch-log-group-encrypted:
   identifier: CLOUDWATCH_LOG_GROUP_ENCRYPTED
   description:
@@ -60,6 +63,7 @@ cloudwatch-log-group-encrypted:
     {}
   enabled: true
   tags: {}
+
 cw-loggroup-retention-period-check:
   identifier: CW_LOGGROUP_RETENTION_PERIOD_CHECK
   description:

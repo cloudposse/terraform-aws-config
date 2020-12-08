@@ -6,6 +6,7 @@ cloudfront-default-root-object-configured:
   inputParameters: {}
   enabled: true
   tags: {}
+
 cloudfront-origin-access-identity-enabled:
   identifier: CLOUDFRONT_ORIGIN_ACCESS_IDENTITY_ENABLED
   description:
@@ -15,6 +16,7 @@ cloudfront-origin-access-identity-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 cloudfront-origin-failover-enabled:
   identifier: CLOUDFRONT_ORIGIN_FAILOVER_ENABLED
   description:
@@ -23,6 +25,7 @@ cloudfront-origin-failover-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 cloudfront-sni-enabled:
   identifier: CLOUDFRONT_SNI_ENABLED
   description:
@@ -32,6 +35,7 @@ cloudfront-sni-enabled:
   inputParameters: {}
   enabled: true
   tags: {}
+
 cloudfront-viewer-policy-https:
   identifier: CLOUDFRONT_VIEWER_POLICY_HTTPS
   description:

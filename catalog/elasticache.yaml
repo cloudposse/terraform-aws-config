@@ -10,4 +10,5 @@ elasticache-redis-cluster-automatic-backup-check:
     # snapshotRetentionPeriod: Minimum snapshot retention period in days for Redis cluster. The default is 15 days.
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/elastocache: true

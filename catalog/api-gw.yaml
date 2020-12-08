@@ -5,7 +5,8 @@ api-gw-cache-enabled-and-encrypted:
     if any method in an API Gateway stage is not configured for caching or the cache is not encrypted.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/apigw: true
 
 api-gw-endpoint-type-check:
   identifier: API_GW_ENDPOINT_TYPE_CHECK
@@ -31,4 +32,5 @@ api-gw-execution-logging-enabled:
     # loggingLevel: Comma-separated list of specific logging levels (for example, ERROR, INFO or ERROR,INFO)
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/apigw: true

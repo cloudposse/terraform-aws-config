@@ -11,7 +11,8 @@ cloudformation-stack-drift-detection-check:
     # The AWS CloudFormation role ARN with IAM policy permissions to detect drift for AWS CloudFormation stacks.
     cloudformationRoleArn
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudformation: true
 
 cloudformation-stack-notification-check:
   identifier: CLOUDFORMATION_STACK_NOTIFICATION_CHECK
@@ -28,4 +29,5 @@ cloudformation-stack-notification-check:
     # snsTopic5
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudformation: true

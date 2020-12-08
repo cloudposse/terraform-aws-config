@@ -5,4 +5,5 @@ autoscaling-group-elb-healthcheck-required:
     health checks.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/asg: true

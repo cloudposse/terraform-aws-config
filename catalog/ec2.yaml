@@ -5,7 +5,8 @@ ec2-ebs-encryption-by-default:
     encryption is not enabled.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-imdsv2-check:
   identifier: EC2_IMDSV2_CHECK
@@ -15,7 +16,8 @@ ec2-imdsv2-check:
     if the HttpTokens is set to optional.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-instance-detailed-monitoring-enabled:
   identifier: EC2_INSTANCE_DETAILED_MONITORING_ENABLED
@@ -24,14 +26,16 @@ ec2-instance-detailed-monitoring-enabled:
     not enabled.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-instance-managed-by-systems-manager:
   identifier: EC2_INSTANCE_MANAGED_BY_SSM
   description: Checks whether the Amazon EC2 instances in your account are managed by AWS Systems Manager.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-instance-no-public-ip:
   identifier: EC2_INSTANCE_NO_PUBLIC_IP
@@ -41,7 +45,8 @@ ec2-instance-no-public-ip:
     to IPv4.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-instances-in-vpc:
   identifier: INSTANCES_IN_VPC
@@ -53,7 +58,8 @@ ec2-instances-in-vpc:
     #
     # vpcId: The ID of the VPC that contains these instances.
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-managedinstance-applications-blacklisted:
   identifier: EC2_MANAGEDINSTANCE_APPLICATIONS_BLACKLISTED
@@ -74,7 +80,8 @@ ec2-managedinstance-applications-blacklisted:
     # platformType: The platform type (for example, "Linux" or "Windows").
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-managedinstance-applications-required:
   identifier: EC2_MANAGEDINSTANCE_APPLICATIONS_REQUIRED
@@ -94,7 +101,8 @@ ec2-managedinstance-applications-required:
     # platformType: The platform type (for example, "Linux" or "Windows").
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-managedinstance-association-compliance-status-check:
   identifier: EC2_MANAGEDINSTANCE_ASSOCIATION_COMPLIANCE_STATUS_CHECK
@@ -103,7 +111,8 @@ ec2-managedinstance-association-compliance-status-check:
     after the association execution on the instance. The rule is COMPLIANT if the field status is COMPLIANT.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-managedinstance-inventory-blacklisted:
   identifier: EC2_MANAGEDINSTANCE_INVENTORY_BLACKLISTED
@@ -111,7 +120,8 @@ ec2-managedinstance-inventory-blacklisted:
     Checks whether instances managed by AWS Systems Manager are configured to collect blacklisted inventory types.
   inputParameters: inventoryNames
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-managedinstance-patch-compliance-status-check:
   identifier: EC2_MANAGEDINSTANCE_PATCH_COMPLIANCE_STATUS_CHECK
@@ -120,14 +130,16 @@ ec2-managedinstance-patch-compliance-status-check:
     NON_COMPLIANT after the patch installation on the instance. The rule is COMPLIANT if the field status is COMPLIANT.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-managedinstance-platform-check:
   identifier: EC2_MANAGEDINSTANCE_PLATFORM_CHECK
   description: Checks whether EC2 managed instances have the desired configurations.
   inputParameters: agentVersion
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-security-group-attached-to-eni:
   identifier: EC2_SECURITY_GROUP_ATTACHED_TO_ENI
@@ -137,7 +149,8 @@ ec2-security-group-attached-to-eni:
     interface.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 ec2-stopped-instance:
   identifier: EC2_STOPPED_INSTANCE
@@ -152,6 +165,7 @@ ec2-stopped-instance:
     {}
   enabled: true
   tags:
+    catalog/ec2: true
 
 ec2-volume-inuse-check:
   identifier: EC2_VOLUME_INUSE_CHECK
@@ -164,7 +178,8 @@ ec2-volume-inuse-check:
     # deleteOnTermination: EBS volumes are marked for deletion when an instance is terminated.
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 desired-instance-tenancy:
   identifier: DESIRED_INSTANCE_TENANCY
@@ -185,7 +200,8 @@ desired-instance-tenancy:
     #           multiple host IDs with commas.
     tenancy; "DEFAULT"
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 desired-instance-type:
   identifier: DESIRED_INSTANCE_TYPE
@@ -195,7 +211,8 @@ desired-instance-type:
     #
     # instanceType: Comma-separated list of EC2 instance types (for example, "t2.small, m4.large, i2.xlarge").
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true
 
 encrypted-volumes:
   identifier: ENCRYPTED_VOLUMES
@@ -209,4 +226,5 @@ encrypted-volumes:
     # kmsId: ID or ARN of the KMS key that is used to encrypt the volume.
     kmsId: ""
   enabled: true
-  tags: {}
+  tags:
+    catalog/ec2: true

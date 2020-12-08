@@ -22,7 +22,8 @@ fms-shield-resource-policy-check:
     fmsManagedToken: ""
     fmsRemediationEnabled: ""
   enabled: true
-  tags: {}
+  tags:
+    catalog/fms: true
 
 fms-webacl-resource-policy-check:
   identifier: FMS_WEBACL_RESOURCE_POLICY_CHECK
@@ -32,7 +33,8 @@ fms-webacl-resource-policy-check:
     policy and can optionally enable remediation.
   inputParameters: webACLId
   enabled: true
-  tags: {}
+  tags:
+    catalog/fms: true
 
 fms-webacl-rulegroup-association-check:
   identifier: FMS_WEBACL_RULEGROUP_ASSOCIATION_CHECK
@@ -43,4 +45,5 @@ fms-webacl-rulegroup-association-check:
     and can optionally enable remediation.
   inputParameters: ruleGroups
   enabled: true
-  tags: {}
+  tags:
+    catalog/fms: true

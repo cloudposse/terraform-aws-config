@@ -5,7 +5,8 @@ cloudfront-default-root-object-configured:
     object. The rule is NON_COMPLIANT if CloudFront distribution does not have a default root object configured.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudfront: true
 
 cloudfront-origin-access-identity-enabled:
   identifier: CLOUDFRONT_ORIGIN_ACCESS_IDENTITY_ENABLED
@@ -15,7 +16,8 @@ cloudfront-origin-access-identity-enabled:
     not OAI configured.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudfront: true
 
 cloudfront-origin-failover-enabled:
   identifier: CLOUDFRONT_ORIGIN_FAILOVER_ENABLED
@@ -24,7 +26,8 @@ cloudfront-origin-failover-enabled:
     Amazon CloudFront.  This rule is NON_COMPLIANT if there are no origin groups for the distribution.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudfront: true
 
 cloudfront-sni-enabled:
   identifier: CLOUDFRONT_SNI_ENABLED
@@ -34,7 +37,8 @@ cloudfront-sni-enabled:
     using a dedicated IP address.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudfront: true
 
 cloudfront-viewer-policy-https:
   identifier: CLOUDFRONT_VIEWER_POLICY_HTTPS
@@ -44,4 +48,5 @@ cloudfront-viewer-policy-https:
     cacheBehaviors. This means that the rule is non compliant when viewers can use HTTP or HTTPS.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudfront: true

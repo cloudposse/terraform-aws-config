@@ -7,4 +7,5 @@ acm-certificate-expiration-check:
   inputParameters:
     daysToExpiration: "30"
   enabled: true
-  tags: {}
+  tags:
+    catalog/acm: true

@@ -9,7 +9,8 @@ lambda-concurrency-check:
     # ConcurrencyLimitLow: Minimum concurrency execution limit
     # ConcurrencyLimitHigh: Maximum concurrency execution limit
   enabled: true
-  tags: {}
+  tags:
+    catalog/lambda: true
 
 lambda-dlq-check:
   identifier: LAMBDA_DLQ_CHECK
@@ -21,7 +22,8 @@ lambda-dlq-check:
     #
     # dlqArns: Comma-separated list of Amazon SQS and Amazon SNS ARNs that must be configured as the Lambda function dead-letter queue target.
   enabled: true
-  tags: {}
+  tags:
+    catalog/lambda: true
 
 lambda-function-public-access-prohibited:
   identifier: LAMBDA_FUNCTION_PUBLIC_ACCESS_PROHIBITED
@@ -30,7 +32,8 @@ lambda-function-public-access-prohibited:
     function policy allows public access it is NON_COMPLIANT.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/lambda: true
 
 lambda-function-settings-check:
   identifier: LAMBDA_FUNCTION_SETTINGS_CHECK
@@ -48,7 +51,8 @@ lambda-function-settings-check:
     timeout: "30"
     memorySize: "1024"
   enabled: true
-  tags: {}
+  tags:
+    catalog/lambda: true
 
 lambda-inside-vpc:
   identifier: LAMBDA_INSIDE_VPC
@@ -61,4 +65,5 @@ lambda-inside-vpc:
     # subnetIds: Comma-separated list of subnet IDs that Lambda functions must be associated with.
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/lambda: true

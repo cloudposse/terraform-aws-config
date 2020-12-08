@@ -11,7 +11,8 @@ codepipeline-deployment-count-check:
     # deploymentLimit: The maximum number of deployments each stage can perform.
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/codepipeline: true
 
 codepipeline-region-fanout-check:
   identifier: CODEPIPELINE_REGION_FANOUT_CHECK
@@ -31,4 +32,5 @@ codepipeline-region-fanout-check:
     # regionFanoutFactor: The number of regions the AWS CodePipeline has deployed to in all previous stages is the
     #                     acceptable number of regions any stage can deploy to.
   enabled: true
-  tags: {}
+  tags:
+    catalog/codepipeline: true

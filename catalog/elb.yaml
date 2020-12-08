@@ -30,7 +30,8 @@ elb-deletion-protection-enabled:
     deletion_protection.enabled is false.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/elb: true
 
 elb-logging-enabled:
   identifier: ELB_LOGGING_ENABLED
@@ -44,7 +45,8 @@ elb-logging-enabled:
     # s3BucketNames: Comma-separated list of Amazon S3 bucket names for Elastic Load Balancing to deliver the log files.
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/elb: true
 
 elb-predefined-security-policy-ssl-check:
   identifier: ELB_PREDEFINED_SECURITY_POLICY_SSL_CHECK
@@ -57,7 +59,8 @@ elb-predefined-security-policy-ssl-check:
     # predefinedPolicyName: Name of the predefined policy.
     predefinedPolicyName: ""
   enabled: true
-  tags: {}
+  tags:
+    catalog/elb: true
 
 elb-tls-https-listeners-only:
   identifier: ELB_TLS_HTTPS_LISTENERS_ONLY
@@ -68,4 +71,5 @@ elb-tls-https-listeners-only:
     HTTPS. The rule is NON_COMPLIANT if the listener is not configured with SSL or HTTPS.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/elb: true

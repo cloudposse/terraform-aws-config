@@ -7,5 +7,6 @@ cmk-backing-key-rotation-enabled:
   inputParameters: {}
   enabled: true
   tags:
+    catalog/cmk: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 2.8

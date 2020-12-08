@@ -10,7 +10,8 @@ guardduty-enabled-centralized:
     # CentralMonitoringAccount: Specify 12-digit AWS Account for centralization of Amazon GuardDuty results.
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/guardduty: true
 
 guardduty-non-archived-findings:
   identifier: GUARDDUTY_NON_ARCHIVED_FINDINGS
@@ -28,4 +29,5 @@ guardduty-non-archived-findings:
     # daysHighSev:    The number of days Amazon GuardDuty high severity findings are allowed to stay non archived. The
     #                 default is 1 day.
   enabled: true
-  tags: {}
+  tags:
+    catalog/guardduty: true

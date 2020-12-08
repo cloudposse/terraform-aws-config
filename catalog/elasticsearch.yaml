@@ -5,7 +5,8 @@ elasticsearch-encrypted-at-rest:
     rule is NON_COMPLIANT if the EncryptionAtRestOptions field is not enabled.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/elasticsearch: true
 
 elasticsearch-in-vpc-only:
   identifier: ELASTICSEARCH_IN_VPC_ONLY
@@ -14,7 +15,8 @@ elasticsearch-in-vpc-only:
     The rule is NON_COMPLIANT if the Amazon ES domain endpoint is public.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/elasticsearch: true
 
 elasticsearch-node-to-node-encryption-check:
   identifier: ELASTICSEARCH_NODE_TO_NODE_ENCRYPTION_CHECK
@@ -23,4 +25,5 @@ elasticsearch-node-to-node-encryption-check:
     node-to-node encryption is disabled on the domain.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/elasticsearch: true

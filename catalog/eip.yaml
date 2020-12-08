@@ -5,4 +5,5 @@ eip-attached:
     elastic network interfaces (ENIs).
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/eip: true

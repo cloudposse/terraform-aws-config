@@ -5,7 +5,8 @@ codebuild-project-envvar-awscred-check:
     NON_COMPLIANT when the project environment variables contains plaintext credentials.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/codebuild: true
 
 codebuild-project-source-repo-url-check:
   identifier: CODEBUILD_PROJECT_SOURCE_REPO_URL_CHECK
@@ -15,4 +16,5 @@ codebuild-project-source-repo-url-check:
     repositories.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/codebuild: true

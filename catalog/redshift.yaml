@@ -10,7 +10,8 @@ redshift-backup-enabled:
     # MinRetentionPeriod: Minimum value for the retention period. Minimum value is 1.
     # MaxRetentionPeriod: Maximum value for the retention period. Maximum value is 35.
   enabled: true
-  tags: {}
+  tags:
+    catalog/redshift: true
 
 redshift-cluster-configuration-check:
   identifier: REDSHIFT_CLUSTER_CONFIGURATION_CHECK
@@ -22,7 +23,8 @@ redshift-cluster-configuration-check:
     # nodeTypes: Specify node type.
     # loggingEnabled: Audit logging is enabled.
   enabled: true
-  tags: {}
+  tags:
+    catalog/redshift: true
 
 redshift-cluster-maintenancesettings-check:
   identifier: REDSHIFT_CLUSTER_MAINTENANCESETTINGS_CHECK
@@ -37,7 +39,8 @@ redshift-cluster-maintenancesettings-check:
     preferredMaintenanceWindow: ""
     automatedSnapshotRetentionPeriod: "30"
   enabled: true
-  tags: {}
+  tags:
+    catalog/redshift: true
 
 redshift-cluster-public-access-check:
   identifier: REDSHIFT_CLUSTER_PUBLIC_ACCESS_CHECK
@@ -46,7 +49,9 @@ redshift-cluster-public-access-check:
     publiclyAccessible field is true in the cluster configuration item.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/redshift: true
+
 redshift-require-tls-ssl:
   identifier: REDSHIFT_REQUIRE_TLS_SSL
   description:
@@ -54,4 +59,5 @@ redshift-require-tls-ssl:
     NON_COMPLIANT if any Amazon Redshift cluster has parameter require_SSL not set to true.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/redshift: true

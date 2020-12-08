@@ -9,7 +9,8 @@ account-part-of-organizations:
     # MasterAccountId
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/account: true
 
 root-account-hardware-mfa-enabled:
   identifier: ROOT_ACCOUNT_HARDWARE_MFA_ENABLED
@@ -19,7 +20,8 @@ root-account-hardware-mfa-enabled:
     credentials.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/account: true
 
 root-account-mfa-enabled:
   identifier: ROOT_ACCOUNT_MFA_ENABLED
@@ -28,4 +30,5 @@ root-account-mfa-enabled:
     credentials.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/account: true

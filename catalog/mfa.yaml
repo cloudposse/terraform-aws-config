@@ -5,4 +5,5 @@ mfa-enabled-for-iam-console-access:
     users that use a console password. The rule is COMPLIANT if MFA is enabled.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/mfa: true

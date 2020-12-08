@@ -8,6 +8,7 @@ restricted-common-ports:
     blockedPort1: "3389"
   enabled: true
   tags:
+    catalog/network: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 4.2
 
@@ -19,6 +20,7 @@ restricted-ssh:
   inputParameters: {}
   enabled: true
   tags:
+    catalog/network: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 4.1
 
@@ -30,5 +32,6 @@ vpc-default-security-group-closed:
   inputParameters: {}
   enabled: true
   tags:
+    catalog/network: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 4.3

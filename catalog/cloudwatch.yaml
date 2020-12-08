@@ -15,7 +15,8 @@ cloudwatch-alarm-action-check:
     insufficientDataActionRequired: "true"
     okActionRequired: "false"
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudwatch: true
 
 cloudwatch-alarm-resource-check:
   identifier: CLOUDWATCH_ALARM_RESOURCE_CHECK
@@ -31,7 +32,8 @@ cloudwatch-alarm-resource-check:
     resourceType: ""
     metricName: ""
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudwatch: true
 
 cloudwatch-alarm-settings-check:
   identifier: CLOUDWATCH_ALARM_SETTINGS_CHECK
@@ -48,7 +50,8 @@ cloudwatch-alarm-settings-check:
     # statistic: The statistic for the metric associated with the alarm (for example, "Average" or "Sum").
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudwatch: true
 
 cloudwatch-log-group-encrypted:
   identifier: CLOUDWATCH_LOG_GROUP_ENCRYPTED
@@ -62,7 +65,8 @@ cloudwatch-log-group-encrypted:
     #           CloudWatch Logs log group.
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudwatch: true
 
 cw-loggroup-retention-period-check:
   identifier: CW_LOGGROUP_RETENTION_PERIOD_CHECK
@@ -77,4 +81,5 @@ cw-loggroup-retention-period-check:
     #                   400, 545, 731, 1827, and 3653. The default retention period is 365 days.
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudwatch: true

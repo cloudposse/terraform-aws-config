@@ -5,7 +5,8 @@ eks-endpoint-no-public-access:
     NON_COMPLIANT if the endpoint is publicly accessible.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/eks: true
 
 eks-secrets-encrypted:
   identifier: EKS_SECRETS_ENCRYPTED
@@ -22,4 +23,5 @@ eks-secrets-encrypted:
     # kmsKeyArns: Comma separated list of Amazon Resource Name (ARN) of the KMS key that should be used for encrypted
     #             secrets in an EKS cluster.
   enabled: true
-  tags: {}
+  tags:
+    catalog/eks: true

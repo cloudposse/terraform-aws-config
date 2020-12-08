@@ -9,7 +9,8 @@ approved-amis-by-id:
     # The AMI IDs (comma-separated list of up to 10).
     amiIds: ""
   enabled: true
-  tags: {}
+  tags:
+    catalog/ami: true
 
 approved-amis-by-tag:
   identifier: APPROVED_AMIS_BY_TAG
@@ -19,4 +20,5 @@ approved-amis-by-tag:
   inputParameters:
     amisByTagKeyAndValue: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/ami: true

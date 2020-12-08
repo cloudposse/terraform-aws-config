@@ -20,7 +20,8 @@ dynamodb-autoscaling-enabled:
     #                               expressed in terms of the ratio of consumed capacity to provisioned capacity.
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/dynamodb: true
 
 dynamodb-in-backup-plan:
   identifier: DYNAMODB_IN_BACKUP_PLAN
@@ -29,7 +30,8 @@ dynamodb-in-backup-plan:
     are not present in any AWS Backup plan.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/dynamodb: true
 
 dynamodb-pitr-enabled:
   identifier: DYNAMODB_PITR_ENABLED
@@ -38,7 +40,8 @@ dynamodb-pitr-enabled:
     in time recovery is not enabled for Amazon DynamoDB tables.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/dynamodb: true
 
 dynamodb-table-encrypted-kms:
   identifier: DYNAMODB_TABLE_ENCRYPTED_KMS
@@ -51,7 +54,8 @@ dynamodb-table-encrypted-kms:
     #
     # kmsKeyArns: Comma separated list of AWS KMS Key ARN list.
   enabled: true
-  tags: {}
+  tags:
+    catalog/dynamodb: true
 
 dynamodb-table-encryption-enabled:
   identifier: DYNAMODB_TABLE_ENCRYPTION_ENABLED
@@ -60,7 +64,8 @@ dynamodb-table-encryption-enabled:
     is enabled or enabling.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/dynamodb: true
 
 dynamodb-throughput-limit-check:
   identifier: DYNAMODB_THROUGHPUT_LIMIT_CHECK
@@ -76,7 +81,8 @@ dynamodb-throughput-limit-check:
     #                                reached, the rule is marked as NON_COMPLIANT.
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/dynamodb: true
 
 dax-encryption-enabled:
   identifier: DAX_ENCRYPTION_ENABLED
@@ -85,4 +91,5 @@ dax-encryption-enabled:
     encrypted.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/dynamodb: true

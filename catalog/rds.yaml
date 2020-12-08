@@ -5,7 +5,8 @@ rds-cluster-deletion-protection-enabled:
     NON_COMPLIANT if an RDS cluster does not have deletion protection enabled.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true
 
 rds-enhanced-monitoring-enabled:
   identifier: RDS_ENHANCED_MONITORING_ENABLED
@@ -17,7 +18,8 @@ rds-enhanced-monitoring-enabled:
     # monitoringInterval: An integer value in seconds between points when enhanced monitoring metrics are collected for
     #                     the database instance. The valid values are 1, 5, 10, 15, 30, and 60.
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true
 
 rds-in-backup-plan:
   identifier: RDS_IN_BACKUP_PLAN
@@ -26,7 +28,8 @@ rds-in-backup-plan:
     databases are not included in any AWS Backup plan.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true
 
 rds-instance-deletion-protection-enabled:
   identifier: RDS_INSTANCE_DELETION_PROTECTION_ENABLED
@@ -36,7 +39,8 @@ rds-instance-deletion-protection-enabled:
     false.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true
 
 rds-instance-iam-authentication-enabled:
   identifier: RDS_INSTANCE_IAM_AUTHENTICATION_ENABLED
@@ -46,7 +50,8 @@ rds-instance-iam-authentication-enabled:
     enabled i.e configuration.iAMDatabaseAuthenticationEnabled is set to false.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true
 
 rds-instance-public-access-check:
   identifier: RDS_INSTANCE_PUBLIC_ACCESS_CHECK
@@ -55,7 +60,8 @@ rds-instance-public-access-check:
     NON_COMPLIANT if the publiclyAccessible field is true in the instance configuration item.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true
 
 rds-logging-enabled:
   identifier: RDS_LOGGING_ENABLED
@@ -64,14 +70,16 @@ rds-logging-enabled:
     NON_COMPLIANT if any log types are not enabled.
   inputParameters: additionalLogs (Optional)
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true
 
 rds-multi-az-support:
   identifier: RDS_MULTI_AZ_SUPPORT
   description: Checks whether high availability is enabled for your RDS DB instances.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true
 
 rds-snapshot-encrypted:
   identifier: RDS_SNAPSHOT_ENCRYPTED
@@ -80,7 +88,8 @@ rds-snapshot-encrypted:
     NON_COMPLIANT, if Amazon RDS DB snapshots are not encrypted.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true
 
 rds-snapshots-public-prohibited:
   identifier: RDS_SNAPSHOTS_PUBLIC_PROHIBITED
@@ -89,7 +98,8 @@ rds-snapshots-public-prohibited:
     existing and new Amazon RDS snapshots are public.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true
 
 rds-storage-encrypted:
   identifier: RDS_STORAGE_ENCRYPTED
@@ -100,7 +110,8 @@ rds-storage-encrypted:
     # kmsKeyId: KMS key ID or ARN used to encrypt the storage.
     kmsKeyId: ""
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true
 
 db-instance-backup-enabled:
   identifier: DB_INSTANCE_BACKUP_ENABLED
@@ -114,4 +125,5 @@ db-instance-backup-enabled:
     # preferredBackupWindow: Time range in which backups are created.
     # checkReadReplicas: Checks whether RDS DB instances have backups enabled for read replicas.
   enabled: true
-  tags: {}
+  tags:
+    catalog/rds: true

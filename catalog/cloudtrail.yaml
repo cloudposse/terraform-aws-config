@@ -6,6 +6,7 @@ cloud-trail-cloud-watch-logs-enabled:
   inputParameters: {}
   enabled: true
   tags:
+    catalog/cloudtrail: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 2.4
 
@@ -17,6 +18,7 @@ cloud-trail-encryption-enabled:
   inputParameters: {}
   enabled: true
   tags:
+    catalog/cloudtrail: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/filters/logging-account-only: true
     compliance/cis-aws-foundations/1.2/controls: 2.7
@@ -29,6 +31,7 @@ cloud-trail-log-file-validation-enabled:
   inputParameters: {}
   enabled: true
   tags:
+    catalog/cloudtrail: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 2.2
 
@@ -48,6 +51,7 @@ multi-region-cloudtrail-enabled:
     {}
   enabled: true
   tags:
+    catalog/cloudtrail: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 2.1
 
@@ -59,6 +63,7 @@ s3-bucket-public-read-prohibited:
   inputParameters: {}
   enabled: true
   tags:
+    catalog/cloudtrail: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 2.3
 
@@ -70,6 +75,7 @@ s3-bucket-public-write-prohibited:
   inputParameters: {}
   enabled: true
   tags:
+    catalog/cloudtrail: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 2.3
 
@@ -85,7 +91,8 @@ cloudtrail-enabled:
     # snsTopicArn: The ARN of the SNS topic for AWS CloudTrail to use for notifications.
     # cloudWatchLogsLogGroupArn: The ARN of the Amazon CloudWatch log group for AWS CloudTrail to send data to.
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudtrail: true
 
 cloudtrail-s3-dataevents-enabled:
   identifier: CLOUDTRAIL_S3_DATAEVENTS_ENABLED
@@ -98,7 +105,8 @@ cloudtrail-s3-dataevents-enabled:
     # S3BucketNames: Comma-separated list of S3 bucket names for which data events logging should be enabled. Default
     #                behavior checks for all S3 buckets.
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudtrail: true
 
 cloudtrail-security-trail-enabled:
   identifier: CLOUDTRAIL_SECURITY_TRAIL_ENABLED
@@ -107,4 +115,5 @@ cloudtrail-security-trail-enabled:
     if there is at least one trail that meets all of the following
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/cloudtrail: true

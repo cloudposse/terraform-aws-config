@@ -5,7 +5,7 @@ alb-http-drop-invalid-header-enabled:
     rule is NON_COMPLIANT if the value of routing.http.drop_invalid_header_fields.enabled is set to false.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags: { catalog/alb: true }
 
 alb-http-to-https-redirection-check:
   identifier: ALB_HTTP_TO_HTTPS_REDIRECTION_CHECK
@@ -15,7 +15,7 @@ alb-http-to-https-redirection-check:
     configured.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags: { catalog/alb: true }
 
 alb-waf-enabled:
   identifier: ALB_WAF_ENABLED
@@ -28,4 +28,5 @@ alb-waf-enabled:
     # wafWebAclIds: Comma separated list of web ACL ID (for WAF) or web ACL ARN (for WAFV2) checking for ALB association
     {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/alb: true

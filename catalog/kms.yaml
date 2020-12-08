@@ -5,4 +5,5 @@ kms-cmk-not-scheduled-for-deletion:
     rule is NON_COMPLIANT if CMKs are scheduled for deletion.
   inputParameters: kmsKeyIds
   enabled: true
-  tags: {}
+  tags:
+    catalog/kms: true

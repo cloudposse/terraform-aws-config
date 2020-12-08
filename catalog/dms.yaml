@@ -5,4 +5,5 @@ dms-replication-not-public:
     PubliclyAccessible field is true.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/dms: true

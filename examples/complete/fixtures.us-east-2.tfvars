@@ -11,8 +11,8 @@ managed_rules = {
   access-keys-rotated = {
     identifier  = "ACCESS_KEYS_ROTATED"
     description = "Checks whether the active access keys are rotated within the number of days specified in maxAccessKeyAge. The rule is NON_COMPLIANT if the access keys have not been rotated for more than maxAccessKeyAge number of days."
-    inputParameters : {
-      "maxAccessKeyAge" : "90"
+    input_parameters = {
+      maxAccessKeyAge : "90"
     }
     enabled = true
     tags = {

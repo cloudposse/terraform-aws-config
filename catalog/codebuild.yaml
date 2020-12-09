@@ -1,6 +1,6 @@
 codebuild-project-envvar-awscred-check:
   identifier: CODEBUILD_PROJECT_ENVVAR_AWSCRED_CHECK
-  description:
+  description: >-
     Checks whether the project contains environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. The rule is
     NON_COMPLIANT when the project environment variables contains plaintext credentials.
   inputParameters: {}
@@ -10,7 +10,7 @@ codebuild-project-envvar-awscred-check:
 
 codebuild-project-source-repo-url-check:
   identifier: CODEBUILD_PROJECT_SOURCE_REPO_URL_CHECK
-  description:
+  description: >-
     Checks whether the GitHub or Bitbucket source repository URL contains either personal access tokens or user name and
     password. The rule is COMPLIANT with the usage of OAuth to grant authorization for accessing GitHub or Bitbucket
     repositories.

@@ -1,6 +1,6 @@
 emr-kerberos-enabled:
   identifier: EMR_KERBEROS_ENABLED
-  description:
+  description: >-
     Checks that Amazon EMR clusters have Kerberos enabled. The rule is NON_COMPLIANT if a security configuration is not
     attached to the cluster or the security configuration does not satisfy the specified rule parameters.
   inputParameters:
@@ -18,7 +18,7 @@ emr-kerberos-enabled:
 
 emr-master-no-public-ip:
   identifier: EMR_MASTER_NO_PUBLIC_IP
-  description:
+  description: >-
     Checks whether Amazon Elastic MapReduce (EMR) clusters' master nodes have public IPs. The rule is NON_COMPLIANT if
     the master node has a public IP.
   inputParameters: {}

@@ -1,6 +1,6 @@
 alb-http-drop-invalid-header-enabled:
   identifier: ALB_HTTP_DROP_INVALID_HEADER_ENABLED
-  description:
+  description: >-
     Checks if rule evaluates Application Load Balancers (ALBs) to ensure they are configured to drop http headers. The
     rule is NON_COMPLIANT if the value of routing.http.drop_invalid_header_fields.enabled is set to false.
   inputParameters: {}
@@ -10,7 +10,7 @@ alb-http-drop-invalid-header-enabled:
 
 alb-http-to-https-redirection-check:
   identifier: ALB_HTTP_TO_HTTPS_REDIRECTION_CHECK
-  description:
+  description: >-
     Checks whether HTTP to HTTPS redirection is configured on all HTTP listeners of Application Load Balancer. The rule
     is NON_COMPLIANT if one or more HTTP listeners of Application Load Balancer do not have HTTP to HTTPS redirection
     configured.
@@ -21,7 +21,7 @@ alb-http-to-https-redirection-check:
 
 alb-waf-enabled:
   identifier: ALB_WAF_ENABLED
-  description:
+  description: >-
     Checks if Web Application Firewall (WAF) is enabled on Application Load Balancers (ALBs). This rule is NON_COMPLIANT
     if key waf.enabled is set to false.
   inputParameters:

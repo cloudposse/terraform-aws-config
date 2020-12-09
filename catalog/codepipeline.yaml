@@ -1,6 +1,6 @@
 codepipeline-deployment-count-check:
   identifier: CODEPIPELINE_DEPLOYMENT_COUNT_CHECK
-  description:
+  description: >-
     Checks whether the first deployment stage of the AWS CodePipeline performs more than one deployment. Optionally,
     checks if each of the subsequent remaining stages deploy to more than the specified number of deployments
     (deploymentLimit). The rule is NON_COMPLIANT if the first stage in the AWS CodePipeline deploys to more than one
@@ -16,7 +16,7 @@ codepipeline-deployment-count-check:
 
 codepipeline-region-fanout-check:
   identifier: CODEPIPELINE_REGION_FANOUT_CHECK
-  description:
+  description: >-
     ? Checks whether each stage in the AWS CodePipeline deploys to more than N times the number of the regions the AWS
       CodePipeline has deployed in all the previous combined stages, where N is the region fanout number. The first
       deployment stage can deploy to a maximum of one region and the second deployment stage can deploy to a maximum

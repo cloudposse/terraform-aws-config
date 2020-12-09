@@ -1,6 +1,6 @@
 cloudformation-stack-drift-detection-check:
   identifier: CLOUDFORMATION_STACK_DRIFT_DETECTION_CHECK
-  description:
+  description: >-
     Checks whether an AWS CloudFormation stack's actual configuration differs, or has drifted, from it's expected
     configuration. A stack is considered to have drifted if one or more of its resources differ from their expected
     configuration. The rule and the stack are COMPLIANT when the stack drift status is IN_SYNC. The rule and the stack
@@ -16,7 +16,7 @@ cloudformation-stack-drift-detection-check:
 
 cloudformation-stack-notification-check:
   identifier: CLOUDFORMATION_STACK_NOTIFICATION_CHECK
-  description:
+  description: >-
     Checks whether your CloudFormation stacks are sending event notifications to an SNS topic. Optionally checks whether
     specified SNS topics are used.
   inputParameters:

@@ -1,6 +1,6 @@
 dynamodb-autoscaling-enabled:
   identifier: DYNAMODB_AUTOSCALING_ENABLED
-  description:
+  description: >-
     Checks whether Auto Scaling or On-Demand is enabled on your DynamoDB tables and/or global secondary indexes.
     Optionally you can set the read and write capacity units for the table or global secondary index.
   inputParameters:
@@ -25,7 +25,7 @@ dynamodb-autoscaling-enabled:
 
 dynamodb-in-backup-plan:
   identifier: DYNAMODB_IN_BACKUP_PLAN
-  description:
+  description: >-
     Checks whether Amazon DynamoDB table is present in AWS Backup plans. The rule is NON_COMPLIANT if DynamoDB tables
     are not present in any AWS Backup plan.
   inputParameters: {}
@@ -35,7 +35,7 @@ dynamodb-in-backup-plan:
 
 dynamodb-pitr-enabled:
   identifier: DYNAMODB_PITR_ENABLED
-  description:
+  description: >-
     Checks that point in time recovery (PITR) is enabled for Amazon DynamoDB tables. The rule is NON_COMPLIANT if point
     in time recovery is not enabled for Amazon DynamoDB tables.
   inputParameters: {}
@@ -45,7 +45,7 @@ dynamodb-pitr-enabled:
 
 dynamodb-table-encrypted-kms:
   identifier: DYNAMODB_TABLE_ENCRYPTED_KMS
-  description:
+  description: >-
     Checks whether Amazon DynamoDB table is encrypted with AWS Key Management Service (KMS). The rule is NON_COMPLIANT
     if DynamoDB table is not encrypted with AWS KMS. The rule is also NON_COMPLIANT if the encrypted AWS KMS key is not
     present in kmsKeyArns input parameter.
@@ -59,7 +59,7 @@ dynamodb-table-encrypted-kms:
 
 dynamodb-table-encryption-enabled:
   identifier: DYNAMODB_TABLE_ENCRYPTION_ENABLED
-  description:
+  description: >-
     Checks whether the Amazon DynamoDB tables are encrypted and checks their status. The rule is COMPLIANT if the status
     is enabled or enabling.
   inputParameters: {}
@@ -69,7 +69,7 @@ dynamodb-table-encryption-enabled:
 
 dynamodb-throughput-limit-check:
   identifier: DYNAMODB_THROUGHPUT_LIMIT_CHECK
-  description:
+  description: >-
     Checks whether provisioned DynamoDB throughput is approaching the maximum limit for your account. By default, the
     rule checks if provisioned throughput exceeds a threshold of 80% of your account limits.
   inputParameters:
@@ -86,7 +86,7 @@ dynamodb-throughput-limit-check:
 
 dax-encryption-enabled:
   identifier: DAX_ENCRYPTION_ENABLED
-  description:
+  description: >-
     Checks that DynamoDB Accelerator (DAX) clusters are encrypted. The rule is NON_COMPLIANT if a DAX cluster is not
     encrypted.
   inputParameters: {}

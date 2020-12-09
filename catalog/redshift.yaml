@@ -1,6 +1,6 @@
 redshift-backup-enabled:
   identifier: REDSHIFT_BACKUP_ENABLED
-  description:
+  description: >-
     Checks that Amazon Redshift automated snapshots are enabled for clusters. The rule is NON_COMPLIANT if the value for
     automatedSnapshotRetentionPeriod is greater than MaxRetentionPeriod or less than MinRetentionPeriod or the value is
     0.
@@ -15,7 +15,8 @@ redshift-backup-enabled:
 
 redshift-cluster-configuration-check:
   identifier: REDSHIFT_CLUSTER_CONFIGURATION_CHECK
-  description: Checks whether Amazon Redshift clusters have the specified settings.
+  description: >-
+    Checks whether Amazon Redshift clusters have the specified settings.
   inputParameters:
     # The following parameters are optional:
     #
@@ -28,7 +29,8 @@ redshift-cluster-configuration-check:
 
 redshift-cluster-maintenancesettings-check:
   identifier: REDSHIFT_CLUSTER_MAINTENANCESETTINGS_CHECK
-  description: Checks whether Amazon Redshift clusters have the specified maintenance settings.
+  description: >-
+    Checks whether Amazon Redshift clusters have the specified maintenance settings.
   inputParameters:
     # The following parameters are optional:
     #
@@ -44,7 +46,7 @@ redshift-cluster-maintenancesettings-check:
 
 redshift-cluster-public-access-check:
   identifier: REDSHIFT_CLUSTER_PUBLIC_ACCESS_CHECK
-  description:
+  description: >-
     Checks whether Amazon Redshift clusters are not publicly accessible. The rule is NON_COMPLIANT if the
     publiclyAccessible field is true in the cluster configuration item.
   inputParameters: {}
@@ -54,7 +56,7 @@ redshift-cluster-public-access-check:
 
 redshift-require-tls-ssl:
   identifier: REDSHIFT_REQUIRE_TLS_SSL
-  description:
+  description: >-
     Checks whether Amazon Redshift clusters require TLS/SSL encryption to connect to SQL clients. The rule is
     NON_COMPLIANT if any Amazon Redshift cluster has parameter require_SSL not set to true.
   inputParameters: {}

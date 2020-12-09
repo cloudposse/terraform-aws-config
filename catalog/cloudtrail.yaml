@@ -1,6 +1,6 @@
 cloud-trail-cloud-watch-logs-enabled:
   identifier: CLOUD_TRAIL_CLOUD_WATCH_LOGS_ENABLED
-  description:
+  description: >-
     Checks whether AWS CloudTrail trails are configured to send logs to Amazon CloudWatch Logs. The trail is
     NON_COMPLIANT if the CloudWatchLogsLogGroupArn property of the trail is empty.
   inputParameters: {}
@@ -12,7 +12,7 @@ cloud-trail-cloud-watch-logs-enabled:
 
 cloud-trail-encryption-enabled:
   identifier: CLOUD_TRAIL_ENCRYPTION_ENABLED
-  description:
+  description: >-
     Checks whether AWS CloudTrail is configured to use the server side encryption (SSE) AWS Key Management Service (AWS
     KMS) customer master key (CMK) encryption. The rule is COMPLIANT if the KmsKeyId is defined.
   inputParameters: {}
@@ -25,7 +25,7 @@ cloud-trail-encryption-enabled:
 
 cloud-trail-log-file-validation-enabled:
   identifier: CLOUD_TRAIL_LOG_FILE_VALIDATION_ENABLED
-  description:
+  description: >-
     Checks whether AWS CloudTrail creates a signed digest file with logs. AWS recommends that the file validation must
     be enabled on all trails. The rule is NON_COMPLIANT if the validation is not enabled.
   inputParameters: {}
@@ -37,7 +37,7 @@ cloud-trail-log-file-validation-enabled:
 
 multi-region-cloudtrail-enabled:
   identifier: MULTI_REGION_CLOUD_TRAIL_ENABLED
-  description:
+  description: >-
     Checks that there is at least one multi-region AWS CloudTrail. The rule is NON_COMPLIANT if the trails do not match
     inputs parameters.
   inputParameters:
@@ -57,7 +57,7 @@ multi-region-cloudtrail-enabled:
 
 s3-bucket-public-read-prohibited:
   identifier: S3_BUCKET_PUBLIC_READ_PROHIBITED
-  description:
+  description: >-
     Checks that your Amazon S3 buckets do not allow public read access. The rule checks the Block Public Access
     settings, the bucket policy, and the bucket access control list (ACL).
   inputParameters: {}
@@ -69,7 +69,7 @@ s3-bucket-public-read-prohibited:
 
 s3-bucket-public-write-prohibited:
   identifier: S3_BUCKET_PUBLIC_WRITE_PROHIBITED
-  description:
+  description: >-
     Checks that your Amazon S3 buckets do not allow public write access. The rule checks the Block Public Access
     settings, the bucket policy, and the bucket access control list (ACL).
   inputParameters: {}
@@ -81,7 +81,7 @@ s3-bucket-public-write-prohibited:
 
 cloudtrail-enabled:
   identifier: CLOUD_TRAIL_ENABLED
-  description:
+  description: >-
     Checks whether AWS CloudTrail is enabled in your AWS account. Optionally, you can specify which S3 bucket, SNS
     topic, and Amazon CloudWatch Logs ARN to use.
   inputParameters:
@@ -96,7 +96,7 @@ cloudtrail-enabled:
 
 cloudtrail-s3-dataevents-enabled:
   identifier: CLOUDTRAIL_S3_DATAEVENTS_ENABLED
-  description:
+  description: >-
     Checks whether at least one AWS CloudTrail trail is logging Amazon S3 data events for all S3 buckets.The rule is
     NON_COMPLIANT if trails that log data events for S3 buckets are not configured.
   inputParameters:
@@ -110,7 +110,7 @@ cloudtrail-s3-dataevents-enabled:
 
 cloudtrail-security-trail-enabled:
   identifier: CLOUDTRAIL_SECURITY_TRAIL_ENABLED
-  description:
+  description: >-
     Checks that there is at least one AWS CloudTrail trail defined with security best practices. This rule is COMPLIANT
     if there is at least one trail that meets all of the following
   inputParameters: {}

@@ -1,6 +1,6 @@
 cloudwatch-alarm-action-check:
   identifier: CLOUDWATCH_ALARM_ACTION_CHECK
-  description:
+  description: >-
     Checks whether CloudWatch alarms have at least one alarm action, one INSUFFICIENT_DATA action, or one OK action
     enabled. Optionally, checks whether any of the actions matches one of the specified ARNs.
   inputParameters:
@@ -20,7 +20,7 @@ cloudwatch-alarm-action-check:
 
 cloudwatch-alarm-resource-check:
   identifier: CLOUDWATCH_ALARM_RESOURCE_CHECK
-  description:
+  description: >-
     Checks whether the specified resource type has a CloudWatch alarm for the specified metric. For resource type, you
     can specify EBS volumes, EC2 instances, RDS clusters, or S3 buckets.
   inputParameters:
@@ -37,7 +37,8 @@ cloudwatch-alarm-resource-check:
 
 cloudwatch-alarm-settings-check:
   identifier: CLOUDWATCH_ALARM_SETTINGS_CHECK
-  description: Checks whether CloudWatch alarms with the given metric name have the specified settings.
+  description: >-
+    Checks whether CloudWatch alarms with the given metric name have the specified settings.
   inputParameters:
     # The following parameters are required:
     #
@@ -55,7 +56,7 @@ cloudwatch-alarm-settings-check:
 
 cloudwatch-log-group-encrypted:
   identifier: CLOUDWATCH_LOG_GROUP_ENCRYPTED
-  description:
+  description: >-
     Checks whether a log group in Amazon CloudWatch Logs is encrypted with a AWS Key Management Service (KMS) managed
     Customer Master Keys (CMK). The rule is NON_COMPLIANT if no AWS KMS CMK is configured on the log groups.
   inputParameters:
@@ -70,7 +71,7 @@ cloudwatch-log-group-encrypted:
 
 cw-loggroup-retention-period-check:
   identifier: CW_LOGGROUP_RETENTION_PERIOD_CHECK
-  description:
+  description: >-
     Checks whether Amazon CloudWatch LogGroup retention period is set to specific number of days. The rule is
     NON_COMPLIANT if the retention period is not set or is less than the configured retention period.
   inputParameters:

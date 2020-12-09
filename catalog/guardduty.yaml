@@ -1,6 +1,6 @@
 guardduty-enabled-centralized:
   identifier: GUARDDUTY_ENABLED_CENTRALIZED
-  description:
+  description: >-
     Checks whether Amazon GuardDuty is enabled in your AWS account and region. If you provide an AWS account for
     centralization, the rule evaluates the Amazon GuardDuty results in the centralized account. The rule is COMPLIANT
     when Amazon GuardDuty is enabled.
@@ -15,7 +15,7 @@ guardduty-enabled-centralized:
 
 guardduty-non-archived-findings:
   identifier: GUARDDUTY_NON_ARCHIVED_FINDINGS
-  description:
+  description: >-
     Checks whether the Amazon GuardDuty has findings that are non archived. The rule is NON_COMPLIANT if Amazon
     GuardDuty has non archived low/medium/high severity findings older than the specified number in the
     daysLowSev/daysMediumSev/daysHighSev parameter.

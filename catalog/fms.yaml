@@ -1,6 +1,6 @@
 fms-shield-resource-policy-check:
   identifier: FMS_SHIELD_RESOURCE_POLICY_CHECK
-  description:
+  description: >-
     Checks whether an Application Load Balancer, Amazon CloudFront distributions, Elastic Load Balancer or Elastic IP
     has AWS Shield protection. This rule also checks if they have web ACL associated for Application Load Balancer and
     Amazon CloudFront distributions.
@@ -27,7 +27,7 @@ fms-shield-resource-policy-check:
 
 fms-webacl-resource-policy-check:
   identifier: FMS_WEBACL_RESOURCE_POLICY_CHECK
-  description:
+  description: >-
     Checks whether the web ACL is associated with an Application Load Balancer, API Gateway stage, or Amazon CloudFront
     distributions. When AWS Firewall Manager creates this rule, the FMS policy owner specifies the WebACLId in the FMS
     policy and can optionally enable remediation.
@@ -38,7 +38,7 @@ fms-webacl-resource-policy-check:
 
 fms-webacl-rulegroup-association-check:
   identifier: FMS_WEBACL_RULEGROUP_ASSOCIATION_CHECK
-  description:
+  description: >-
     Checks that the rule groups associate with the web ACL at the correct priority. The correct priority is decided by
     the rank of the rule groups in the ruleGroups parameter. When AWS Firewall Manager creates this rule, it assigns the
     highest priority 0 followed by 1, 2, and so on. The FMS policy owner specifies the ruleGroups rank in the FMS policy

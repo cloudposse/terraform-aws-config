@@ -1,6 +1,6 @@
 ec2-ebs-encryption-by-default:
   identifier: EC2_EBS_ENCRYPTION_BY_DEFAULT
-  description:
+  description: >-
     Check that Amazon Elastic Block Store (EBS) encryption is enabled by default. The rule is NON_COMPLIANT if the
     encryption is not enabled.
   inputParameters: {}
@@ -10,7 +10,7 @@ ec2-ebs-encryption-by-default:
 
 ec2-imdsv2-check:
   identifier: EC2_IMDSV2_CHECK
-  description:
+  description: >-
     Checks whether your Amazon Elastic Compute Cloud (Amazon EC2) instance metadata version is configured with Instance
     Metadata Service Version 2 (IMDSv2). The rule is COMPLIANT if the HttpTokens is set to required and is NON_COMPLIANT
     if the HttpTokens is set to optional.
@@ -21,7 +21,7 @@ ec2-imdsv2-check:
 
 ec2-instance-detailed-monitoring-enabled:
   identifier: EC2_INSTANCE_DETAILED_MONITORING_ENABLED
-  description:
+  description: >-
     Checks whether detailed monitoring is enabled for EC2 instances. The rule is NON_COMPLIANT if detailed monitoring is
     not enabled.
   inputParameters: {}
@@ -31,7 +31,8 @@ ec2-instance-detailed-monitoring-enabled:
 
 ec2-instance-managed-by-systems-manager:
   identifier: EC2_INSTANCE_MANAGED_BY_SSM
-  description: Checks whether the Amazon EC2 instances in your account are managed by AWS Systems Manager.
+  description: >-
+    Checks whether the Amazon EC2 instances in your account are managed by AWS Systems Manager.
   inputParameters: {}
   enabled: true
   tags:
@@ -39,7 +40,7 @@ ec2-instance-managed-by-systems-manager:
 
 ec2-instance-no-public-ip:
   identifier: EC2_INSTANCE_NO_PUBLIC_IP
-  description:
+  description: >-
     Checks whether Amazon Elastic Compute Cloud (Amazon EC2) instances have a public IP association. The rule is
     NON_COMPLIANT if the publicIp field is present in the Amazon EC2 instance configuration item. This rule applies only
     to IPv4.
@@ -50,7 +51,7 @@ ec2-instance-no-public-ip:
 
 ec2-instances-in-vpc:
   identifier: INSTANCES_IN_VPC
-  description:
+  description: >-
     Checks whether your EC2 instances belong to a virtual private cloud (VPC). Optionally, you can specify the VPC ID to
     associate with your instances.
   inputParameters:
@@ -63,7 +64,7 @@ ec2-instances-in-vpc:
 
 ec2-managedinstance-applications-blacklisted:
   identifier: EC2_MANAGEDINSTANCE_APPLICATIONS_BLACKLISTED
-  description:
+  description: >-
     Checks that none of the specified applications are installed on the instance. Optionally, specify the application
     version. Newer versions of the application will not be blacklisted. You can also specify the platform to apply the
     rule only to instances running that platform.
@@ -85,7 +86,7 @@ ec2-managedinstance-applications-blacklisted:
 
 ec2-managedinstance-applications-required:
   identifier: EC2_MANAGEDINSTANCE_APPLICATIONS_REQUIRED
-  description:
+  description: >-
     Checks whether all of the specified applications are installed on the instance. Optionally, specify the minimum
     acceptable version. You can also specify the platform to apply the rule only to instances running that platform.
   inputParameters:
@@ -106,7 +107,7 @@ ec2-managedinstance-applications-required:
 
 ec2-managedinstance-association-compliance-status-check:
   identifier: EC2_MANAGEDINSTANCE_ASSOCIATION_COMPLIANCE_STATUS_CHECK
-  description:
+  description: >-
     Checks whether the compliance status of AWS Systems Manager association compliance is COMPLIANT or NON_COMPLIANT
     after the association execution on the instance. The rule is COMPLIANT if the field status is COMPLIANT.
   inputParameters: {}
@@ -116,7 +117,7 @@ ec2-managedinstance-association-compliance-status-check:
 
 ec2-managedinstance-inventory-blacklisted:
   identifier: EC2_MANAGEDINSTANCE_INVENTORY_BLACKLISTED
-  description:
+  description: >-
     Checks whether instances managed by AWS Systems Manager are configured to collect blacklisted inventory types.
   inputParameters: inventoryNames
   enabled: true
@@ -125,7 +126,7 @@ ec2-managedinstance-inventory-blacklisted:
 
 ec2-managedinstance-patch-compliance-status-check:
   identifier: EC2_MANAGEDINSTANCE_PATCH_COMPLIANCE_STATUS_CHECK
-  description:
+  description: >-
     Checks whether the compliance status of the Amazon EC2 Systems Manager patch compliance is COMPLIANT or
     NON_COMPLIANT after the patch installation on the instance. The rule is COMPLIANT if the field status is COMPLIANT.
   inputParameters: {}
@@ -135,7 +136,8 @@ ec2-managedinstance-patch-compliance-status-check:
 
 ec2-managedinstance-platform-check:
   identifier: EC2_MANAGEDINSTANCE_PLATFORM_CHECK
-  description: Checks whether EC2 managed instances have the desired configurations.
+  description: >-
+    Checks whether EC2 managed instances have the desired configurations.
   inputParameters: agentVersion
   enabled: true
   tags:
@@ -143,7 +145,7 @@ ec2-managedinstance-platform-check:
 
 ec2-security-group-attached-to-eni:
   identifier: EC2_SECURITY_GROUP_ATTACHED_TO_ENI
-  description:
+  description: >-
     Checks that Amazon Elastic Compute Cloud (Amazon EC2) instances use security groups that are attached to an elastic
     network interface. The rule returns NON_COMPLIANT if a security group is not associated with an elastic network
     interface.
@@ -154,7 +156,7 @@ ec2-security-group-attached-to-eni:
 
 ec2-stopped-instance:
   identifier: EC2_STOPPED_INSTANCE
-  description:
+  description: >-
     Checks whether there are instances stopped for more than the allowed number of days. The instance is NON_COMPLIANT
     if the state of the ec2 instance has been stopped for longer than the allowed number of days.
   inputParameters:
@@ -169,7 +171,7 @@ ec2-stopped-instance:
 
 ec2-volume-inuse-check:
   identifier: EC2_VOLUME_INUSE_CHECK
-  description:
+  description: >-
     Checks whether EBS volumes are attached to EC2 instances. Optionally checks if EBS volumes are marked for deletion
     when an instance is terminated.
   inputParameters:
@@ -183,7 +185,7 @@ ec2-volume-inuse-check:
 
 desired-instance-tenancy:
   identifier: DESIRED_INSTANCE_TENANCY
-  description:
+  description: >-
     Checks instances for specified tenancy. Specify AMI IDs to check instances that are launched from those AMIs or
     specify host IDs to check whether instances are launched on those Dedicated Hosts. Separate multiple ID values with
     commas.
@@ -205,7 +207,8 @@ desired-instance-tenancy:
 
 desired-instance-type:
   identifier: DESIRED_INSTANCE_TYPE
-  description: Checks whether your EC2 instances are of the specified instance types.
+  description: >-
+    Checks whether your EC2 instances are of the specified instance types.
   inputParameters:
     # The following parameters are optional:
     #
@@ -216,7 +219,7 @@ desired-instance-type:
 
 encrypted-volumes:
   identifier: ENCRYPTED_VOLUMES
-  description:
+  description: >-
     Checks whether the EBS volumes that are in an attached state are encrypted. If you specify the ID of a KMS key for
     encryption using the kmsId parameter, the rule checks if the EBS volumes in an attached state are encrypted with
     that KMS key.

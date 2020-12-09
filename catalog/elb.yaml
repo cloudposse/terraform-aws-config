@@ -26,6 +26,7 @@ elb-custom-security-policy-ssl-check:
   enabled: true
   tags:
     catalog/elb: true
+
 elb-deletion-protection-enabled:
   identifier: ELB_DELETION_PROTECTION_ENABLED
   description: >-

@@ -1,0 +1,9 @@
+mfa-enabled-for-iam-console-access:
+  identifier: MFA_ENABLED_FOR_IAM_CONSOLE_ACCESS
+  description: >-
+    Checks whether AWS Multi-Factor Authentication (MFA) is enabled for all AWS Identity and Access Management (IAM)
+    users that use a console password. The rule is COMPLIANT if MFA is enabled.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/mfa: true

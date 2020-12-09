@@ -1,0 +1,37 @@
+restricted-common-ports:
+  identifier: RESTRICTED_INCOMING_TRAFFIC
+  description: >-
+    Checks whether the security groups in use do not allow unrestricted incoming TCP traffic to the specified ports. The
+    rule is COMPLIANT when the IP addresses for inbound TCP connections are restricted to the specified ports. This rule
+    applies only to IPv4.
+  inputParameters:
+    blockedPort1: "3389"
+  enabled: true
+  tags:
+    catalog/network: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 4.2
+
+restricted-ssh:
+  identifier: INCOMING_SSH_DISABLED
+  description: >-
+    Checks whether the incoming SSH traffic for the security groups is accessible. The rule is COMPLIANT when IP
+    addresses of the incoming SSH traffic in the security groups are restricted. This rule applies only to IPv4.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/network: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 4.1
+
+vpc-default-security-group-closed:
+  identifier: VPC_DEFAULT_SECURITY_GROUP_CLOSED
+  description: >-
+    Checks that the default security group of any Amazon Virtual Private Cloud (VPC) does not allow inbound or outbound
+    traffic. The rule is NON_COMPLIANT if the default security group has one or more inbound or outbound traffic.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/network: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 4.3

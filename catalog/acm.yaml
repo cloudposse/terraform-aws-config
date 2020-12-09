@@ -1,0 +1,11 @@
+acm-certificate-expiration-check:
+  identifier: ACM_CERTIFICATE_EXPIRATION_CHECK
+  description: >-
+    Checks whether ACM Certificates in your account are marked for expiration within the specified number of days.
+    Certificates provided by ACM are automatically renewed. ACM does not automatically renew certificates that you
+    import.
+  inputParameters:
+    daysToExpiration: "30"
+  enabled: true
+  tags:
+    catalog/acm: true

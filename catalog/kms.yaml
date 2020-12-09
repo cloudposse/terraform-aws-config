@@ -1,0 +1,9 @@
+kms-cmk-not-scheduled-for-deletion:
+  identifier: KMS_CMK_NOT_SCHEDULED_FOR_DELETION
+  description: >-
+    Checks whether customer master keys (CMKs) are not scheduled for deletion in AWS Key Management Service (KMS). The
+    rule is NON_COMPLIANT if CMKs are scheduled for deletion.
+  inputParameters: kmsKeyIds
+  enabled: true
+  tags:
+    catalog/kms: true

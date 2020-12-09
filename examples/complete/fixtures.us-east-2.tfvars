@@ -8,11 +8,17 @@ create_iam_role  = true
 force_destroy    = true
 
 managed_rules = {
-  account-part-of-organizations = {
-    description      = "Checks whether AWS account is part of AWS Organizations. The rule is NON_COMPLIANT if an AWS account is not part of AWS Organizations or AWS Organizations master account ID does not match rule parameter MasterAccountId.",
-    identifier       = "ACCOUNT_PART_OF_ORGANIZATIONS",
-    trigger_type     = "PERIODIC"
-    input_parameters = {}
-    enabled          = true
+  access-keys-rotated = {
+    identifier  = "ACCESS_KEYS_ROTATED"
+    description = "Checks whether the active access keys are rotated within the number of days specified in maxAccessKeyAge. The rule is NON_COMPLIANT if the access keys have not been rotated for more than maxAccessKeyAge number of days."
+    input_parameters = {
+      maxAccessKeyAge : "90"
+    }
+    enabled = true
+    tags = {
+      "compliance/cis-aws-foundations/1.2"                                 = true
+      "compliance/cis-aws-foundations/filters/global-resource-region-only" = true
+      "compliance/cis-aws-foundations/1.2/controls"                        = 1.4
+    }
   }
 }

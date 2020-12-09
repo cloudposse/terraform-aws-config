@@ -1,0 +1,52 @@
+cloudfront-default-root-object-configured:
+  identifier: CLOUDFRONT_DEFAULT_ROOT_OBJECT_CONFIGURED
+  description: >-
+    Checks if an Amazon CloudFront distribution is configured to return a specific object that is the default root
+    object. The rule is NON_COMPLIANT if CloudFront distribution does not have a default root object configured.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cloudfront: true
+
+cloudfront-origin-access-identity-enabled:
+  identifier: CLOUDFRONT_ORIGIN_ACCESS_IDENTITY_ENABLED
+  description: >-
+    Checks that Amazon CloudFront distribution with Amazon S3 Origin type has Origin Access Identity (OAI) configured.
+    This rule is NON_COMPLIANT if the CloudFront distribution is backed by Amazon S3 and any of Amazon S3 Origin type is
+    not OAI configured.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cloudfront: true
+
+cloudfront-origin-failover-enabled:
+  identifier: CLOUDFRONT_ORIGIN_FAILOVER_ENABLED
+  description: >-
+    Checks whether an origin group is configured for the distribution of at least 2 origins in the origin group for
+    Amazon CloudFront.  This rule is NON_COMPLIANT if there are no origin groups for the distribution.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cloudfront: true
+
+cloudfront-sni-enabled:
+  identifier: CLOUDFRONT_SNI_ENABLED
+  description: >-
+    Checks if Amazon CloudFront distributions are using a custom SSL certificate and are configured to use SNI to serve
+    HTTPS requests. This rule is NON_COMPLIANT if a custom SSL certificate is associated but the SSL support method is
+    using a dedicated IP address.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cloudfront: true
+
+cloudfront-viewer-policy-https:
+  identifier: CLOUDFRONT_VIEWER_POLICY_HTTPS
+  description: >-
+    Checks whether your Amazon CloudFront distributions use HTTPS (directly or via a redirection). The rule is
+    NON_COMPLIANT if the value of ViewerProtocolPolicy is set to allow-all for defaultCacheBehavior or for
+    cacheBehaviors. This means that the rule is non compliant when viewers can use HTTP or HTTPS.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cloudfront: true

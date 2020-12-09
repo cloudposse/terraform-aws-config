@@ -1,0 +1,86 @@
+cloudwatch-alarm-action-check:
+  identifier: CLOUDWATCH_ALARM_ACTION_CHECK
+  description: >-
+    Checks whether CloudWatch alarms have at least one alarm action, one INSUFFICIENT_DATA action, or one OK action
+    enabled. Optionally, checks whether any of the actions matches one of the specified ARNs.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # action1: The action to execute, specified as an ARN.
+    # action2: The action to execute, specified as an ARN.
+    # action3: The action to execute, specified as an ARN.
+    # action4: The action to execute, specified as an ARN.
+    # action5: The action to execute, specified as an ARN.
+    alarmActionRequired: "true"
+    insufficientDataActionRequired: "true"
+    okActionRequired: "false"
+  enabled: true
+  tags:
+    catalog/cloudwatch: true
+
+cloudwatch-alarm-resource-check:
+  identifier: CLOUDWATCH_ALARM_RESOURCE_CHECK
+  description: >-
+    Checks whether the specified resource type has a CloudWatch alarm for the specified metric. For resource type, you
+    can specify EBS volumes, EC2 instances, RDS clusters, or S3 buckets.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # resourceType:AWS resource type. The value can be one of the following:AWS::EC2::Volume, AWS::EC2::Instance,
+    #              AWS::EC2::Bucket
+    # metricName: The name of the metric associated with the alarm (for example, "CPUUtilization" for EC2 instances).
+    resourceType: ""
+    metricName: ""
+  enabled: true
+  tags:
+    catalog/cloudwatch: true
+
+cloudwatch-alarm-settings-check:
+  identifier: CLOUDWATCH_ALARM_SETTINGS_CHECK
+  description: >-
+    Checks whether CloudWatch alarms with the given metric name have the specified settings.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # metricName: The name for the metric associated with the alarm.
+    # threshold: The value against which the specified statistic is compared.
+    # evaluationPeriod: The number of periods in which data is compared to the specified threshold.
+    # period: The period, in seconds, during which the specified statistic is applied.
+    # comparisonOperator: The operation for comparing the specified statistic and threshold. For example,
+    #                     "GreaterThanThreshold".
+    # statistic: The statistic for the metric associated with the alarm (for example, "Average" or "Sum").
+    {}
+  enabled: true
+  tags:
+    catalog/cloudwatch: true
+
+cloudwatch-log-group-encrypted:
+  identifier: CLOUDWATCH_LOG_GROUP_ENCRYPTED
+  description: >-
+    Checks whether a log group in Amazon CloudWatch Logs is encrypted with a AWS Key Management Service (KMS) managed
+    Customer Master Keys (CMK). The rule is NON_COMPLIANT if no AWS KMS CMK is configured on the log groups.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # KmsKeyId: Amazon Resource Name (ARN) of an AWS Key Management Service (KMS) key that is used to encrypt the
+    #           CloudWatch Logs log group.
+    {}
+  enabled: true
+  tags:
+    catalog/cloudwatch: true
+
+cw-loggroup-retention-period-check:
+  identifier: CW_LOGGROUP_RETENTION_PERIOD_CHECK
+  description: >-
+    Checks whether Amazon CloudWatch LogGroup retention period is set to specific number of days. The rule is
+    NON_COMPLIANT if the retention period is not set or is less than the configured retention period.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # LogGroupNames:    A comma-separated list of Log Group names to check the retention period.
+    # MinRetentionTime: Specify the retention time. Valid values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365,
+    #                   400, 545, 731, 1827, and 3653. The default retention period is 365 days.
+    {}
+  enabled: true
+  tags:
+    catalog/cloudwatch: true

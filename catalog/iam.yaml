@@ -1,0 +1,231 @@
+access-keys-rotated:
+  identifier: ACCESS_KEYS_ROTATED
+  description: >-
+    Checks whether the active access keys are rotated within the number of days specified in maxAccessKeyAge. The rule
+    is NON_COMPLIANT if the access keys have not been rotated for more than maxAccessKeyAge number of days.
+  inputParameters:
+    maxAccessKeyAge: "90"
+  enabled: true
+  tags:
+    catalog/iam: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/global-resource-region-only: true
+    compliance/cis-aws-foundations/1.2/controls: 1.4
+
+iam-password-policy:
+  identifier: IAM_PASSWORD_POLICY
+  description: >-
+    Checks whether the account password policy for IAM users meets the specified requirements indicated in the
+    parameters. This rule is NON_COMPLIANT if the account password policy does not meet the specified requirements.
+  inputParameters:
+    RequireUppercaseCharacters: "true"
+    RequireLowercaseCharacters: "true"
+    RequireSymbols: "true"
+    RequireNumbers: "true"
+    MinimumPasswordLength: "14"
+    PasswordReusePrevention: "24"
+    MaxPasswordAge: "90"
+  enabled: true
+  tags:
+    catalog/iam: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/global-resource-region-only: true
+    compliance/cis-aws-foundations/1.2/controls: 1.5 1.6 1.7 1.8 1.9 1.10 1.11
+
+iam-policy-in-use:
+  identifier: IAM_POLICY_IN_USE
+  description: >-
+    Checks whether the IAM policy ARN is attached to an IAM user, or an IAM group with one or more IAM users, or an IAM
+    role with one or more trusted entity.
+  inputParameters:
+    policyARN: "MANDATORY"
+    policyUsageType: "ANY"
+  enabled: true
+  tags:
+    catalog/iam: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 1.20
+
+iam-policy-no-statements-with-admin-access:
+  identifier: IAM_POLICY_NO_STATEMENTS_WITH_ADMIN_ACCESS
+  description: >-
+    Checks the IAM policies that you create for Allow statements that grant permissions to all actions on all resources.
+    The rule is NON_COMPLIANT if any policy statement includes "Effect": "Allow" with "Action": "*" over "Resource":
+    "*".
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/iam: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 1.22
+
+iam-root-access-key-check:
+  identifier: IAM_ROOT_ACCESS_KEY_CHECK
+  description: >-
+    Checks whether the root user access key is available. The rule is COMPLIANT if the user access key does not exist.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/iam: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/global-resource-region-only: true
+    compliance/cis-aws-foundations/1.2/controls: 1.12
+
+iam-user-no-policies-check:
+  identifier: IAM_USER_NO_POLICIES_CHECK
+  description: >-
+    Checks that none of your IAM users have policies attached. IAM users must inherit permissions from IAM groups or
+    roles.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/iam: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/global-resource-region-only: true
+    compliance/cis-aws-foundations/1.2/controls: 1.16
+
+iam-user-unused-credentials-check:
+  identifier: IAM_USER_UNUSED_CREDENTIALS_CHECK
+  description: >-
+    Checks whether your AWS Identity and Access Management (IAM) users have passwords or active access keys that have
+    not been used within the specified number of days you provided.
+  inputParameters:
+    maxCredentialUsageAge: "90"
+  enabled: true
+  tags:
+    catalog/iam: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/global-resource-region-only: true
+    compliance/cis-aws-foundations/1.2/controls: 1.3
+
+mfa-enabled-for-iam-console-access:
+  identifier: MFA_ENABLED_FOR_IAM_CONSOLE_ACCESS
+  description: >-
+    Checks whether AWS Multi-Factor Authentication (MFA) is enabled for all AWS Identity and Access Management (IAM)
+    users that use a console password. The rule is COMPLIANT if MFA is enabled.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/iam: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/global-resource-region-only: true
+    compliance/cis-aws-foundations/1.2/controls: 1.2
+
+root-account-hardware-mfa-enabled:
+  identifier: ROOT_ACCOUNT_HARDWARE_MFA_ENABLED
+  description: >-
+    Checks whether your AWS account is enabled to use multi-factor authentication (MFA) hardware device to sign in with
+    root credentials. The rule is NON_COMPLIANT if any virtual MFA devices are permitted for signing in with root
+    credentials.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/iam: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/global-resource-region-only: true
+    compliance/cis-aws-foundations/1.2/controls: 1.14
+
+root-account-mfa-enabled:
+  identifier: ROOT_ACCOUNT_MFA_ENABLED
+  description: >-
+    Checks whether users of your AWS account require a multi-factor authentication (MFA) device to sign in with root
+    credentials.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/iam: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/global-resource-region-only: true
+    compliance/cis-aws-foundations/1.2/controls: 1.13
+
+iam-customer-policy-blocked-kms-actions:
+  identifier: IAM_CUSTOMER_POLICY_BLOCKED_KMS_ACTIONS
+  description: >-
+    Checks that the managed AWS Identity and Access Management policies that you create do not allow blocked actions on
+    all AWS AWS KMS keys. The rule is NON_COMPLIANT if any blocked action is allowed on all AWS AWS KMS keys by the
+    managed IAM policy.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # blockedActionsPatterns: Comma-separated list of blocked KMS action patterns, for example, kms:*, kms:Decrypt,
+    #                         kms:ReEncrypt*.
+    blockedActionsPatterns: "kms:*"
+  enabled: true
+  tags:
+    catalog/iam: true
+
+iam-group-has-users-check:
+  identifier: IAM_GROUP_HAS_USERS_CHECK
+  description: >-
+    Checks whether IAM groups have at least one IAM user.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/iam: true
+
+iam-inline-policy-blocked-kms-actions:
+  identifier: IAM_INLINE_POLICY_BLOCKED_KMS_ACTIONS
+  description: >-
+    Checks that the inline policies attached to your AWS Identity and Access Management users, roles, and groups do not
+    allow blocked actions on all AWS Key Management Service keys. The rule is NON_COMPLIANT if any blocked action is
+    allowed on all AWS KMS keys in an inline policy.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # blockedActionsPatterns: Comma-separated list of blocked KMS action patterns, for example, kms:*, kms:Decrypt,
+    #                         kms:ReEncrypt*.
+    blockedActionsPatterns: "kms:*"
+  enabled: true
+  tags:
+    catalog/iam: true
+
+iam-no-inline-policy-check:
+  identifier: IAM_NO_INLINE_POLICY_CHECK
+  description: >-
+    Checks that inline policy feature is not in use. The rule is NON_COMPLIANT if an AWS Identity and Access Management
+    (IAM) user, IAM role or IAM group has any inline policy.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/iam: true
+
+iam-policy-blacklisted-check:
+  identifier: IAM_POLICY_BLACKLISTED_CHECK
+  description: >-
+    Checks whether for each IAM resource, a policy ARN in the input parameter is attached to the IAM resource. The rule
+    is NON_COMPLIANT if the policy ARN is attached to the IAM resource. AWS Config marks the resource as COMPLIANT if
+    the IAM resource is part of the exceptionList parameter irrespective of the presence of the policy ARN.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # policyArns:     Comma-separated list of policy ARNs.
+    # exceptionList:  Comma-separated list IAM users, groups, or roles that are exempt from this rule. For example,
+    #                 users:[user1;user2], groups:[group1;group2], roles:[role1;role2;role3].
+    policyArns: ""
+    exceptionList: ""
+  enabled: true
+  tags:
+    catalog/iam: true
+
+iam-role-managed-policy-check:
+  identifier: IAM_ROLE_MANAGED_POLICY_CHECK
+  description: >-
+    Checks that AWS Identity and Access Management (IAM) policies in a list of policies are attached to all AWS roles.
+    The rule is NON_COMPLIANT if the IAM managed policy is not attached to the IAM role.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # managedPolicyNames: Comma-separated list of AWS managed policy ARNs.
+    managedPolicyNames: ""
+  enabled: true
+  tags:
+    catalog/iam: true
+
+iam-user-mfa-enabled:
+  identifier: IAM_USER_MFA_ENABLED
+  description: >-
+    Checks whether the AWS Identity and Access Management users have multi-factor authentication (MFA) enabled.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/iam: true

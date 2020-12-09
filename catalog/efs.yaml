@@ -1,0 +1,23 @@
+efs-encrypted-check:
+  identifier: EFS_ENCRYPTED_CHECK
+  description: >-
+    Checks whether Amazon Elastic File System (Amazon EFS) is configured to encrypt the file data using AWS Key
+    Management Service (AWS KMS). The rule is NON_COMPLIANT if the encrypted key is set to false on DescribeFileSystems
+    or if the KmsKeyId key on DescribeFileSystems does not match the KmsKeyId parameter.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # KmsKeyId: Amazon Resource Name (ARN) of the AWS KMS key that is used to encrypt the Amazon EFS file system.
+  enabled: true
+  tags:
+    catalog/efs: true
+
+efs-in-backup-plan:
+  identifier: EFS_IN_BACKUP_PLAN
+  description: >-
+    Checks whether Amazon Elastic File System (Amazon EFS) file systems are added in the backup plans of AWS Backup. The
+    rule is NON_COMPLIANT if EFS file systems are not included in the backup plans.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/efs: true

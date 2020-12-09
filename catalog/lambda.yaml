@@ -1,0 +1,69 @@
+lambda-concurrency-check:
+  identifier: LAMBDA_CONCURRENCY_CHECK
+  description: >-
+    Checks whether the AWS Lambda function is configured with function-level concurrent execution limit. The rule is
+    NON_COMPLIANT if the Lambda function is not configured with function-level concurrent execution limit.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # ConcurrencyLimitLow: Minimum concurrency execution limit
+    # ConcurrencyLimitHigh: Maximum concurrency execution limit
+  enabled: true
+  tags:
+    catalog/lambda: true
+
+lambda-dlq-check:
+  identifier: LAMBDA_DLQ_CHECK
+  description: >-
+    Checks whether an AWS Lambda function is configured with a dead-letter queue. The rule is NON_COMPLIANT if the
+    Lambda function is not configured with a dead-letter queue.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # dlqArns: Comma-separated list of Amazon SQS and Amazon SNS ARNs that must be configured as the Lambda function dead-letter queue target.
+  enabled: true
+  tags:
+    catalog/lambda: true
+
+lambda-function-public-access-prohibited:
+  identifier: LAMBDA_FUNCTION_PUBLIC_ACCESS_PROHIBITED
+  description: >-
+    Checks whether the AWS Lambda function policy attached to the Lambda resource prohibits public access. If the Lambda
+    function policy allows public access it is NON_COMPLIANT.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/lambda: true
+
+lambda-function-settings-check:
+  identifier: LAMBDA_FUNCTION_SETTINGS_CHECK
+  description: >-
+    Checks that the lambda function settings for runtime, role, timeout, and memory size match the expected values.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # runtime: Comma-separated list of runtime values.
+    # role: IAM role.
+    # timeout: Timeout in seconds.
+    # memorySize: Memory size in MB.
+    runtime: ""
+    role: ""
+    timeout: "30"
+    memorySize: "1024"
+  enabled: true
+  tags:
+    catalog/lambda: true
+
+lambda-inside-vpc:
+  identifier: LAMBDA_INSIDE_VPC
+  description: >-
+    Checks whether an AWS Lambda function is in an Amazon Virtual Private Cloud. The rule is NON_COMPLIANT if the Lambda
+    function is not in a VPC.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # subnetIds: Comma-separated list of subnet IDs that Lambda functions must be associated with.
+    {}
+  enabled: true
+  tags:
+    catalog/lambda: true

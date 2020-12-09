@@ -1,0 +1,81 @@
+elb-acm-certificate-required:
+  identifier: ELB_ACM_CERTIFICATE_REQUIRED
+  description: >-
+    Checks whether the Classic Load Balancers use SSL certificates provided by AWS Certificate Manager. To use this
+    rule, use an SSL or HTTPS listener with your Classic Load Balancer. This rule is only applicable to Classic Load
+    Balancers. This rule does not check Application Load Balancers and Network Load Balancers.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/elb: true
+
+elb-cross-zone-load-balancing-enabled:
+  identifier: ELB_CROSS_ZONE_LOAD_BALANCING_ENABLED
+  description: >-
+    Checks if cross-zone load balancing is enabled for the Classic Load Balancers (CLBs). This rule is NON_COMPLIANT if
+    cross-zone load balancing is not enabled for a CLB.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/elb: true
+
+elb-custom-security-policy-ssl-check:
+  identifier: ELB_CUSTOM_SECURITY_POLICY_SSL_CHECK
+  description: >-
+    Checks whether your Classic Load Balancer SSL listeners are using a custom policy. The rule is only applicable if
+    there are SSL listeners for the Classic Load Balancer.
+  inputParameters: sslProtocolsAndCiphers
+  enabled: true
+  tags:
+    catalog/elb: true
+
+elb-deletion-protection-enabled:
+  identifier: ELB_DELETION_PROTECTION_ENABLED
+  description: >-
+    Checks whether Elastic Load Balancing has deletion protection enabled. The rule is NON_COMPLIANT if
+    deletion_protection.enabled is false.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/elb: true
+
+elb-logging-enabled:
+  identifier: ELB_LOGGING_ENABLED
+  description: >-
+    Checks whether the Application Load Balancer and the Classic Load Balancer have logging enabled. The rule is
+    NON_COMPLIANT if the access_logs.s3.enabled is false or access_logs.S3.bucket is not equal to the s3BucketName that
+    you provided.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # s3BucketNames: Comma-separated list of Amazon S3 bucket names for Elastic Load Balancing to deliver the log files.
+    {}
+  enabled: true
+  tags:
+    catalog/elb: true
+
+elb-predefined-security-policy-ssl-check:
+  identifier: ELB_PREDEFINED_SECURITY_POLICY_SSL_CHECK
+  description: >-
+    Checks whether your Classic Load Balancer SSL listeners are using a predefined policy. The rule is only applicable
+    if there are SSL listeners for the Classic Load Balancer.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # predefinedPolicyName: Name of the predefined policy.
+    predefinedPolicyName: ""
+  enabled: true
+  tags:
+    catalog/elb: true
+
+elb-tls-https-listeners-only:
+  identifier: ELB_TLS_HTTPS_LISTENERS_ONLY
+  description: >-
+    Checks whether your Classic Load Balancer is configured with SSL or HTTPS listeners. The rule is applicable if a
+    Classic Load Balancer has listeners. If your Classic Load Balancer does not have a listener configured, then the
+    rule returns NOT_APPLICABLE. The rule is COMPLIANT if the Classic Load Balancer listeners is configured with SSL or
+    HTTPS. The rule is NON_COMPLIANT if the listener is not configured with SSL or HTTPS.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/elb: true

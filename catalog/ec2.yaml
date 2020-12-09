@@ -1,0 +1,233 @@
+ec2-ebs-encryption-by-default:
+  identifier: EC2_EBS_ENCRYPTION_BY_DEFAULT
+  description: >-
+    Check that Amazon Elastic Block Store (EBS) encryption is enabled by default. The rule is NON_COMPLIANT if the
+    encryption is not enabled.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-imdsv2-check:
+  identifier: EC2_IMDSV2_CHECK
+  description: >-
+    Checks whether your Amazon Elastic Compute Cloud (Amazon EC2) instance metadata version is configured with Instance
+    Metadata Service Version 2 (IMDSv2). The rule is COMPLIANT if the HttpTokens is set to required and is NON_COMPLIANT
+    if the HttpTokens is set to optional.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-instance-detailed-monitoring-enabled:
+  identifier: EC2_INSTANCE_DETAILED_MONITORING_ENABLED
+  description: >-
+    Checks whether detailed monitoring is enabled for EC2 instances. The rule is NON_COMPLIANT if detailed monitoring is
+    not enabled.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-instance-managed-by-systems-manager:
+  identifier: EC2_INSTANCE_MANAGED_BY_SSM
+  description: >-
+    Checks whether the Amazon EC2 instances in your account are managed by AWS Systems Manager.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-instance-no-public-ip:
+  identifier: EC2_INSTANCE_NO_PUBLIC_IP
+  description: >-
+    Checks whether Amazon Elastic Compute Cloud (Amazon EC2) instances have a public IP association. The rule is
+    NON_COMPLIANT if the publicIp field is present in the Amazon EC2 instance configuration item. This rule applies only
+    to IPv4.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-instances-in-vpc:
+  identifier: INSTANCES_IN_VPC
+  description: >-
+    Checks whether your EC2 instances belong to a virtual private cloud (VPC). Optionally, you can specify the VPC ID to
+    associate with your instances.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # vpcId: The ID of the VPC that contains these instances.
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-managedinstance-applications-blacklisted:
+  identifier: EC2_MANAGEDINSTANCE_APPLICATIONS_BLACKLISTED
+  description: >-
+    Checks that none of the specified applications are installed on the instance. Optionally, specify the application
+    version. Newer versions of the application will not be blacklisted. You can also specify the platform to apply the
+    rule only to instances running that platform.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # applicationNames: Comma-separated list of application names. Optionally, specify versions appended with ":", for
+    #                   example, "Chrome:0.5.3, FireFox"). Note The application names must be an exact match. For
+    #                   example, use firefox on Linux or firefox-compat on Amazon Linux. In addition, AWS Config does
+    #                   not currently support wildcards for the applicationNames parameter (for example, firefox*).
+    #
+    # The following parameters are optional:
+    #
+    # platformType: The platform type (for example, "Linux" or "Windows").
+    {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-managedinstance-applications-required:
+  identifier: EC2_MANAGEDINSTANCE_APPLICATIONS_REQUIRED
+  description: >-
+    Checks whether all of the specified applications are installed on the instance. Optionally, specify the minimum
+    acceptable version. You can also specify the platform to apply the rule only to instances running that platform.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # applicationNames: Comma-separated list of application names. Optionally, specify versions appended with ":", for
+    #                   example, "Chrome:0.5.3, FireFox"). Note The application names must be an exact match. For
+    #                   example, use firefox on Linux or firefox-compat on Amazon Linux. In addition, AWS Config does
+    #                   not currently support wildcards for the applicationNames parameter (for example, firefox*).
+    #
+    # The following parameters are optional:
+    #
+    # platformType: The platform type (for example, "Linux" or "Windows").
+    {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-managedinstance-association-compliance-status-check:
+  identifier: EC2_MANAGEDINSTANCE_ASSOCIATION_COMPLIANCE_STATUS_CHECK
+  description: >-
+    Checks whether the compliance status of AWS Systems Manager association compliance is COMPLIANT or NON_COMPLIANT
+    after the association execution on the instance. The rule is COMPLIANT if the field status is COMPLIANT.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-managedinstance-inventory-blacklisted:
+  identifier: EC2_MANAGEDINSTANCE_INVENTORY_BLACKLISTED
+  description: >-
+    Checks whether instances managed by AWS Systems Manager are configured to collect blacklisted inventory types.
+  inputParameters: inventoryNames
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-managedinstance-patch-compliance-status-check:
+  identifier: EC2_MANAGEDINSTANCE_PATCH_COMPLIANCE_STATUS_CHECK
+  description: >-
+    Checks whether the compliance status of the Amazon EC2 Systems Manager patch compliance is COMPLIANT or
+    NON_COMPLIANT after the patch installation on the instance. The rule is COMPLIANT if the field status is COMPLIANT.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-managedinstance-platform-check:
+  identifier: EC2_MANAGEDINSTANCE_PLATFORM_CHECK
+  description: >-
+    Checks whether EC2 managed instances have the desired configurations.
+  inputParameters: agentVersion
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-security-group-attached-to-eni:
+  identifier: EC2_SECURITY_GROUP_ATTACHED_TO_ENI
+  description: >-
+    Checks that Amazon Elastic Compute Cloud (Amazon EC2) instances use security groups that are attached to an elastic
+    network interface. The rule returns NON_COMPLIANT if a security group is not associated with an elastic network
+    interface.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-stopped-instance:
+  identifier: EC2_STOPPED_INSTANCE
+  description: >-
+    Checks whether there are instances stopped for more than the allowed number of days. The instance is NON_COMPLIANT
+    if the state of the ec2 instance has been stopped for longer than the allowed number of days.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # AllowedDays: The number of days an ec2 instance can be stopped before it is NON_COMPLIANT. The default number of
+    #              days is 30.
+    {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+ec2-volume-inuse-check:
+  identifier: EC2_VOLUME_INUSE_CHECK
+  description: >-
+    Checks whether EBS volumes are attached to EC2 instances. Optionally checks if EBS volumes are marked for deletion
+    when an instance is terminated.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # deleteOnTermination: EBS volumes are marked for deletion when an instance is terminated.
+    {}
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+desired-instance-tenancy:
+  identifier: DESIRED_INSTANCE_TENANCY
+  description: >-
+    Checks instances for specified tenancy. Specify AMI IDs to check instances that are launched from those AMIs or
+    specify host IDs to check whether instances are launched on those Dedicated Hosts. Separate multiple ID values with
+    commas.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # tenancy:  The desired tenancy of the instances. Valid values are DEDICATED, HOST, and DEFAULT.
+    #
+    # The following parameters are optional:
+    #
+    # imageId:  The rule evaluates instances launched only from the AMI with the specified ID. Separate multiple AMI IDs
+    #           with commas.
+    # hostId:   The ID of the Amazon EC2 Dedicated Host on which the instances are meant to be launched. Separate
+    #           multiple host IDs with commas.
+    tenancy; "DEFAULT"
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+desired-instance-type:
+  identifier: DESIRED_INSTANCE_TYPE
+  description: >-
+    Checks whether your EC2 instances are of the specified instance types.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # instanceType: Comma-separated list of EC2 instance types (for example, "t2.small, m4.large, i2.xlarge").
+  enabled: true
+  tags:
+    catalog/ec2: true
+
+encrypted-volumes:
+  identifier: ENCRYPTED_VOLUMES
+  description: >-
+    Checks whether the EBS volumes that are in an attached state are encrypted. If you specify the ID of a KMS key for
+    encryption using the kmsId parameter, the rule checks if the EBS volumes in an attached state are encrypted with
+    that KMS key.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # kmsId: ID or ARN of the KMS key that is used to encrypt the volume.
+    kmsId: ""
+  enabled: true
+  tags:
+    catalog/ec2: true

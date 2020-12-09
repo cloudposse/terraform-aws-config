@@ -1,0 +1,65 @@
+redshift-backup-enabled:
+  identifier: REDSHIFT_BACKUP_ENABLED
+  description: >-
+    Checks that Amazon Redshift automated snapshots are enabled for clusters. The rule is NON_COMPLIANT if the value for
+    automatedSnapshotRetentionPeriod is greater than MaxRetentionPeriod or less than MinRetentionPeriod or the value is
+    0.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # MinRetentionPeriod: Minimum value for the retention period. Minimum value is 1.
+    # MaxRetentionPeriod: Maximum value for the retention period. Maximum value is 35.
+  enabled: true
+  tags:
+    catalog/redshift: true
+
+redshift-cluster-configuration-check:
+  identifier: REDSHIFT_CLUSTER_CONFIGURATION_CHECK
+  description: >-
+    Checks whether Amazon Redshift clusters have the specified settings.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # clusterDbEncrypted: Database encryption is enabled.
+    # nodeTypes: Specify node type.
+    # loggingEnabled: Audit logging is enabled.
+  enabled: true
+  tags:
+    catalog/redshift: true
+
+redshift-cluster-maintenancesettings-check:
+  identifier: REDSHIFT_CLUSTER_MAINTENANCESETTINGS_CHECK
+  description: >-
+    Checks whether Amazon Redshift clusters have the specified maintenance settings.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # allowVersionUpgrade: Allow version upgrade is enabled.
+    # preferredMaintenanceWindow: Scheduled maintenance window for clusters (for example, Mon:09:30-Mon:10:00).
+    # automatedSnapshotRetentionPeriod: Number of days to retain automated snapshots.
+    allowVersionUpgrade: "true"
+    preferredMaintenanceWindow: ""
+    automatedSnapshotRetentionPeriod: "30"
+  enabled: true
+  tags:
+    catalog/redshift: true
+
+redshift-cluster-public-access-check:
+  identifier: REDSHIFT_CLUSTER_PUBLIC_ACCESS_CHECK
+  description: >-
+    Checks whether Amazon Redshift clusters are not publicly accessible. The rule is NON_COMPLIANT if the
+    publiclyAccessible field is true in the cluster configuration item.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/redshift: true
+
+redshift-require-tls-ssl:
+  identifier: REDSHIFT_REQUIRE_TLS_SSL
+  description: >-
+    Checks whether Amazon Redshift clusters require TLS/SSL encryption to connect to SQL clients. The rule is
+    NON_COMPLIANT if any Amazon Redshift cluster has parameter require_SSL not set to true.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/redshift: true

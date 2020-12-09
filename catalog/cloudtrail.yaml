@@ -1,0 +1,119 @@
+cloud-trail-cloud-watch-logs-enabled:
+  identifier: CLOUD_TRAIL_CLOUD_WATCH_LOGS_ENABLED
+  description: >-
+    Checks whether AWS CloudTrail trails are configured to send logs to Amazon CloudWatch Logs. The trail is
+    NON_COMPLIANT if the CloudWatchLogsLogGroupArn property of the trail is empty.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cloudtrail: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 2.4
+
+cloud-trail-encryption-enabled:
+  identifier: CLOUD_TRAIL_ENCRYPTION_ENABLED
+  description: >-
+    Checks whether AWS CloudTrail is configured to use the server side encryption (SSE) AWS Key Management Service (AWS
+    KMS) customer master key (CMK) encryption. The rule is COMPLIANT if the KmsKeyId is defined.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cloudtrail: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/filters/logging-account-only: true
+    compliance/cis-aws-foundations/1.2/controls: 2.7
+
+cloud-trail-log-file-validation-enabled:
+  identifier: CLOUD_TRAIL_LOG_FILE_VALIDATION_ENABLED
+  description: >-
+    Checks whether AWS CloudTrail creates a signed digest file with logs. AWS recommends that the file validation must
+    be enabled on all trails. The rule is NON_COMPLIANT if the validation is not enabled.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cloudtrail: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 2.2
+
+multi-region-cloudtrail-enabled:
+  identifier: MULTI_REGION_CLOUD_TRAIL_ENABLED
+  description: >-
+    Checks that there is at least one multi-region AWS CloudTrail. The rule is NON_COMPLIANT if the trails do not match
+    inputs parameters.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # s3BucketName: Name of Amazon S3 bucket for AWS CloudTrail to deliver log files to.
+    # snsTopicArn: Amazon SNS topic ARN for AWS CloudTrail to use for notifications.
+    # cloudWatchLogsLogGroupArn: Amazon CloudWatch log group ARN for AWS CloudTrail to send data to.
+    # includeManagementEvents: Event selector to include management events for the AWS CloudTrail.
+    # readWriteType: ReadOnly, WriteOnly or ALL
+    {}
+  enabled: true
+  tags:
+    catalog/cloudtrail: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 2.1
+
+s3-bucket-public-read-prohibited:
+  identifier: S3_BUCKET_PUBLIC_READ_PROHIBITED
+  description: >-
+    Checks that your Amazon S3 buckets do not allow public read access. The rule checks the Block Public Access
+    settings, the bucket policy, and the bucket access control list (ACL).
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cloudtrail: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 2.3
+
+s3-bucket-public-write-prohibited:
+  identifier: S3_BUCKET_PUBLIC_WRITE_PROHIBITED
+  description: >-
+    Checks that your Amazon S3 buckets do not allow public write access. The rule checks the Block Public Access
+    settings, the bucket policy, and the bucket access control list (ACL).
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cloudtrail: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 2.3
+
+cloudtrail-enabled:
+  identifier: CLOUD_TRAIL_ENABLED
+  description: >-
+    Checks whether AWS CloudTrail is enabled in your AWS account. Optionally, you can specify which S3 bucket, SNS
+    topic, and Amazon CloudWatch Logs ARN to use.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # s3BucketName: The name of the S3 bucket for AWS CloudTrail to deliver log files to.
+    # snsTopicArn: The ARN of the SNS topic for AWS CloudTrail to use for notifications.
+    # cloudWatchLogsLogGroupArn: The ARN of the Amazon CloudWatch log group for AWS CloudTrail to send data to.
+  enabled: true
+  tags:
+    catalog/cloudtrail: true
+
+cloudtrail-s3-dataevents-enabled:
+  identifier: CLOUDTRAIL_S3_DATAEVENTS_ENABLED
+  description: >-
+    Checks whether at least one AWS CloudTrail trail is logging Amazon S3 data events for all S3 buckets.The rule is
+    NON_COMPLIANT if trails that log data events for S3 buckets are not configured.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # S3BucketNames: Comma-separated list of S3 bucket names for which data events logging should be enabled. Default
+    #                behavior checks for all S3 buckets.
+  enabled: true
+  tags:
+    catalog/cloudtrail: true
+
+cloudtrail-security-trail-enabled:
+  identifier: CLOUDTRAIL_SECURITY_TRAIL_ENABLED
+  description: >-
+    Checks that there is at least one AWS CloudTrail trail defined with security best practices. This rule is COMPLIANT
+    if there is at least one trail that meets all of the following
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cloudtrail: true

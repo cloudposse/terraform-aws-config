@@ -1,0 +1,37 @@
+api-gw-cache-enabled-and-encrypted:
+  identifier: API_GW_CACHE_ENABLED_AND_ENCRYPTED
+  description: >-
+    Checks that all methods in Amazon API Gateway stages have caching enabled and encrypted. The rule is NON_COMPLIANT
+    if any method in an API Gateway stage is not configured for caching or the cache is not encrypted.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/apigw: true
+
+api-gw-endpoint-type-check:
+  identifier: API_GW_ENDPOINT_TYPE_CHECK
+  description: >-
+    Checks that Amazon API Gateway APIs are of the type specified in the rule parameter endpointConfigurationType. The
+    rule returns NON_COMPLIANT if the REST API does not match the endpoint type configured in the rule parameter.
+  inputParameters:
+    # The following parameters are required:
+    #
+    #  endpointConfigurationTypes: Comma-separated list of allowed endpoint types. Allowed values are REGIONAL, PRIVATE and EDGE
+    endpointConfigurationTypes: ""
+  enabled: true
+  tags:
+    catalog/apigw: true
+
+api-gw-execution-logging-enabled:
+  identifier: API_GW_EXECUTION_LOGGING_ENABLED
+  description: >-
+    Checks that all methods in Amazon API Gateway stage has logging enabled. The rule is NON_COMPLIANT if logging is not
+    enabled. The rule is NON_COMPLIANT if loggingLevel is neither ERROR nor INFO.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # loggingLevel: Comma-separated list of specific logging levels (for example, ERROR, INFO or ERROR,INFO)
+    {}
+  enabled: true
+  tags:
+    catalog/apigw: true

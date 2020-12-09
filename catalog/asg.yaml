@@ -1,0 +1,9 @@
+autoscaling-group-elb-healthcheck-required:
+  identifier: AUTOSCALING_GROUP_ELB_HEALTHCHECK_REQUIRED
+  description: >-
+    Checks whether your Auto Scaling groups that are associated with a load balancer areusing Elastic Load Balancing
+    health checks.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/asg: true

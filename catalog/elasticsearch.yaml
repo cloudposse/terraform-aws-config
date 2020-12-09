@@ -1,0 +1,29 @@
+elasticsearch-encrypted-at-rest:
+  identifier: ELASTICSEARCH_ENCRYPTED_AT_REST
+  description: >-
+    Checks whether Amazon Elasticsearch Service (Amazon ES) domains have encryption at rest configuration enabled. The
+    rule is NON_COMPLIANT if the EncryptionAtRestOptions field is not enabled.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/elasticsearch: true
+
+elasticsearch-in-vpc-only:
+  identifier: ELASTICSEARCH_IN_VPC_ONLY
+  description: >-
+    Checks whether Amazon Elasticsearch Service (Amazon ES) domains are in Amazon Virtual Private Cloud (Amazon VPC).
+    The rule is NON_COMPLIANT if the Amazon ES domain endpoint is public.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/elasticsearch: true
+
+elasticsearch-node-to-node-encryption-check:
+  identifier: ELASTICSEARCH_NODE_TO_NODE_ENCRYPTION_CHECK
+  description: >-
+    Check that Amazon ElasticSearch Service nodes are encrypted end to end. The rule is NON_COMPLIANT if the
+    node-to-node encryption is disabled on the domain.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/elasticsearch: true

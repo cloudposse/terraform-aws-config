@@ -1,0 +1,24 @@
+approved-amis-by-id:
+  identifier: APPROVED_AMIS_BY_ID
+  description: >-
+    Checks whether running instances are using specified AMIs. Specify a list of approved AMI IDs. Running instances
+    with AMIs that are not on this list are NON_COMPLIANT.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # The AMI IDs (comma-separated list of up to 10).
+    amiIds: ""
+  enabled: true
+  tags:
+    catalog/ami: true
+
+approved-amis-by-tag:
+  identifier: APPROVED_AMIS_BY_TAG
+  description: >-
+    Checks whether running instances are using specified AMIs. Specify the tags that identify the AMIs. Running
+    instances with AMIs that don't have at least one of the specified tags are NON_COMPLIANT.
+  inputParameters:
+    amisByTagKeyAndValue: {}
+  enabled: true
+  tags:
+    catalog/ami: true

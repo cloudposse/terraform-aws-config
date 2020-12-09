@@ -1,0 +1,36 @@
+codepipeline-deployment-count-check:
+  identifier: CODEPIPELINE_DEPLOYMENT_COUNT_CHECK
+  description: >-
+    Checks whether the first deployment stage of the AWS CodePipeline performs more than one deployment. Optionally,
+    checks if each of the subsequent remaining stages deploy to more than the specified number of deployments
+    (deploymentLimit). The rule is NON_COMPLIANT if the first stage in the AWS CodePipeline deploys to more than one
+    region and the AWS CodePipeline deploys to more than the number specified in the deploymentLimit.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # deploymentLimit: The maximum number of deployments each stage can perform.
+    {}
+  enabled: true
+  tags:
+    catalog/codepipeline: true
+
+codepipeline-region-fanout-check:
+  identifier: CODEPIPELINE_REGION_FANOUT_CHECK
+  description: >-
+    ? Checks whether each stage in the AWS CodePipeline deploys to more than N times the number of the regions the AWS
+      CodePipeline has deployed in all the previous combined stages, where N is the region fanout number. The first
+      deployment stage can deploy to a maximum of one region and the second deployment stage can deploy to a maximum
+      number specified in the regionFanoutFactor. If you do not provide a regionFanoutFactor, by default the value is
+      three. For example
+    : If 1st deployment stage deploys to one region and 2nd deployment stage deploys to three regions, 3rd deployment
+      stage can deploy to 12 regions, that is, sum of previous stages multiplied by the region fanout (three) number.
+      The rule is NON_COMPLIANT if the deployment is in more than one region in 1st stage or three regions in 2nd stage
+      or 12 regions in 3rd stage.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # regionFanoutFactor: The number of regions the AWS CodePipeline has deployed to in all previous stages is the
+    #                     acceptable number of regions any stage can deploy to.
+  enabled: true
+  tags:
+    catalog/codepipeline: true

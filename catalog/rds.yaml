@@ -1,0 +1,131 @@
+rds-cluster-deletion-protection-enabled:
+  identifier: RDS_CLUSTER_DELETION_PROTECTION_ENABLED
+  description: >-
+    Checks if an Amazon Relational Database Service (Amazon RDS) cluster has deletion protection enabled. This rule is
+    NON_COMPLIANT if an RDS cluster does not have deletion protection enabled.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/rds: true
+
+rds-enhanced-monitoring-enabled:
+  identifier: RDS_ENHANCED_MONITORING_ENABLED
+  description: >-
+    Checks whether enhanced monitoring is enabled for Amazon Relational Database Service (Amazon RDS) instances.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # monitoringInterval: An integer value in seconds between points when enhanced monitoring metrics are collected for
+    #                     the database instance. The valid values are 1, 5, 10, 15, 30, and 60.
+  enabled: true
+  tags:
+    catalog/rds: true
+
+rds-in-backup-plan:
+  identifier: RDS_IN_BACKUP_PLAN
+  description: >-
+    Checks whether Amazon RDS database is present in back plans of AWS Backup. The rule is NON_COMPLIANT if Amazon RDS
+    databases are not included in any AWS Backup plan.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/rds: true
+
+rds-instance-deletion-protection-enabled:
+  identifier: RDS_INSTANCE_DELETION_PROTECTION_ENABLED
+  description: >-
+    Checks if an Amazon Relational Database Service (Amazon RDS) instance has deletion protection enabled. This rule is
+    NON_COMPLIANT if an Amazon RDS instance does not have deletion protection enabled i.e deletionProtection is set to
+    false.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/rds: true
+
+rds-instance-iam-authentication-enabled:
+  identifier: RDS_INSTANCE_IAM_AUTHENTICATION_ENABLED
+  description: >-
+    Checks if an Amazon Relational Database Service (Amazon RDS) instance has AWS Identity and Access Management (IAM)
+    authentication enabled. This rule is NON_COMPLIANT if an Amazon RDS instance does not have AWS IAM authentication
+    enabled i.e configuration.iAMDatabaseAuthenticationEnabled is set to false.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/rds: true
+
+rds-instance-public-access-check:
+  identifier: RDS_INSTANCE_PUBLIC_ACCESS_CHECK
+  description: >-
+    Check whether the Amazon Relational Database Service instances are not publicly accessible. The rule is
+    NON_COMPLIANT if the publiclyAccessible field is true in the instance configuration item.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/rds: true
+
+rds-logging-enabled:
+  identifier: RDS_LOGGING_ENABLED
+  description: >-
+    Checks that respective logs of Amazon Relational Database Service (Amazon RDS) are enabled. The rule is
+    NON_COMPLIANT if any log types are not enabled.
+  inputParameters: additionalLogs (Optional)
+  enabled: true
+  tags:
+    catalog/rds: true
+
+rds-multi-az-support:
+  identifier: RDS_MULTI_AZ_SUPPORT
+  description: >-
+    Checks whether high availability is enabled for your RDS DB instances.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/rds: true
+
+rds-snapshot-encrypted:
+  identifier: RDS_SNAPSHOT_ENCRYPTED
+  description: >-
+    Checks whether Amazon Relational Database Service (Amazon RDS) DB snapshots are encrypted. The rule is
+    NON_COMPLIANT, if Amazon RDS DB snapshots are not encrypted.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/rds: true
+
+rds-snapshots-public-prohibited:
+  identifier: RDS_SNAPSHOTS_PUBLIC_PROHIBITED
+  description: >-
+    Checks if Amazon Relational Database Service (Amazon RDS) snapshots are public. The rule is NON_COMPLIANT if any
+    existing and new Amazon RDS snapshots are public.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/rds: true
+
+rds-storage-encrypted:
+  identifier: RDS_STORAGE_ENCRYPTED
+  description: >-
+    Checks whether storage encryption is enabled for your RDS DB instances.
+  inputParameters:
+    # The following parameters are required:
+    #
+    # kmsKeyId: KMS key ID or ARN used to encrypt the storage.
+    kmsKeyId: ""
+  enabled: true
+  tags:
+    catalog/rds: true
+
+db-instance-backup-enabled:
+  identifier: DB_INSTANCE_BACKUP_ENABLED
+  description: >-
+    Checks whether RDS DB instances have backups enabled. Optionally, the rule checks the backup retention period and
+    the backup window.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # backupRetentionPeriod: Retention period for backups.
+    # preferredBackupWindow: Time range in which backups are created.
+    # checkReadReplicas: Checks whether RDS DB instances have backups enabled for read replicas.
+  enabled: true
+  tags:
+    catalog/rds: true

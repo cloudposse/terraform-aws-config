@@ -1,0 +1,95 @@
+dynamodb-autoscaling-enabled:
+  identifier: DYNAMODB_AUTOSCALING_ENABLED
+  description: >-
+    Checks whether Auto Scaling or On-Demand is enabled on your DynamoDB tables and/or global secondary indexes.
+    Optionally you can set the read and write capacity units for the table or global secondary index.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # minProvisionedReadCapacity:   The minimum number of units that should be provisioned with read capacity in the
+    #                               Auto Scaling group.
+    # minProvisionedWriteCapacity:  The minimum number of units that should be provisioned with write capacity in the
+    #                               Auto Scaling group.
+    # maxProvisionedReadCapacity:   The maximum number of units that should be provisioned with read capacity in the
+    #                               Auto Scaling group.
+    # maxProvisionedWriteCapacity:  The maximum number of units that should be provisioned with write capacity in the
+    #                               Auto Scaling group.
+    # targetReadUtilization:        The target utilization percentage for read capacity. Target utilization is expressed
+    #                               in terms of the ratio of consumed capacity to provisioned capacity.
+    # targetWriteUtilization:       The target utilization percentage for write capacity. Target utilization is
+    #                               expressed in terms of the ratio of consumed capacity to provisioned capacity.
+    {}
+  enabled: true
+  tags:
+    catalog/dynamodb: true
+
+dynamodb-in-backup-plan:
+  identifier: DYNAMODB_IN_BACKUP_PLAN
+  description: >-
+    Checks whether Amazon DynamoDB table is present in AWS Backup plans. The rule is NON_COMPLIANT if DynamoDB tables
+    are not present in any AWS Backup plan.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/dynamodb: true
+
+dynamodb-pitr-enabled:
+  identifier: DYNAMODB_PITR_ENABLED
+  description: >-
+    Checks that point in time recovery (PITR) is enabled for Amazon DynamoDB tables. The rule is NON_COMPLIANT if point
+    in time recovery is not enabled for Amazon DynamoDB tables.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/dynamodb: true
+
+dynamodb-table-encrypted-kms:
+  identifier: DYNAMODB_TABLE_ENCRYPTED_KMS
+  description: >-
+    Checks whether Amazon DynamoDB table is encrypted with AWS Key Management Service (KMS). The rule is NON_COMPLIANT
+    if DynamoDB table is not encrypted with AWS KMS. The rule is also NON_COMPLIANT if the encrypted AWS KMS key is not
+    present in kmsKeyArns input parameter.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # kmsKeyArns: Comma separated list of AWS KMS Key ARN list.
+  enabled: true
+  tags:
+    catalog/dynamodb: true
+
+dynamodb-table-encryption-enabled:
+  identifier: DYNAMODB_TABLE_ENCRYPTION_ENABLED
+  description: >-
+    Checks whether the Amazon DynamoDB tables are encrypted and checks their status. The rule is COMPLIANT if the status
+    is enabled or enabling.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/dynamodb: true
+
+dynamodb-throughput-limit-check:
+  identifier: DYNAMODB_THROUGHPUT_LIMIT_CHECK
+  description: >-
+    Checks whether provisioned DynamoDB throughput is approaching the maximum limit for your account. By default, the
+    rule checks if provisioned throughput exceeds a threshold of 80% of your account limits.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # accountRCUThresholdPercentage: Percentage of provisioned read capacity units for your account. When this value is
+    #                                reached, the rule is marked as NON_COMPLIANT.
+    # accountWCUThresholdPercentage: Percentage of provisioned write capacity units for your account. When this value is
+    #                                reached, the rule is marked as NON_COMPLIANT.
+    {}
+  enabled: true
+  tags:
+    catalog/dynamodb: true
+
+dax-encryption-enabled:
+  identifier: DAX_ENCRYPTION_ENABLED
+  description: >-
+    Checks that DynamoDB Accelerator (DAX) clusters are encrypted. The rule is NON_COMPLIANT if a DAX cluster is not
+    encrypted.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/dynamodb: true

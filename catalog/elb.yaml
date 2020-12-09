@@ -8,6 +8,7 @@ elb-acm-certificate-required:
   enabled: true
   tags:
     catalog/elb: true
+
 elb-cross-zone-load-balancing-enabled:
   identifier: ELB_CROSS_ZONE_LOAD_BALANCING_ENABLED
   description: >-
@@ -17,6 +18,7 @@ elb-cross-zone-load-balancing-enabled:
   enabled: true
   tags:
     catalog/elb: true
+
 elb-custom-security-policy-ssl-check:
   identifier: ELB_CUSTOM_SECURITY_POLICY_SSL_CHECK
   description: >-

@@ -19,7 +19,8 @@ api-gw-endpoint-type-check:
     #  endpointConfigurationTypes: Comma-separated list of allowed endpoint types. Allowed values are REGIONAL, PRIVATE and EDGE
     endpointConfigurationTypes: ""
   enabled: true
-  tags: {}
+  tags:
+    catalog/apigw: true
 
 api-gw-execution-logging-enabled:
   identifier: API_GW_EXECUTION_LOGGING_ENABLED

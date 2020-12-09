@@ -6,7 +6,8 @@ elb-acm-certificate-required:
     Balancers. This rule does not check Application Load Balancers and Network Load Balancers.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/elb: true
 elb-cross-zone-load-balancing-enabled:
   identifier: ELB_CROSS_ZONE_LOAD_BALANCING_ENABLED
   description: >-
@@ -14,7 +15,8 @@ elb-cross-zone-load-balancing-enabled:
     cross-zone load balancing is not enabled for a CLB.
   inputParameters: {}
   enabled: true
-  tags: {}
+  tags:
+    catalog/elb: true
 elb-custom-security-policy-ssl-check:
   identifier: ELB_CUSTOM_SECURITY_POLICY_SSL_CHECK
   description: >-
@@ -22,7 +24,8 @@ elb-custom-security-policy-ssl-check:
     there are SSL listeners for the Classic Load Balancer.
   inputParameters: sslProtocolsAndCiphers
   enabled: true
-  tags: {}
+  tags:
+    catalog/elb: true
 elb-deletion-protection-enabled:
   identifier: ELB_DELETION_PROTECTION_ENABLED
   description: >-

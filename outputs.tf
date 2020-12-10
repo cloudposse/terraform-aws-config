@@ -14,7 +14,10 @@ output "storage_bucket_arn" {
 }
 
 output "iam_role" {
-  description = "IAM Role"
+  description = <<-DOC
+  IAM Role used to make read or write requests to the delivery channel and to describe the AWS resources associated with 
+  the account.
+  DOC
   value       = local.create_sns_topic ? module.iam_role[0].arn : var.iam_role_arn
 }
 

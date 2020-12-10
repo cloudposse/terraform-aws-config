@@ -7,3 +7,11 @@ output "storage_bucket_id" {
   value       = module.aws_config.storage_bucket_id
   description = "Bucket Name (aka ID)"
 }
+
+output "iam_role" {
+  description = <<-DOC
+  IAM Role used to make read or write requests to the delivery channel and to describe the AWS resources associated with 
+  the account.
+  DOC
+  value       = module.aws_config.iam_role
+}

@@ -1,0 +1,27 @@
+emr-kerberos-enabled:
+  identifier: EMR_KERBEROS_ENABLED
+  description: >-
+    Checks that Amazon EMR clusters have Kerberos enabled. The rule is NON_COMPLIANT if a security configuration is not
+    attached to the cluster or the security configuration does not satisfy the specified rule parameters.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # ticketLifetimeInHours: Period for which Kerberos ticket issued by cluster's KDC is valid.
+    # realm: Kereberos realm name of the other realm in the trust relationship.
+    # domain: Domain name of the other realm in the trust relationship.
+    # adminServer: Fully qualified domain of the admin server in the other realm of the trust relationship.
+    # kdcServer: Fully qualified domain of the KDC server in the other realm of the trust relationship.
+    {}
+  enabled: true
+  tags:
+    catalog/emr: true
+
+emr-master-no-public-ip:
+  identifier: EMR_MASTER_NO_PUBLIC_IP
+  description: >-
+    Checks whether Amazon Elastic MapReduce (EMR) clusters' master nodes have public IPs. The rule is NON_COMPLIANT if
+    the master node has a public IP.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/emr: true

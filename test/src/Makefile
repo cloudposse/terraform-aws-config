@@ -14,9 +14,14 @@ init:
 
 .PHONY : test
 ## Run tests
-test: init
+test/complete: init
 	go mod download
 	go test -v -timeout 60m -run TestExamplesComplete
+test/cis: init
+	go mod download
+	go test -v -timeout 60m -run TestExamplesCIS
+test: test/complete test/cis
+
 
 ## Run tests in docker container
 docker/test:

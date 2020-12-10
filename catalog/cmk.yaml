@@ -1,0 +1,12 @@
+cmk-backing-key-rotation-enabled:
+  identifier: CMK_BACKING_KEY_ROTATION_ENABLED
+  description: >-
+    Checks that key rotation is enabled for each key and matches to the key ID of the customer master key (CMK). Rule is
+    COMPLIANT, if key rotation enabled for specific key object. Rule is not applicable to CMKs that have imported key
+    material.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/cmk: true
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 2.8

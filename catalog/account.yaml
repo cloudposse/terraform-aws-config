@@ -1,0 +1,34 @@
+account-part-of-organizations:
+  identifier: ACCOUNT_PART_OF_ORGANIZATIONS
+  description: >-
+    Checks whether AWS account is part of AWS Organizations. The rule is NON_COMPLIANT if an AWS account is not part of
+    AWS Organizations or AWS Organizations master account ID does not match rule parameter MasterAccountId.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # MasterAccountId
+    {}
+  enabled: true
+  tags:
+    catalog/account: true
+
+root-account-hardware-mfa-enabled:
+  identifier: ROOT_ACCOUNT_HARDWARE_MFA_ENABLED
+  description: >-
+    Checks whether your AWS account is enabled to use multi-factor authentication (MFA) hardware device to sign in with
+    root credentials. The rule is NON_COMPLIANT if any virtual MFA devices are permitted for signing in with root
+    credentials.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/account: true
+
+root-account-mfa-enabled:
+  identifier: ROOT_ACCOUNT_MFA_ENABLED
+  description: >-
+    Checks whether users of your AWS account require a multi-factor authentication (MFA) device to sign in with root
+    credentials.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/account: true

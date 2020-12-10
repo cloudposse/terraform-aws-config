@@ -1,0 +1,10 @@
+vpc-flow-logs-enabled:
+  identifier: VPC_FLOW_LOGS_ENABLED
+  description: >-
+    Checks whether Amazon Virtual Private Cloud flow logs are found and enabled for Amazon VPC.
+  inputParameters:
+    trafficType: ALL
+  enabled: true
+  tags:
+    compliance/cis-aws-foundations/1.2: true
+    compliance/cis-aws-foundations/1.2/controls: 2.9

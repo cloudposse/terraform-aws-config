@@ -1,0 +1,9 @@
+eip-attached:
+  identifier: EIP_ATTACHED
+  description: >-
+    Checks whether all Elastic IP addresses that are allocated to an AWS account are attached to EC2 instances or in-use
+    elastic network interfaces (ENIs).
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/eip: true

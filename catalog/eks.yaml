@@ -1,0 +1,27 @@
+eks-endpoint-no-public-access:
+  identifier: EKS_ENDPOINT_NO_PUBLIC_ACCESS
+  description: >-
+    Checks whether Amazon Elastic Kubernetes Service (Amazon EKS) endpoint is not publicly accessible. The rule is
+    NON_COMPLIANT if the endpoint is publicly accessible.
+  inputParameters: {}
+  enabled: true
+  tags:
+    catalog/eks: true
+
+eks-secrets-encrypted:
+  identifier: EKS_SECRETS_ENCRYPTED
+  description: >-
+    Checks whether Amazon Elastic Kubernetes Service clusters are configured to have Kubernetes secrets encrypted using
+    AWS Key Management Service (KMS) keys. This rule is COMPLIANT if an EKS cluster has an encryptionConfig with secrets
+    as one of the resources. This rule is also COMPLIANT if the key used to encrypt EKS secrets matches with the
+    parameter. This rule is NON_COMPLIANT if an EKS cluster does not have an encryptionConfig or if the encryptionConfig
+    resources do not include secrets. This rule is also NON_COMPLIANT if the key used to encrypt EKS secrets does not
+    match with the parameter.
+  inputParameters:
+    # The following parameters are optional:
+    #
+    # kmsKeyArns: Comma separated list of Amazon Resource Name (ARN) of the KMS key that should be used for encrypted
+    #             secrets in an EKS cluster.
+  enabled: true
+  tags:
+    catalog/eks: true

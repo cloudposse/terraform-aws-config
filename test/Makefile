@@ -33,12 +33,15 @@ clean:
 all: module examples/complete
 
 ## Run basic sanity checks against the module itself
-## Disable module-pinning BATS test until it support terraform registry module syntax
-module: export TESTS ?= installed lint get-modules get-plugins provider-pinning validate terraform-docs input-descriptions output-descriptions
+module: export TESTS ?= installed lint get-modules get-plugins module-pinning provider-pinning validate terraform-docs input-descriptions output-descriptions
 module: deps
 	$(call RUN_TESTS, ../)
 
 ## Run tests against example
 examples/complete: export TESTS ?= installed lint get-modules get-plugins validate
 examples/complete: deps
+	$(call RUN_TESTS, ../$@)
+
+examples/cis: export TESTS ?= installed lint get-modules get-plugins validate
+examples/cis: deps
 	$(call RUN_TESTS, ../$@)

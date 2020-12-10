@@ -7,3 +7,8 @@ output "storage_bucket_id" {
   value       = module.aws_config.storage_bucket_id
   description = "Bucket Name (aka ID)"
 }
+
+output "iam_role" {
+  description = "IAM Role"
+  value       = module.aws_config.iam_role
+}

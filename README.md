@@ -159,6 +159,7 @@ Available targets:
 | Name | Description |
 |------|-------------|
 | aws\_config\_configuration\_recorder\_id | The ID of the AWS Config Recorder |
+| iam\_role | IAM Role |
 | sns\_topic | SNS topic |
 | sns\_topic\_subscriptions | SNS topic subscriptions |
 | storage\_bucket\_arn | Bucket ARN |

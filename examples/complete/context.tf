@@ -18,9 +18,10 @@
 # will be null, and `module.this.delimiter` will be `-` (hyphen).
 #
 
+
 module "this" {
   source  = "cloudposse/label/null"
-  version = "0.21.0"
+  version = "0.22.0" // requires Terraform >= 0.12.26
 
   enabled             = var.enabled
   namespace           = var.namespace

@@ -8,6 +8,11 @@ output "config_recorder_id" {
 }
 
 output "storage_bucket_id" {
-  value       = module.aws_config.storage_bucket_id
+  value       = module.aws_config_storage.bucket_id
   description = "Bucket Name (aka ID)"
+}
+
+output "storage_bucket_arn" {
+  value       = module.aws_config_storage.bucket_arn
+  description = "Bucket ARN"
 }

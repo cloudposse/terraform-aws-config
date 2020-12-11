@@ -39,8 +39,10 @@ func TestExamplesComplete(t *testing.T) {
 	// Run `terraform output` to get the value of an output variable
 	configRecorderID := terraform.Output(t, terraformOptions, "config_recorder_id")
 	bucketID := terraform.Output(t, terraformOptions, "storage_bucket_id")
+	iamRoleArn := terraform.Output(t, terraformOptions, "iam_role")
 
 	// Ensure we get the attribute included in the IDs
 	assert.Equal(t, "eg-ue2-test-config-"+randID, configRecorderID)
 	assert.Equal(t, "eg-ue2-test-aws-config-"+randID, bucketID)
+	assert.NotEqual(t, nil, iamRoleArn)
 }

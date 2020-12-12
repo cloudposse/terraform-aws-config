@@ -1,3 +1,8 @@
+variable "s3_bucket_id" {
+  description = "The id (name) of the S3 bucket used to store the configuration history"
+  type        = string
+}
+
 variable "create_sns_topic" {
   description = <<-DOC
     Flag to indicate whether an SNS topic should be created for notifications

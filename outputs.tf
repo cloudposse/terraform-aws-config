@@ -4,12 +4,12 @@ output "aws_config_configuration_recorder_id" {
 }
 
 output "storage_bucket_id" {
-  value       = join("", module.aws_config_storage.*.bucket_id)
+  value       = var.s3_bucket_id
   description = "Bucket Name (aka ID)"
 }
 
 output "storage_bucket_arn" {
-  value       = join("", module.aws_config_storage.*.bucket_arn)
+  value       = local.s3_bucket_arn
   description = "Bucket ARN"
 }
 

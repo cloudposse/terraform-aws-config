@@ -2,6 +2,16 @@ provider "aws" {
   region = var.region
 }
 
+module "aws_config_storage" {
+  source  = "cloudposse/config-storage/aws"
+  version = "0.1.0"
+
+  force_destroy = var.force_destroy
+  tags          = module.this.tags
+
+  context = module.this.context
+}
+
 module "aws_config" {
   source = "../.."
 
@@ -9,6 +19,7 @@ module "aws_config" {
   create_iam_role  = var.create_iam_role
   managed_rules    = var.managed_rules
   force_destroy    = var.force_destroy
+  s3_bucket_id     = module.aws_config_storage.bucket_id
 
   context = module.this.context
 }

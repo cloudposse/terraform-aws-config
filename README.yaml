@@ -37,24 +37,29 @@ badges:
 # List any related terraform modules that this module may be used with or that this module depends on.
 related:
   - name: "terraform-null-label"
-    description: "Terraform module designed to generate consistent names and tags for resources. Use terraform-null-label to implement a strict naming convention."
+    description:
+      "Terraform module designed to generate consistent names and tags for resources. Use terraform-null-label to
+      implement a strict naming convention."
     url: "https://github.com/cloudposse/terraform-null-label"
   - name: "terraform-aws-config-storage"
-    description: "Terraform module that creates an S3 bucket suitable for storing AWS Config data." 
+    description: "Terraform module that creates an S3 bucket suitable for storing AWS Config data."
     url: "https://github.com/cloudposse/terraform-aws-config-storage"
   - name: "terraform-aws-guardduty"
-    description: "Terraform module that enables and configures AWS GuardDuty." 
+    description: "Terraform module that enables and configures AWS GuardDuty."
     url: "https://github.com/cloudposse/terraform-aws-guardduty"
   - name: "terraform-aws-security-hub"
-    description: "Terraform module that enables and configures AWS Security Hub." 
+    description: "Terraform module that enables and configures AWS Security Hub."
     url: "https://github.com/cloudposse/terraform-aws-security-hub"
 
 # List any resources helpful for someone to get started. For example, link to the hashicorp documentation or AWS documentation.
 references:
   - name: "List of AWS Config Managed Rules"
-    description: "A list of rules AWS Config currently supports in the analytics; compute; cryptography and PKI; database; machine learning; management and governance; migration and transfer; network and content delivery; security; identity and compliance; and storage categories."
+    description:
+      "A list of rules AWS Config currently supports in the analytics; compute; cryptography and PKI; database; machine
+      learning; management and governance; migration and transfer; network and content delivery; security; identity and
+      compliance; and storage categories."
     url: "https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html"
-  
+
 # Short description of this project
 description: |-
   This module enables [AWS Config](https://aws.amazon.com/config/) and optionally sets up an SNS topic to receive notifications of its findings.
@@ -66,14 +71,14 @@ description: |-
 # How to use this module. Should be an easy example to copy and paste.
 usage: |-
   For a complete example, see [examples/complete](examples/complete).
-  
+
   For automated tests of the complete example using [bats](https://github.com/bats-core/bats-core) and [Terratest](https://github.com/gruntwork-io/terratest)
   (which tests and deploys the example on AWS), see [test](test).
 
   ```hcl
   module "example" {
     source = "https://github.com/cloudposse/terraform-aws-config.git?ref=master"
-  
+
     create_sns_topic = true
     create_iam_role  = true
 

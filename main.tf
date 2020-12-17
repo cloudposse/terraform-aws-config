@@ -8,6 +8,7 @@ module "aws_config_label" {
   attributes = ["config"]
   context    = module.this.context
 }
+
 resource "aws_config_configuration_recorder" "recorder" {
   count    = module.this.enabled ? 1 : 0
   name     = module.aws_config_label.id
@@ -122,8 +123,8 @@ data "aws_iam_policy_document" "config_s3_policy" {
     sid    = "ConfigS3"
     effect = "Allow"
     resources = [
-      "${local.s3_bucket_arn}/*",
-      local.s3_bucket_arn
+      "${var.s3_bucket_arn}/*",
+      var.s3_bucket_arn
     ]
     actions = [
       "s3:PutObject",
@@ -136,7 +137,6 @@ data "aws_iam_policy_document" "config_s3_policy" {
     }
   }
 }
-
 
 data "aws_iam_policy_document" "config_sns_policy" {
   count = local.create_iam_role && local.create_sns_topic ? 1 : 0
@@ -153,16 +153,11 @@ data "aws_iam_policy_document" "config_sns_policy" {
 
 
 #-----------------------------------------------------------------------------------------------------------------------
-# Locals and Data References
+# Locals
 #-----------------------------------------------------------------------------------------------------------------------
-data "aws_s3_bucket" "this" {
-  bucket = var.s3_bucket_id
-}
-
 locals {
   enable_notifications      = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
   create_sns_topic          = module.this.enabled && var.create_sns_topic
   findings_notification_arn = local.enable_notifications ? (var.findings_notification_arn != null ? var.findings_notification_arn : module.sns_topic[0].sns_topic.arn) : null
   create_iam_role           = module.this.enabled && var.create_iam_role
-  s3_bucket_arn             = data.aws_s3_bucket.this.arn
 }

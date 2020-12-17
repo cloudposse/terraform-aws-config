@@ -9,7 +9,7 @@ output "storage_bucket_id" {
 }
 
 output "storage_bucket_arn" {
-  value       = local.s3_bucket_arn
+  value       = var.s3_bucket_arn
   description = "Bucket ARN"
 }
 
@@ -18,7 +18,7 @@ output "iam_role" {
   IAM Role used to make read or write requests to the delivery channel and to describe the AWS resources associated with 
   the account.
   DOC
-  value       = local.create_sns_topic ? module.iam_role[0].arn : var.iam_role_arn
+  value       = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
 }
 
 output "sns_topic" {

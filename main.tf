@@ -91,7 +91,7 @@ module "iam_role" {
     "Service" = ["config.amazonaws.com"]
   }
 
-  use_fullname = false
+  use_fullname = true
 
   policy_documents = [
     data.aws_iam_policy_document.config_s3_policy[0].json,
@@ -102,7 +102,8 @@ module "iam_role" {
   policy_description    = "AWS Config IAM policy"
   role_description      = "AWS Config IAM role"
 
-  context = module.this.context
+  attributes = concat(module.this.attributes, ["config"])
+  context    = module.this.context
 }
 
 resource "aws_iam_role_policy_attachment" "config_policy_attachment" {

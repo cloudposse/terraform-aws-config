@@ -91,7 +91,7 @@ module "iam_role" {
     "Service" = ["config.amazonaws.com"]
   }
 
-  use_fullname = true
+  use_fullname = false
 
   policy_documents = [
     data.aws_iam_policy_document.config_s3_policy[0].json,

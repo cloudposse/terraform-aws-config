@@ -170,7 +170,7 @@ resource "aws_config_configuration_aggregator" "this" {
 
   name = module.aws_config_aggregator_label.id
   account_aggregation_source {
-    account_ids = var.child_resource_collector_accounts
+    account_ids = local.child_resource_collector_accounts
     all_regions = true
   }
 }
@@ -200,9 +200,10 @@ data "aws_region" "this" {}
 data "aws_caller_identity" "this" {}
 
 locals {
-  is_global_recorder_region = var.global_resource_collector_region == data.aws_region.this.name
-  enable_notifications      = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
-  create_sns_topic          = module.this.enabled && var.create_sns_topic
-  findings_notification_arn = local.enable_notifications ? (var.findings_notification_arn != null ? var.findings_notification_arn : module.sns_topic[0].sns_topic.arn) : null
-  create_iam_role           = module.this.enabled && var.create_iam_role
+  is_global_recorder_region         = var.global_resource_collector_region == data.aws_region.this.name
+  child_resource_collector_accounts = var.child_resource_collector_accounts ? var.child_resource_collector_accounts : []
+  enable_notifications              = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
+  create_sns_topic                  = module.this.enabled && var.create_sns_topic
+  findings_notification_arn         = local.enable_notifications ? (var.findings_notification_arn != null ? var.findings_notification_arn : module.sns_topic[0].sns_topic.arn) : null
+  create_iam_role                   = module.this.enabled && var.create_iam_role
 }

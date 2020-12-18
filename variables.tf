@@ -74,10 +74,21 @@ variable "iam_role_arn" {
   type        = string
 }
 
-variable "include_global_resource_types" {
-  description = "Flag to indicate whether AWS Config includes all supported types of global resources with the resources that it records"
-  type        = bool
-  default     = false
+variable "global_resource_collector_region" {
+  description = "The region that collects AWS Config data for global resources such as IAM"
+  type        = string
+}
+
+variable "central_resource_collector_account" {
+  description = "The account ID of a central account that will aggregate AWS Config from other accounts"
+  type        = string
+  default     = null
+}
+
+variable "child_resource_collector_accounts" {
+  description = "The account IDs of other accounts that will send their AWS Configuration to this account"
+  type        = set(string)
+  default     = null
 }
 
 variable "force_destroy" {

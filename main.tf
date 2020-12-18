@@ -107,7 +107,7 @@ module "iam_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "config_policy_attachment" {
-  count = local.create_iam_role ? 1 : 0
+  count = module.this.enabled && local.create_iam_role ? 1 : 0
 
   role       = module.iam_role[0].name
   policy_arn = data.aws_iam_policy.aws_config_built_in_role.arn

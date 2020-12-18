@@ -83,7 +83,7 @@ module "aws_config_findings_label" {
 # Optionally create an IAM Role 
 #-----------------------------------------------------------------------------------------------------------------------
 module "iam_role" {
-  count   = local.create_iam_role ? 1 : 0
+  count   = module.this.enabled && local.create_iam_role ? 1 : 0
   source  = "cloudposse/iam-role/aws"
   version = "0.6.1"
 

@@ -201,7 +201,7 @@ data "aws_caller_identity" "this" {}
 
 locals {
   is_global_recorder_region         = var.global_resource_collector_region == data.aws_region.this.name
-  child_resource_collector_accounts = var.child_resource_collector_accounts ? var.child_resource_collector_accounts : []
+  child_resource_collector_accounts = var.child_resource_collector_accounts != null ? var.child_resource_collector_accounts : []
   enable_notifications              = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
   create_sns_topic                  = module.this.enabled && var.create_sns_topic
   findings_notification_arn         = local.enable_notifications ? (var.findings_notification_arn != null ? var.findings_notification_arn : module.sns_topic[0].sns_topic.arn) : null

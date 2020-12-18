@@ -15,11 +15,12 @@ module "aws_config_storage" {
 module "aws_config" {
   source = "../.."
 
-  create_sns_topic = var.create_sns_topic
-  create_iam_role  = var.create_iam_role
-  managed_rules    = var.managed_rules
-  force_destroy    = var.force_destroy
-  s3_bucket_id     = module.aws_config_storage.bucket_id
+  create_sns_topic                 = var.create_sns_topic
+  create_iam_role                  = var.create_iam_role
+  managed_rules                    = var.managed_rules
+  force_destroy                    = var.force_destroy
+  s3_bucket_id                     = module.aws_config_storage.bucket_id
+  global_resource_collector_region = var.global_resource_collector_region
 
   context = module.this.context
 }

@@ -170,7 +170,7 @@ resource "aws_config_configuration_aggregator" "this" {
 
   name = module.aws_config_aggregator_label.id
   account_aggregation_source {
-    account_ids = local.child_resource_collector_accounts
+    account_ids = var.child_resource_collector_accounts
     all_regions = true
   }
 }

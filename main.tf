@@ -178,7 +178,7 @@ resource "aws_config_configuration_aggregator" "this" {
 resource "aws_config_aggregate_authorization" "child" {
   # Authorize each region in a child account to send its data to the global_resource_collector_region of the 
   # central_resource_collector_account
-  count = module.this.enabled && central_resource_collector_account != null ? 1 : 0
+  count = module.this.enabled && var.central_resource_collector_account != null ? 1 : 0
 
   account_id = var.central_resource_collector_account
   region     = var.global_resource_collector_region

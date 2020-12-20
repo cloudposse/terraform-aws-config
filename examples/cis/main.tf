@@ -56,11 +56,10 @@ resource "aws_iam_policy_attachment" "support_policy_attach" {
 module "cis_rules" {
   source = "../../modules/cis-1-2-rules"
 
-  global_resource_collector_region = var.global_resource_collector_region
-  is_logging_account               = var.is_logging_account
-  support_policy_arn               = aws_iam_policy.support_policy.arn
-  cloudtrail_bucket_name           = var.cloudtrail_bucket_name
-  parameter_overrides              = var.parameter_overrides
+  is_logging_account     = var.is_logging_account
+  support_policy_arn     = aws_iam_policy.support_policy.arn
+  cloudtrail_bucket_name = var.cloudtrail_bucket_name
+  parameter_overrides    = var.parameter_overrides
 
   context = module.this.context
 }
@@ -78,11 +77,13 @@ module "aws_config_storage" {
 module "aws_config" {
   source = "../.."
 
-  create_sns_topic = var.create_sns_topic
-  create_iam_role  = var.create_iam_role
-  managed_rules    = module.cis_rules.rules
-  force_destroy    = var.force_destroy
-  s3_bucket_id     = module.aws_config_storage.bucket_id
+  create_sns_topic                 = var.create_sns_topic
+  create_iam_role                  = var.create_iam_role
+  managed_rules                    = module.cis_rules.rules
+  force_destroy                    = var.force_destroy
+  s3_bucket_id                     = module.aws_config_storage.bucket_id
+  s3_bucket_arn                    = module.aws_config_storage.bucket_arn
+  global_resource_collector_region = var.global_resource_collector_region
 
   context = module.this.context
 }

@@ -20,6 +20,7 @@ module "aws_config" {
   managed_rules                    = var.managed_rules
   force_destroy                    = var.force_destroy
   s3_bucket_id                     = module.aws_config_storage.bucket_id
+  s3_bucket_arn                    = module.aws_config_storage.bucket_arn
   global_resource_collector_region = var.global_resource_collector_region
 
   context = module.this.context

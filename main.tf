@@ -8,13 +8,14 @@ module "aws_config_label" {
   attributes = ["config"]
   context    = module.this.context
 }
+
 resource "aws_config_configuration_recorder" "recorder" {
   count    = module.this.enabled ? 1 : 0
   name     = module.aws_config_label.id
   role_arn = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
   recording_group {
     all_supported                 = true
-    include_global_resource_types = var.include_global_resource_types
+    include_global_resource_types = local.is_global_recorder_region
   }
 }
 
@@ -60,7 +61,7 @@ resource "aws_config_config_rule" "rules" {
 module "sns_topic" {
   source  = "cloudposse/sns-topic/aws"
   version = "0.9.0"
-  count   = local.create_sns_topic ? 1 : 0
+  count   = module.this.enabled && local.create_sns_topic ? 1 : 0
 
   attributes      = concat(module.this.attributes, ["config"])
   subscribers     = var.subscribers
@@ -82,7 +83,7 @@ module "aws_config_findings_label" {
 # Optionally create an IAM Role 
 #-----------------------------------------------------------------------------------------------------------------------
 module "iam_role" {
-  count   = local.create_iam_role ? 1 : 0
+  count   = module.this.enabled && local.create_iam_role ? 1 : 0
   source  = "cloudposse/iam-role/aws"
   version = "0.6.1"
 
@@ -101,11 +102,12 @@ module "iam_role" {
   policy_description    = "AWS Config IAM policy"
   role_description      = "AWS Config IAM role"
 
-  context = module.this.context
+  attributes = concat(module.this.attributes, ["config"])
+  context    = module.this.context
 }
 
 resource "aws_iam_role_policy_attachment" "config_policy_attachment" {
-  count = local.create_iam_role ? 1 : 0
+  count = module.this.enabled && local.create_iam_role ? 1 : 0
 
   role       = module.iam_role[0].name
   policy_arn = data.aws_iam_policy.aws_config_built_in_role.arn
@@ -122,8 +124,8 @@ data "aws_iam_policy_document" "config_s3_policy" {
     sid    = "ConfigS3"
     effect = "Allow"
     resources = [
-      "${local.s3_bucket_arn}/*",
-      local.s3_bucket_arn
+      "${var.s3_bucket_arn}/*",
+      var.s3_bucket_arn
     ]
     actions = [
       "s3:PutObject",
@@ -136,7 +138,6 @@ data "aws_iam_policy_document" "config_s3_policy" {
     }
   }
 }
-
 
 data "aws_iam_policy_document" "config_sns_policy" {
   count = local.create_iam_role && local.create_sns_topic ? 1 : 0
@@ -151,18 +152,59 @@ data "aws_iam_policy_document" "config_sns_policy" {
   }
 }
 
+#-----------------------------------------------------------------------------------------------------------------------
+# CONFIG AGGREGATION
+#-----------------------------------------------------------------------------------------------------------------------
+module "aws_config_aggregator_label" {
+  source  = "cloudposse/label/null"
+  version = "0.22.0"
 
-#-----------------------------------------------------------------------------------------------------------------------
-# Locals and Data References
-#-----------------------------------------------------------------------------------------------------------------------
-data "aws_s3_bucket" "this" {
-  bucket = var.s3_bucket_id
+  attributes = ["config", "aggregator"]
+  context    = module.this.context
 }
 
+resource "aws_config_configuration_aggregator" "this" {
+  # Create the aggregator in the global recorder region of the central AWS Config account. This is usually the 
+  # "security" account
+  count = module.this.enabled && local.is_central_account && local.is_global_recorder_region ? 1 : 0
+
+  name = module.aws_config_aggregator_label.id
+  account_aggregation_source {
+    account_ids = local.child_resource_collector_accounts
+    all_regions = true
+  }
+}
+
+resource "aws_config_aggregate_authorization" "child" {
+  # Authorize each region in a child account to send its data to the global_resource_collector_region of the 
+  # central_resource_collector_account
+  count = module.this.enabled && var.central_resource_collector_account != null ? 1 : 0
+
+  account_id = var.central_resource_collector_account
+  region     = var.global_resource_collector_region
+}
+
+resource "aws_config_aggregate_authorization" "central" {
+  # Authorize each region to send its data to the global_resource_collector_region
+  count = module.this.enabled ? 1 : 0
+
+  account_id = data.aws_caller_identity.this.account_id
+  region     = var.global_resource_collector_region
+}
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# LOCALS AND DATA SOURCES
+#-----------------------------------------------------------------------------------------------------------------------
+data "aws_region" "this" {}
+data "aws_caller_identity" "this" {}
+
 locals {
-  enable_notifications      = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
-  create_sns_topic          = module.this.enabled && var.create_sns_topic
-  findings_notification_arn = local.enable_notifications ? (var.findings_notification_arn != null ? var.findings_notification_arn : module.sns_topic[0].sns_topic.arn) : null
-  create_iam_role           = module.this.enabled && var.create_iam_role
-  s3_bucket_arn             = data.aws_s3_bucket.this.arn
+  is_central_account                = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
+  is_global_recorder_region         = var.global_resource_collector_region == data.aws_region.this.name
+  child_resource_collector_accounts = var.child_resource_collector_accounts != null ? var.child_resource_collector_accounts : []
+  enable_notifications              = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
+  create_sns_topic                  = module.this.enabled && var.create_sns_topic
+  findings_notification_arn         = local.enable_notifications ? (var.findings_notification_arn != null ? var.findings_notification_arn : module.sns_topic[0].sns_topic.arn) : null
+  create_iam_role                   = module.this.enabled && var.create_iam_role
 }

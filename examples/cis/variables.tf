@@ -45,17 +45,6 @@ variable "is_logging_account" {
   default     = false
 }
 
-variable "is_global_resource_region" {
-  description = <<-DOC
-    Flag to indicate if this instance of AWS Config is being installed to monitor global resources (such as IAM). In
-    order to save money, you can disable the monitoring of global resources in all but region. If this flag is set to 
-    true, then the config rules associated with global resources in the catalog (globalResource: true) will be 
-    installed. If false, they will not be installed.
-  DOC
-  type        = bool
-  default     = false
-}
-
 variable "parameter_overrides" {
   type        = map(map(string))
   description = <<-DOC
@@ -69,4 +58,9 @@ variable "parameter_overrides" {
     }
   DOC
   default     = {}
+}
+
+variable "global_resource_collector_region" {
+  description = "The region that collects AWS Config data for global resources such as IAM"
+  type        = string
 }

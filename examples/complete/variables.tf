@@ -55,3 +55,8 @@ variable "parameter_overrides" {
   DOC
   default     = {}
 }
+
+variable "global_resource_collector_region" {
+  description = "The region that collects AWS Config data for global resources such as IAM"
+  type        = string
+}

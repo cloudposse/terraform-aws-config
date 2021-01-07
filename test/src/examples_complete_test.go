@@ -43,7 +43,7 @@ func TestExamplesComplete(t *testing.T) {
 	iamRoleArn := terraform.Output(t, terraformOptions, "iam_role")
 
 	// Ensure we get the attribute included in the IDs
-	assert.Equal(t, fmt.Sprintf("eg-ue2-test-%d-config", randID), configRecorderID)
-	assert.Equal(t, fmt.Sprintf("eg-ue2-test-aws-%d-config",randID), bucketID)
+	assert.Equal(t, fmt.Sprintf("eg-ue2-test-%s-config", randID), configRecorderID)
+	assert.Equal(t, fmt.Sprintf("eg-ue2-test-aws-%s-config",randID), bucketID)
 	assert.NotEqual(t, nil, iamRoleArn)
 }

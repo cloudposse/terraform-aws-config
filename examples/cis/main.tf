@@ -4,9 +4,9 @@ provider "aws" {
 
 module "test_label" {
   source  = "cloudposse/label/null"
-  version = "0.22.0"
+  version = "0.22.1"
 
-  attributes = concat(module.this.attributes, ["test", "policy"])
+  attributes = ["test", "policy"]
   context    = module.this.context
 }
 

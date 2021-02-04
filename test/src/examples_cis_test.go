@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"testing"
 	"time"
+	"fmt"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/assert"
@@ -41,6 +42,6 @@ func TestExamplesCIS(t *testing.T) {
 	bucketID := terraform.Output(t, terraformOptions, "storage_bucket_id")
 
 	// Ensure we get the attribute included in the IDs
-	assert.Equal(t, "eg-ue2-test-config-"+randID, configRecorderID)
-	assert.Equal(t, "eg-ue2-test-aws-config-"+randID, bucketID)
+	assert.Equal(t, fmt.Sprintf("eg-ue2-test-%s-config", randID), configRecorderID)
+	assert.Equal(t, fmt.Sprintf("eg-ue2-test-aws-config-%s",randID), bucketID)
 }

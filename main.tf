@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 module "aws_config_label" {
   source  = "cloudposse/label/null"
-  version = "0.22.0"
+  version = "0.22.1"
 
   attributes = ["config"]
   context    = module.this.context
@@ -56,11 +56,11 @@ resource "aws_config_config_rule" "rules" {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
-# Optionally create an SNS topic and subscriptions 
+# Optionally create an SNS topic and subscriptions
 #-----------------------------------------------------------------------------------------------------------------------
 module "sns_topic" {
   source  = "cloudposse/sns-topic/aws"
-  version = "0.9.0"
+  version = "0.11.0"
   count   = module.this.enabled && local.create_sns_topic ? 1 : 0
 
   attributes      = concat(module.this.attributes, ["config"])
@@ -73,19 +73,20 @@ module "sns_topic" {
 
 module "aws_config_findings_label" {
   source  = "cloudposse/label/null"
-  version = "0.22.0"
+  version = "0.22.1"
 
   attributes = ["config", "findings"]
-  context    = module.this.context
+
+  context = module.this.context
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
-# Optionally create an IAM Role 
+# Optionally create an IAM Role
 #-----------------------------------------------------------------------------------------------------------------------
 module "iam_role" {
   count   = module.this.enabled && local.create_iam_role ? 1 : 0
   source  = "cloudposse/iam-role/aws"
-  version = "0.6.1"
+  version = "0.7.0"
 
   principals = {
     "Service" = ["config.amazonaws.com"]
@@ -102,8 +103,9 @@ module "iam_role" {
   policy_description    = "AWS Config IAM policy"
   role_description      = "AWS Config IAM role"
 
-  attributes = concat(module.this.attributes, ["config"])
-  context    = module.this.context
+  attributes = ["config"]
+
+  context = module.this.context
 }
 
 resource "aws_iam_role_policy_attachment" "config_policy_attachment" {
@@ -157,14 +159,15 @@ data "aws_iam_policy_document" "config_sns_policy" {
 #-----------------------------------------------------------------------------------------------------------------------
 module "aws_config_aggregator_label" {
   source  = "cloudposse/label/null"
-  version = "0.22.0"
+  version = "0.22.1"
 
   attributes = ["config", "aggregator"]
-  context    = module.this.context
+
+  context = module.this.context
 }
 
 resource "aws_config_configuration_aggregator" "this" {
-  # Create the aggregator in the global recorder region of the central AWS Config account. This is usually the 
+  # Create the aggregator in the global recorder region of the central AWS Config account. This is usually the
   # "security" account
   count = module.this.enabled && local.is_central_account && local.is_global_recorder_region ? 1 : 0
 
@@ -176,7 +179,7 @@ resource "aws_config_configuration_aggregator" "this" {
 }
 
 resource "aws_config_aggregate_authorization" "child" {
-  # Authorize each region in a child account to send its data to the global_resource_collector_region of the 
+  # Authorize each region in a child account to send its data to the global_resource_collector_region of the
   # central_resource_collector_account
   count = module.this.enabled && var.central_resource_collector_account != null ? 1 : 0
 

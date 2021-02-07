@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 module "aws_config_label" {
   source  = "cloudposse/label/null"
-  version = "0.22.1"
+  version = "0.24.1"
 
   attributes = ["config"]
   context    = module.this.context
@@ -60,7 +60,7 @@ resource "aws_config_config_rule" "rules" {
 #-----------------------------------------------------------------------------------------------------------------------
 module "sns_topic" {
   source  = "cloudposse/sns-topic/aws"
-  version = "0.11.0"
+  version = "0.14.0"
   count   = module.this.enabled && local.create_sns_topic ? 1 : 0
 
   attributes      = concat(module.this.attributes, ["config"])
@@ -73,7 +73,7 @@ module "sns_topic" {
 
 module "aws_config_findings_label" {
   source  = "cloudposse/label/null"
-  version = "0.22.1"
+  version = "0.24.1"
 
   attributes = ["config", "findings"]
 
@@ -86,7 +86,7 @@ module "aws_config_findings_label" {
 module "iam_role" {
   count   = module.this.enabled && local.create_iam_role ? 1 : 0
   source  = "cloudposse/iam-role/aws"
-  version = "0.7.0"
+  version = "0.8.0"
 
   principals = {
     "Service" = ["config.amazonaws.com"]
@@ -159,7 +159,7 @@ data "aws_iam_policy_document" "config_sns_policy" {
 #-----------------------------------------------------------------------------------------------------------------------
 module "aws_config_aggregator_label" {
   source  = "cloudposse/label/null"
-  version = "0.22.1"
+  version = "0.24.1"
 
   attributes = ["config", "aggregator"]
 

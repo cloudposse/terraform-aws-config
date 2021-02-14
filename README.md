@@ -153,6 +153,33 @@ Available targets:
 |------|---------|
 | aws | >= 2 |
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| aws_config_aggregator_label | cloudposse/label/null | 0.24.1 |
+| aws_config_findings_label | cloudposse/label/null | 0.24.1 |
+| aws_config_label | cloudposse/label/null | 0.24.1 |
+| iam_role | cloudposse/iam-role/aws | 0.9.2 |
+| sns_topic | cloudposse/sns-topic/aws | 0.15.0 |
+| this | cloudposse/label/null | 0.24.1 |
+
+## Resources
+
+| Name |
+|------|
+| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/2/docs/data-sources/caller_identity) |
+| [aws_config_aggregate_authorization](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_aggregate_authorization) |
+| [aws_config_config_rule](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_config_rule) |
+| [aws_config_configuration_aggregator](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_configuration_aggregator) |
+| [aws_config_configuration_recorder](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_configuration_recorder) |
+| [aws_config_configuration_recorder_status](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_configuration_recorder_status) |
+| [aws_config_delivery_channel](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_delivery_channel) |
+| [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/2/docs/data-sources/iam_policy) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/2/docs/data-sources/iam_policy_document) |
+| [aws_iam_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/iam_role_policy_attachment) |
+| [aws_region](https://registry.terraform.io/providers/hashicorp/aws/2/docs/data-sources/region) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -181,7 +208,7 @@ Available targets:
 | regex\_replace\_chars | Regex to replace chars with empty string in `namespace`, `environment`, `stage` and `name`.<br>If not set, `"/[^a-zA-Z0-9-]/"` is used to remove all characters other than hyphens, letters and digits. | `string` | `null` | no |
 | s3\_bucket\_arn | The ARN of the S3 bucket used to store the configuration history | `string` | n/a | yes |
 | s3\_bucket\_id | The id (name) of the S3 bucket used to store the configuration history | `string` | n/a | yes |
-| s3\_key\_prefix | The prefix for AWS Config objects stored in the the S3 bucket. If this variable is set to null, the default, no <br>prefix will be used.<br><br>Examples: <br><br>with prefix:    {S3\_BUCKET NAME}:/{S3\_KEY\_PREFIX}/AWSLogs/{ACCOUNT\_ID}/Config/\*. <br>without prefix: {S3\_BUCKET NAME}:/AWSLogs/{ACCOUNT\_ID}/Config/\*. | `string` | `null` | no |
+| s3\_key\_prefix | The prefix for AWS Config objects stored in the the S3 bucket. If this variable is set to null, the default, no <br>prefix will be used.<br><br>Examples: <br><br>with prefix:    {S3\_BUCKET NAME}:/{S3\_KEY\_PREFIX}/AWSLogs/{ACCOUNT\_ID}/Config/*. <br>without prefix: {S3\_BUCKET NAME}:/AWSLogs/{ACCOUNT\_ID}/Config/*. | `string` | `null` | no |
 | stage | Stage, e.g. 'prod', 'staging', 'dev', OR 'source', 'build', 'test', 'deploy', 'release' | `string` | `null` | no |
 | subscribers | A map of subscription configurations for SNS topics<br>  <br>For more information, see:<br>https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription#argument-reference<br><br>protocol:       <br>  The protocol to use. The possible values for this are: sqs, sms, lambda, application. (http or https are partially <br>  supported, see link) (email is an option but is unsupported in terraform, see link).<br>endpoint:       <br>  The endpoint to send data to, the contents will vary with the protocol. (see link for more information)<br>endpoint\_auto\_confirms:<br>  Boolean indicating whether the end point is capable of auto confirming subscription e.g., PagerDuty. Default is <br>  false | <pre>map(object({<br>    protocol               = string<br>    endpoint               = string<br>    endpoint_auto_confirms = bool<br>  }))</pre> | `{}` | no |
 | tags | Additional tags (e.g. `map('BusinessUnit','XYZ')` | `map(string)` | `{}` | no |
@@ -196,7 +223,6 @@ Available targets:
 | sns\_topic\_subscriptions | SNS topic subscriptions |
 | storage\_bucket\_arn | Bucket ARN |
 | storage\_bucket\_id | Bucket Name (aka ID) |
-
 <!-- markdownlint-restore -->
 
 

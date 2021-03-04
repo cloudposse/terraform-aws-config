@@ -168,17 +168,17 @@ Available targets:
 
 | Name |
 |------|
-| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/2/docs/data-sources/caller_identity) |
-| [aws_config_aggregate_authorization](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_aggregate_authorization) |
-| [aws_config_config_rule](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_config_rule) |
-| [aws_config_configuration_aggregator](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_configuration_aggregator) |
-| [aws_config_configuration_recorder](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_configuration_recorder) |
-| [aws_config_configuration_recorder_status](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_configuration_recorder_status) |
-| [aws_config_delivery_channel](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/config_delivery_channel) |
-| [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/2/docs/data-sources/iam_policy) |
-| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/2/docs/data-sources/iam_policy_document) |
-| [aws_iam_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/iam_role_policy_attachment) |
-| [aws_region](https://registry.terraform.io/providers/hashicorp/aws/2/docs/data-sources/region) |
+| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) |
+| [aws_config_aggregate_authorization](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_aggregate_authorization) |
+| [aws_config_config_rule](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) |
+| [aws_config_configuration_aggregator](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_aggregator) |
+| [aws_config_configuration_recorder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder) |
+| [aws_config_configuration_recorder_status](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder_status) |
+| [aws_config_delivery_channel](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_delivery_channel) |
+| [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
+| [aws_iam_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) |
+| [aws_region](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) |
 
 ## Inputs
 

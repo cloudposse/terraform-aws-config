@@ -19,7 +19,7 @@
 | aws_config_aggregator_label | cloudposse/label/null | 0.24.1 |
 | aws_config_findings_label | cloudposse/label/null | 0.24.1 |
 | aws_config_label | cloudposse/label/null | 0.24.1 |
-| iam_role | cloudposse/iam-role/aws | 0.9.2 |
+| iam_role | cloudposse/iam-role/aws | 0.9.3 |
 | sns_topic | cloudposse/sns-topic/aws | 0.15.0 |
 | this | cloudposse/label/null | 0.24.1 |
 

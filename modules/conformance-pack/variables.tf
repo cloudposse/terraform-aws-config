@@ -1,4 +1,3 @@
-
 variable "conformance_pack" {
   type        = string
   description = "The URL to a Conformance Pack"

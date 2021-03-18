@@ -1,10 +1,4 @@
 
-variable "config_rules_paths" {
-  default = [
-    "https://raw.githubusercontent.com/awslabs/aws-config-rules/master/aws-config-conformance-packs/Operational-Best-Practices-for-HIPAA-Security.yaml"
-  ]
-}
-
 variable "AccessKeysRotatedParamMaxAccessKeyAge" {
   type    = string
   default = "90"

@@ -1,6 +1,6 @@
 # AWS Config HIPAA Conformance Pack
 
-This module deploys the [Operational Best Practices for HIPAA Security](https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-hipaa_security.html) Conformance Pack. A conformance pack is a collection of AWS Config rules and remediation actions that can be easily deployed as a single entity in an account and a Region or across an organization in AWS Organizations.Conformance packs are created by authoring a YAML template that contains the list of AWS Config managed or custom rules and remediation actions.
+This module deploys a [Conformance Pack](https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html). A conformance pack is a collection of AWS Config rules and remediation actions that can be easily deployed as a single entity in an account and a Region or across an organization in AWS Organizations.Conformance packs are created by authoring a YAML template that contains the list of AWS Config managed or custom rules and remediation actions.
 
 The Conformance Pack cannot be deployed until AWS Config is deployed, which can be deployed using the [root module](../../) of this repository.
 
@@ -15,9 +15,12 @@ For automated tests of the complete example using [bats](https://github.com/bats
 
 ```hcl
 module "hipaa_conformance_pack" {
-  source = "https://github.com/cloudposse/terraform-aws-config.git//modules/hipaa-conformance-pack?ref=master"
+  source = "https://github.com/cloudposse/terraform-aws-config.git//modules/conformance-pack?ref=master"
 
-  AccessKeysRotatedParamMaxAccessKeyAge = "45"
+  conformance_pack="https://raw.githubusercontent.com/awslabs/aws-config-rules/master/aws-config-conformance-packs/Operational-Best-Practices-for-HIPAA-Security.yaml"
+  parameter_overrides = {
+    AccessKeysRotatedParamMaxAccessKeyAge = "45"
+  }
 
   depends_on = [
     module.config

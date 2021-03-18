@@ -26,8 +26,14 @@ module "aws_config" {
 }
 
 module "hipaa_conformance_pack" {
-  source  = "../../modules/hipaa-conformance-pack"
+  source  = "../../modules/conformance-pack"
   context = module.this.context
+
+  conformance_pack = "https://raw.githubusercontent.com/awslabs/aws-config-rules/master/aws-config-conformance-packs/Operational-Best-Practices-for-HIPAA-Security.yaml"
+  parameter_overrides = {
+    AccessKeysRotatedParamMaxAccessKeyAge = "45"
+  }
+
   depends_on = [
     module.aws_config
   ]

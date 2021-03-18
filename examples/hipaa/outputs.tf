@@ -12,3 +12,8 @@ output "storage_bucket_arn" {
   value       = module.aws_config_storage.bucket_arn
   description = "Bucket ARN"
 }
+
+output "conformance_pack_arn" {
+  value       = module.hipaa_conformance_pack.arn
+  description = "Conformance Pack ARN"
+}

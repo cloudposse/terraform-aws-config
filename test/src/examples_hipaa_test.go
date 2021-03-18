@@ -40,8 +40,10 @@ func TestExamplesHipaa(t *testing.T) {
 	// Run `terraform output` to get the value of an output variable
 	configRecorderID := terraform.Output(t, terraformOptions, "config_recorder_id")
 	bucketID := terraform.Output(t, terraformOptions, "storage_bucket_id")
+	conformancePackArn := terraform.Output(t, terraformOptions, "conformance_pack_arn")
 
 	// Ensure we get the attribute included in the IDs
 	assert.Equal(t, fmt.Sprintf("eg-ue2-test-%s-config", randID), configRecorderID)
 	assert.Equal(t, fmt.Sprintf("eg-ue2-test-%s-aws-config", randID), bucketID)
+	assert.NotEqual(t, nil, conformancePackArn)
 }

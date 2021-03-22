@@ -101,7 +101,9 @@ For automated tests of the complete example using [bats](https://github.com/bats
 
 ```hcl
 module "example" {
-  source = "https://github.com/cloudposse/terraform-aws-config.git?ref=master"
+  source = "cloudposse/config/aws"
+  # Cloud Posse recommends pinning every module to a specific version
+  # version     = "x.x.x"
 
   create_sns_topic = true
   create_iam_role  = true
@@ -325,7 +327,7 @@ In general, PRs are welcome. We follow the typical "fork-and-pull" Git workflow.
 
 ## Copyrights
 
-Copyright © 2020-2021 [Cloud Posse, LLC](https://cloudposse.com)
+Copyright © 2021-2021 [Cloud Posse, LLC](https://cloudposse.com)
 
 
 

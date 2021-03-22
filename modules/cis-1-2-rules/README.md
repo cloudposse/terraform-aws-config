@@ -34,7 +34,10 @@ For automated tests of the complete example using [bats](https://github.com/bats
 
 ```hcl
 module "cis_1_2_rules" {
-  source = "https://github.com/cloudposse/terraform-aws-config.git//modules/cis-1-2-rules?ref=master"
+  source = "cloudposse/config/aws//modules/cis-1-2-rules"
+  # Cloud Posse recommends pinning every module to a specific version
+  # version     = "x.x.x"
+
 
   is_global_resource_region = true
   is_logging_account       = true
@@ -47,7 +50,9 @@ module "cis_1_2_rules" {
 }
 
 module "config" {
-  source = "https://github.com/cloudposse/terraform-aws-config.git?ref=master"
+  source = "cloudposse/config/aws"
+  # Cloud Posse recommends pinning every module to a specific version
+  # version     = "x.x.x"
 
   create_sns_topic = true
   create_iam_role  = true

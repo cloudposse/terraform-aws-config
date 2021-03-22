@@ -17,7 +17,7 @@ license: "APACHE2"
 copyrights:
   - name: "Cloud Posse, LLC"
     url: "https://cloudposse.com"
-    year: "2020"
+    year: "2021"
 
 # Canonical GitHub repo
 github_repo: cloudposse/terraform-aws-config
@@ -77,7 +77,9 @@ usage: |-
 
   ```hcl
   module "example" {
-    source = "https://github.com/cloudposse/terraform-aws-config.git?ref=master"
+    source = "cloudposse/config/aws"
+    # Cloud Posse recommends pinning every module to a specific version
+    # version     = "x.x.x"
 
     create_sns_topic = true
     create_iam_role  = true

@@ -15,7 +15,9 @@ For automated tests of the complete example using [bats](https://github.com/bats
 
 ```hcl
 module "hipaa_conformance_pack" {
-  source = "https://github.com/cloudposse/terraform-aws-config.git//modules/conformance-pack?ref=master"
+  source = "cloudposse/config/aws//modules/conformance-pack"
+  # Cloud Posse recommends pinning every module to a specific version
+  # version     = "x.x.x"
 
   conformance_pack="https://raw.githubusercontent.com/awslabs/aws-config-rules/master/aws-config-conformance-packs/Operational-Best-Practices-for-HIPAA-Security.yaml"
   parameter_overrides = {
@@ -28,7 +30,9 @@ module "hipaa_conformance_pack" {
 }
 
 module "config" {
-  source = "https://github.com/cloudposse/terraform-aws-config.git?ref=master"
+  source = "cloudposse/config/aws"
+  # Cloud Posse recommends pinning every module to a specific version
+  # version     = "x.x.x"
 
   create_sns_topic = true
   create_iam_role  = true

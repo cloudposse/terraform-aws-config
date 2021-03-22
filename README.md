@@ -61,25 +61,6 @@ We literally have [*hundreds of terraform modules*][terraform_modules] that are 
 
 
 
-## Security & Compliance [<img src="https://cloudposse.com/wp-content/uploads/2020/11/bridgecrew.svg" width="250" align="right" />](https://bridgecrew.io/)
-
-Security scanning is graciously provided by Bridgecrew. Bridgecrew is the leading fully hosted, cloud-native solution providing continuous Terraform security and compliance.
-
-| Benchmark | Description |
-|--------|---------------|
-| [![Infrastructure Security](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-config/general)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-config&benchmark=INFRASTRUCTURE+SECURITY) | Infrastructure Security Compliance |
-| [![CIS KUBERNETES](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-config/cis_kubernetes)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-config&benchmark=CIS+KUBERNETES+V1.5) | Center for Internet Security, KUBERNETES Compliance |
-| [![CIS AWS](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-config/cis_aws)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-config&benchmark=CIS+AWS+V1.2) | Center for Internet Security, AWS Compliance |
-| [![CIS AZURE](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-config/cis_azure)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-config&benchmark=CIS+AZURE+V1.1) | Center for Internet Security, AZURE Compliance |
-| [![PCI-DSS](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-config/pci)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-config&benchmark=PCI-DSS+V3.2) | Payment Card Industry Data Security Standards Compliance |
-| [![NIST-800-53](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-config/nist)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-config&benchmark=NIST-800-53) | National Institute of Standards and Technology Compliance |
-| [![ISO27001](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-config/iso)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-config&benchmark=ISO27001) | Information Security Management System, ISO/IEC 27001 Compliance |
-| [![SOC2](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-config/soc2)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-config&benchmark=SOC2)| Service Organization Control 2 Compliance |
-| [![CIS GCP](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-config/cis_gcp)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-config&benchmark=CIS+GCP+V1.1) | Center for Internet Security, GCP Compliance |
-| [![HIPAA](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-config/hipaa)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-config&benchmark=HIPAA) | Health Insurance Portability and Accountability Compliance |
-
-
-
 ## Usage
 
 
@@ -101,7 +82,9 @@ For automated tests of the complete example using [bats](https://github.com/bats
 
 ```hcl
 module "example" {
-  source = "https://github.com/cloudposse/terraform-aws-config.git?ref=master"
+  source = "cloudposse/config/aws"
+  # Cloud Posse recommends pinning every module to a specific version
+  # version     = "x.x.x"
 
   create_sns_topic = true
   create_iam_role  = true
@@ -153,33 +136,6 @@ Available targets:
 |------|---------|
 | aws | >= 2 |
 
-## Modules
-
-| Name | Source | Version |
-|------|--------|---------|
-| aws_config_aggregator_label | cloudposse/label/null | 0.24.1 |
-| aws_config_findings_label | cloudposse/label/null | 0.24.1 |
-| aws_config_label | cloudposse/label/null | 0.24.1 |
-| iam_role | cloudposse/iam-role/aws | 0.9.3 |
-| sns_topic | cloudposse/sns-topic/aws | 0.15.0 |
-| this | cloudposse/label/null | 0.24.1 |
-
-## Resources
-
-| Name |
-|------|
-| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) |
-| [aws_config_aggregate_authorization](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_aggregate_authorization) |
-| [aws_config_config_rule](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) |
-| [aws_config_configuration_aggregator](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_aggregator) |
-| [aws_config_configuration_recorder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder) |
-| [aws_config_configuration_recorder_status](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder_status) |
-| [aws_config_delivery_channel](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_delivery_channel) |
-| [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy) |
-| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
-| [aws_iam_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) |
-| [aws_region](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) |
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -208,7 +164,7 @@ Available targets:
 | regex\_replace\_chars | Regex to replace chars with empty string in `namespace`, `environment`, `stage` and `name`.<br>If not set, `"/[^a-zA-Z0-9-]/"` is used to remove all characters other than hyphens, letters and digits. | `string` | `null` | no |
 | s3\_bucket\_arn | The ARN of the S3 bucket used to store the configuration history | `string` | n/a | yes |
 | s3\_bucket\_id | The id (name) of the S3 bucket used to store the configuration history | `string` | n/a | yes |
-| s3\_key\_prefix | The prefix for AWS Config objects stored in the the S3 bucket. If this variable is set to null, the default, no <br>prefix will be used.<br><br>Examples: <br><br>with prefix:    {S3\_BUCKET NAME}:/{S3\_KEY\_PREFIX}/AWSLogs/{ACCOUNT\_ID}/Config/*. <br>without prefix: {S3\_BUCKET NAME}:/AWSLogs/{ACCOUNT\_ID}/Config/*. | `string` | `null` | no |
+| s3\_key\_prefix | The prefix for AWS Config objects stored in the the S3 bucket. If this variable is set to null, the default, no <br>prefix will be used.<br><br>Examples: <br><br>with prefix:    {S3\_BUCKET NAME}:/{S3\_KEY\_PREFIX}/AWSLogs/{ACCOUNT\_ID}/Config/\*. <br>without prefix: {S3\_BUCKET NAME}:/AWSLogs/{ACCOUNT\_ID}/Config/\*. | `string` | `null` | no |
 | stage | Stage, e.g. 'prod', 'staging', 'dev', OR 'source', 'build', 'test', 'deploy', 'release' | `string` | `null` | no |
 | subscribers | A map of subscription configurations for SNS topics<br>  <br>For more information, see:<br>https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription#argument-reference<br><br>protocol:       <br>  The protocol to use. The possible values for this are: sqs, sms, lambda, application. (http or https are partially <br>  supported, see link) (email is an option but is unsupported in terraform, see link).<br>endpoint:       <br>  The endpoint to send data to, the contents will vary with the protocol. (see link for more information)<br>endpoint\_auto\_confirms:<br>  Boolean indicating whether the end point is capable of auto confirming subscription e.g., PagerDuty. Default is <br>  false | <pre>map(object({<br>    protocol               = string<br>    endpoint               = string<br>    endpoint_auto_confirms = bool<br>  }))</pre> | `{}` | no |
 | tags | Additional tags (e.g. `map('BusinessUnit','XYZ')` | `map(string)` | `{}` | no |
@@ -223,6 +179,7 @@ Available targets:
 | sns\_topic\_subscriptions | SNS topic subscriptions |
 | storage\_bucket\_arn | Bucket ARN |
 | storage\_bucket\_id | Bucket Name (aka ID) |
+
 <!-- markdownlint-restore -->
 
 
@@ -325,7 +282,7 @@ In general, PRs are welcome. We follow the typical "fork-and-pull" Git workflow.
 
 ## Copyrights
 
-Copyright © 2020-2021 [Cloud Posse, LLC](https://cloudposse.com)
+Copyright © 2021-2021 [Cloud Posse, LLC](https://cloudposse.com)
 
 
 

@@ -45,6 +45,7 @@ iam-policy-in-use:
     catalog/iam: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 1.20
+    compliance/cis-aws-foundations/filters/global-resource-region-only: true
 
 iam-policy-no-statements-with-admin-access:
   identifier: IAM_POLICY_NO_STATEMENTS_WITH_ADMIN_ACCESS

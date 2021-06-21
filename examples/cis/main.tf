@@ -66,7 +66,7 @@ module "cis_rules" {
 
 module "aws_config_storage" {
   source  = "cloudposse/config-storage/aws"
-  version = "0.1.0"
+  version = "0.5.0"
 
   force_destroy = var.force_destroy
   tags          = module.this.tags

@@ -14,8 +14,12 @@ resource "aws_config_configuration_recorder" "recorder" {
   name     = module.aws_config_label.id
   role_arn = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
   recording_group {
-    all_supported                 = true
+    all_supported                 = false
     include_global_resource_types = local.is_global_recorder_region
+    resource_types = ["AWS::EC2::Host", " AWS::EC2::Instance", "AWS::EC2::VPC", "AWS::EKS::Cluster",
+      "AWS::ElasticLoadBalancingV2::LoadBalancer", "AWS::IAM::Group", "AWS::IAM::Policy",
+      "AWS::IAM::Role", "AWS::Lambda::Function", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance",
+    " AWS::S3::AccountPublicAccessBlock", "AWS::S3::Bucket", "AWS::EC2::Volume"]
   }
 }
 

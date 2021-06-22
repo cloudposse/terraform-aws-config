@@ -11,6 +11,7 @@ restricted-common-ports:
     catalog/network: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 4.2
+    region/excluded/an3: true
 
 restricted-ssh:
   identifier: INCOMING_SSH_DISABLED
@@ -23,6 +24,7 @@ restricted-ssh:
     catalog/network: true
     compliance/cis-aws-foundations/1.2: true
     compliance/cis-aws-foundations/1.2/controls: 4.1
+    region/excluded/an3: true
 
 vpc-default-security-group-closed:
   identifier: VPC_DEFAULT_SECURITY_GROUP_CLOSED

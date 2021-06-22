@@ -127,3 +127,11 @@ variable "s3_key_prefix" {
   DOC
   default     = null
 }
+
+// Config aggregation isn't enabled for ap-northeast-3, maybe others in the future
+// https://docs.aws.amazon.com/config/latest/developerguide/aggregate-data.html
+variable "disabled_aggregation_regions" {
+  type        = list(string)
+  description = "A list of regions where config aggregation is disabled"
+  default     = ["ap-northeast-3"]
+}

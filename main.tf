@@ -169,7 +169,7 @@ module "aws_config_aggregator_label" {
 resource "aws_config_configuration_aggregator" "this" {
   # Create the aggregator in the global recorder region of the central AWS Config account. This is usually the
   # "security" account
-  count = module.this.enabled && local.is_central_account && local.is_global_recorder_region ? 1 : 0
+  count = local.is_enabled && local.is_central_account && local.is_global_recorder_region ? 1 : 0
 
   name = module.aws_config_aggregator_label.id
   account_aggregation_source {
@@ -181,7 +181,7 @@ resource "aws_config_configuration_aggregator" "this" {
 resource "aws_config_aggregate_authorization" "child" {
   # Authorize each region in a child account to send its data to the global_resource_collector_region of the
   # central_resource_collector_account
-  count = module.this.enabled && var.central_resource_collector_account != null ? 1 : 0
+  count = local.is_enabled && var.central_resource_collector_account != null ? 1 : 0
 
   account_id = var.central_resource_collector_account
   region     = var.global_resource_collector_region
@@ -189,7 +189,7 @@ resource "aws_config_aggregate_authorization" "child" {
 
 resource "aws_config_aggregate_authorization" "central" {
   # Authorize each region to send its data to the global_resource_collector_region
-  count = module.this.enabled ? 1 : 0
+  count = local.is_enabled ? 1 : 0
 
   account_id = data.aws_caller_identity.this.account_id
   region     = var.global_resource_collector_region
@@ -203,6 +203,10 @@ data "aws_region" "this" {}
 data "aws_caller_identity" "this" {}
 
 locals {
+  // Config aggregation isn't enabled for ap-northeast-3
+  // https://docs.aws.amazon.com/config/latest/developerguide/aggregate-data.html
+  is_enabled = module.this.enabled && data.aws_region.this.name != "ap-northeast-3"
+
   is_central_account                = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
   is_global_recorder_region         = var.global_resource_collector_region == data.aws_region.this.name
   child_resource_collector_accounts = var.child_resource_collector_accounts != null ? var.child_resource_collector_accounts : []

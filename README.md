@@ -237,6 +237,7 @@ Like this project? Please give it a ★ on [our GitHub](https://github.com/cloud
 Are you using this project or any of our other projects? Consider [leaving a testimonial][testimonial]. =)
 
 
+
 ## Related Projects
 
 Check out these related projects.
@@ -245,8 +246,6 @@ Check out these related projects.
 - [terraform-aws-config-storage](https://github.com/cloudposse/terraform-aws-config-storage) - Terraform module that creates an S3 bucket suitable for storing AWS Config data.
 - [terraform-aws-guardduty](https://github.com/cloudposse/terraform-aws-guardduty) - Terraform module that enables and configures AWS GuardDuty.
 - [terraform-aws-security-hub](https://github.com/cloudposse/terraform-aws-security-hub) - Terraform module that enables and configures AWS Security Hub.
-
-
 
 
 ## References

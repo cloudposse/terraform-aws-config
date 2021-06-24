@@ -21,6 +21,13 @@ output "iam_role" {
   value       = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
 }
 
+output "iam_role_organization_aggregator_arn" {
+  description = <<-DOC
+  IAM Role the Aggregator uses to read organization data
+  DOC
+  value       = local.create_iam_role && var.aggregate_organization_wide ? module.iam_role_organization_aggregator[0].arn : var.iam_role_organization_aggregator_arn
+}
+
 output "sns_topic" {
   description = "SNS topic"
   value       = local.create_sns_topic ? module.sns_topic[0].sns_topic : null

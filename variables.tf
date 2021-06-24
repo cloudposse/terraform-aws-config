@@ -54,7 +54,8 @@ variable "findings_notification_arn" {
 
 
 variable "create_iam_role" {
-  description = "Flag to indicate whether an IAM Role should be created to grant the proper permissions for AWS Config"
+  description = "Flag to indicate whether IAM Roles should be created to grant the proper permissions for AWS Config (affects creation of both the standard Config role, as well as the Organization-wide Aggregator Role (if in use)"
+
   type        = bool
   default     = false
 }
@@ -83,6 +84,42 @@ variable "central_resource_collector_account" {
   description = "The account ID of a central account that will aggregate AWS Config from other accounts"
   type        = string
   default     = null
+}
+
+variable "iam_role_organization_aggregator_arn" {
+  description = <<-DOC
+    The ARN for an IAM Role the Aggregator uses to read organization data
+    Should have the AWS-managed policy attached arn:aws:iam::aws:policy/service-role/AWSConfigRoleForOrganizations
+
+    This is only used if create_iam_role is false.
+
+    If you want to use an existing IAM Role, set the value of this to the ARN of the existing role and set
+    create_iam_role to false.
+
+    See the AWS Docs for further information:
+    http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
+  DOC
+  default     = null
+  type        = string
+}
+
+variable "aggregate_organization_wide" {
+  description = <<-DOC
+    Whether to configure the central account Aggregator organization-wide,
+    using an organization_aggregation_source block.
+    Setting this to true will
+    - Create an Aggregator (if we're in the AWS Config central account)
+    - Create an IAM role for the aggregation with attached AWS-managed policy arn:aws:iam::aws:policy/service-role/AWSConfigRoleForOrganizations
+    - Enable aggregation for all regions
+    - Create an organization_aggregation_source block instead of an account_aggregation_source one
+
+    Note only one of aggregate_organization_wide or child_resource_collector_accounts should be set.
+
+    See:
+    https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_aggregator#organization_aggregation_source
+  DOC
+  type        = bool
+  default     = false
 }
 
 variable "child_resource_collector_accounts" {

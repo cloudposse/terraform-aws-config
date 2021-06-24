@@ -144,7 +144,7 @@ module "iam_role_organization_aggregator" {
 }
 
 resource "aws_iam_role_policy_attachment" "config_organization_aggregator_policy_attachment" {
-  count   = module.this.enabled && var.aggregate_organization_wide && local.create_iam_role ? 1 : 0
+  count = module.this.enabled && var.aggregate_organization_wide && local.create_iam_role ? 1 : 0
 
   role       = module.iam_role_organization_aggregator[0].name
   policy_arn = data.aws_iam_policy.aws_config_built_in_role_for_organizations.arn
@@ -218,8 +218,8 @@ resource "aws_config_configuration_aggregator" "this" {
   dynamic "organization_aggregation_source" {
     for_each = var.aggregate_organization_wide ? [1] : []
     content {
-      all_regions   = true
-      role_arn      = local.create_iam_role ? module.iam_role_organization_aggregator[0].arn : var.iam_role_organization_aggregator_arn
+      all_regions = true
+      role_arn    = local.create_iam_role ? module.iam_role_organization_aggregator[0].arn : var.iam_role_organization_aggregator_arn
     }
   }
 }

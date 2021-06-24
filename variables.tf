@@ -56,8 +56,8 @@ variable "findings_notification_arn" {
 variable "create_iam_role" {
   description = "Flag to indicate whether IAM Roles should be created to grant the proper permissions for AWS Config (affects creation of both the standard Config role, as well as the Organization-wide Aggregator Role (if in use)"
 
-  type        = bool
-  default     = false
+  type    = bool
+  default = false
 }
 
 variable "iam_role_arn" {

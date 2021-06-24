@@ -19,7 +19,7 @@ resource "aws_config_configuration_recorder" "recorder" {
     resource_types = ["AWS::EC2::Host", " AWS::EC2::Instance", "AWS::EC2::VPC", "AWS::EKS::Cluster",
       "AWS::ElasticLoadBalancingV2::LoadBalancer", "AWS::IAM::Group", "AWS::IAM::Policy",
       "AWS::IAM::Role", "AWS::Lambda::Function", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance",
-    " AWS::S3::AccountPublicAccessBlock", "AWS::S3::Bucket", "AWS::EC2::Volume"]
+    " AWS::S3::AccountPublicAccessBlock", "AWS::S3::Bucket", "AWS::EC2::Volume", "AWS::EC2::SecurityGroup", "AWS::CloudTrail::Trail", "AWS::KMS::Key"]
   }
 }
 

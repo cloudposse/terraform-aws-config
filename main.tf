@@ -179,6 +179,9 @@ resource "aws_config_configuration_aggregator" "this" {
 }
 
 resource "aws_config_aggregate_authorization" "child" {
+  # The following only occurs when Multi-Account Multi-Region Data Aggregation is enabled by supplying
+  # `var.central_resource_collector_account` with an AWS Account ID:
+  #
   # Authorize each region in a child account to send its data to the global_resource_collector_region of the
   # central_resource_collector_account
   count = local.enabled && var.central_resource_collector_account != null ? 1 : 0
@@ -188,8 +191,11 @@ resource "aws_config_aggregate_authorization" "child" {
 }
 
 resource "aws_config_aggregate_authorization" "central" {
+  # The following only occurs when `var.central_resource_collector_account` is omitted, thus disabling
+  # Multi-Account Multi-Region Data Aggregation and only enabling Multi-Region aggregation within the same account:
+  #
   # Authorize each region to send its data to the global_resource_collector_region
-  count = local.enabled ? 1 : 0
+  count = local.enabled && var.central_resource_collector_account == null ? 1 : 0
 
   account_id = data.aws_caller_identity.this.account_id
   region     = var.global_resource_collector_region

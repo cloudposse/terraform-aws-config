@@ -1,5 +1,5 @@
-resource "aws_config_conformance_pack" "hipaa" {
-  name = "operational-best-practices-for-HIPAA-Security"
+resource "aws_config_conformance_pack" "default" {
+  name = module.this.name
 
   dynamic "input_parameter" {
     for_each = var.parameter_overrides

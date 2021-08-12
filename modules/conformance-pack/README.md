@@ -19,6 +19,8 @@ module "hipaa_conformance_pack" {
   # Cloud Posse recommends pinning every module to a specific version
   # version     = "x.x.x"
 
+  name = "Operational-Best-Practices-for-HIPAA-Security"
+
   conformance_pack="https://raw.githubusercontent.com/awslabs/aws-config-rules/master/aws-config-conformance-packs/Operational-Best-Practices-for-HIPAA-Security.yaml"
   parameter_overrides = {
     AccessKeysRotatedParamMaxAccessKeyAge = "45"

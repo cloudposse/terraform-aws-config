@@ -28,6 +28,7 @@ module "aws_config" {
 module "hipaa_conformance_pack" {
   source  = "../../modules/conformance-pack"
   context = module.this.context
+  name    = "operational-best-practices-for-HIPAA-Security"
 
   conformance_pack = "https://raw.githubusercontent.com/awslabs/aws-config-rules/master/aws-config-conformance-packs/Operational-Best-Practices-for-HIPAA-Security.yaml"
   parameter_overrides = {

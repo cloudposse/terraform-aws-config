@@ -15,7 +15,7 @@ resource "aws_config_configuration_recorder" "recorder" {
   role_arn = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
   recording_group {
     all_supported                 = true
-    include_global_resource_types = local.is_global_recorder_region
+    include_global_resource_types = var.include_global_resource_types
   }
 }
 

@@ -56,5 +56,5 @@ data "aws_region" "current" {}
 
 module "utils" {
   source  = "cloudposse/utils/aws"
-  version = "0.8.0"
+  version = "0.8.1"
 }

@@ -60,7 +60,7 @@ resource "aws_config_config_rule" "rules" {
 #-----------------------------------------------------------------------------------------------------------------------
 module "sns_topic" {
   source  = "cloudposse/sns-topic/aws"
-  version = "0.15.0"
+  version = "0.19.2"
   count   = module.this.enabled && local.create_sns_topic ? 1 : 0
 
   attributes      = concat(module.this.attributes, ["config"])

@@ -66,11 +66,11 @@ module "sns_topic" {
   attributes      = concat(module.this.attributes, ["config"])
   subscribers     = var.subscribers
   sqs_dlq_enabled = false
-    
+
   sns_encryption_enabled = var.sns_encryption_enabled
   sns_encryption_key_id  = var.sns_encryption_key_id
-    
-  tags            = module.this.tags
+
+  tags = module.this.tags
 
   context = module.this.context
 }

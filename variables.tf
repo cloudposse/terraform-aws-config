@@ -18,6 +18,18 @@ variable "create_sns_topic" {
   default = false
 }
 
+variable "sns_encryption_enabled" {
+  description = "Whether to enable encryption for the SNS topic. Default `false`"
+  type        = bool
+  default     = false
+}
+
+variable "sns_encryption_key_id" {
+  description = "The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK."
+  type        = string
+  default     = "alias/aws/sns"
+}
+
 variable "subscribers" {
   type = map(object({
     protocol               = string

@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 module "aws_config_label" {
   source  = "cloudposse/label/null"
-  version = "0.24.1"
+  version = "0.25.0"
 
   attributes = ["config"]
   context    = module.this.context
@@ -77,7 +77,7 @@ module "sns_topic" {
 
 module "aws_config_findings_label" {
   source  = "cloudposse/label/null"
-  version = "0.24.1"
+  version = "0.25.0"
 
   attributes = ["config", "findings"]
 
@@ -163,7 +163,7 @@ data "aws_iam_policy_document" "config_sns_policy" {
 #-----------------------------------------------------------------------------------------------------------------------
 module "aws_config_aggregator_label" {
   source  = "cloudposse/label/null"
-  version = "0.24.1"
+  version = "0.25.0"
 
   attributes = ["config", "aggregator"]
 

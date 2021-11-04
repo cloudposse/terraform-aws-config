@@ -67,8 +67,8 @@ module "sns_topic" {
   subscribers     = var.subscribers
   sqs_dlq_enabled = false
 
-  sns_encryption_enabled = var.sns_encryption_enabled
-  sns_encryption_key_id  = var.sns_encryption_key_id
+  encryption_enabled = var.sns_encryption_enabled
+  kms_master_key_id  = var.sns_encryption_key_id
 
   tags = module.this.tags
 

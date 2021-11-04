@@ -18,16 +18,16 @@ variable "create_sns_topic" {
   default = false
 }
 
-variable "sns_encryption_enabled" {
-  description = "Whether to enable encryption for the SNS topic. Default `false`"
-  type        = bool
-  default     = false
-}
-
 variable "sns_encryption_key_id" {
   description = "The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK."
   type        = string
-  default     = "alias/aws/sns"
+  default     = "" # Use "alias/aws/sns" for AWS Managed Key
+}
+
+variable "sqs_queue_kms_master_key_id" {
+  type        = string
+  description = "The ID of an AWS-managed customer master key (CMK) for Amazon SQS Queue or a custom CMK"
+  default     = "" # Use "alias/aws/sqs" for AWS Managed Key
 }
 
 variable "subscribers" {
@@ -38,17 +38,17 @@ variable "subscribers" {
   }))
   description = <<-DOC
     A map of subscription configurations for SNS topics
-      
+
     For more information, see:
     https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription#argument-reference
-  
-    protocol:         
-      The protocol to use. The possible values for this are: sqs, sms, lambda, application. (http or https are partially 
+
+    protocol:
+      The protocol to use. The possible values for this are: sqs, sms, lambda, application. (http or https are partially
       supported, see link) (email is an option but is unsupported in terraform, see link).
-    endpoint:         
+    endpoint:
       The endpoint to send data to, the contents will vary with the protocol. (see link for more information)
     endpoint_auto_confirms:
-      Boolean indicating whether the end point is capable of auto confirming subscription e.g., PagerDuty. Default is 
+      Boolean indicating whether the end point is capable of auto confirming subscription e.g., PagerDuty. Default is
       false
   DOC
   default     = {}
@@ -57,7 +57,7 @@ variable "subscribers" {
 variable "findings_notification_arn" {
   description = <<-DOC
     The ARN for an SNS topic to send findings notifications to. This is only used if create_sns_topic is false.
-    If you want to send findings to an existing SNS topic, set the value of this to the ARN of the existing topic and set 
+    If you want to send findings to an existing SNS topic, set the value of this to the ARN of the existing topic and set
     create_sns_topic to false.
   DOC
   default     = null
@@ -73,13 +73,13 @@ variable "create_iam_role" {
 
 variable "iam_role_arn" {
   description = <<-DOC
-    The ARN for an IAM Role AWS Config uses to make read or write requests to the delivery channel and to describe the 
+    The ARN for an IAM Role AWS Config uses to make read or write requests to the delivery channel and to describe the
     AWS resources associated with the account. This is only used if create_iam_role is false.
-  
-    If you want to use an existing IAM Role, set the value of this to the ARN of the existing topic and set 
+
+    If you want to use an existing IAM Role, set the value of this to the ARN of the existing topic and set
     create_iam_role to false.
-    
-    See the AWS Docs for further information: 
+
+    See the AWS Docs for further information:
     http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
   DOC
   default     = null
@@ -111,7 +111,7 @@ variable "force_destroy" {
 
 variable "managed_rules" {
   description = <<-DOC
-    A list of AWS Managed Rules that should be enabled on the account. 
+    A list of AWS Managed Rules that should be enabled on the account.
 
     See the following for a list of possible rules to enable:
     https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html
@@ -129,13 +129,13 @@ variable "managed_rules" {
 variable "s3_key_prefix" {
   type        = string
   description = <<-DOC
-    The prefix for AWS Config objects stored in the the S3 bucket. If this variable is set to null, the default, no 
+    The prefix for AWS Config objects stored in the the S3 bucket. If this variable is set to null, the default, no
     prefix will be used.
-    
-    Examples: 
-    
-    with prefix:    {S3_BUCKET NAME}:/{S3_KEY_PREFIX}/AWSLogs/{ACCOUNT_ID}/Config/*. 
-    without prefix: {S3_BUCKET NAME}:/AWSLogs/{ACCOUNT_ID}/Config/*. 
+
+    Examples:
+
+    with prefix:    {S3_BUCKET NAME}:/{S3_KEY_PREFIX}/AWSLogs/{ACCOUNT_ID}/Config/*.
+    without prefix: {S3_BUCKET NAME}:/AWSLogs/{ACCOUNT_ID}/Config/*.
   DOC
   default     = null
 }

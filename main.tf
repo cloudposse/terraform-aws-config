@@ -60,15 +60,15 @@ resource "aws_config_config_rule" "rules" {
 #-----------------------------------------------------------------------------------------------------------------------
 module "sns_topic" {
   source  = "cloudposse/sns-topic/aws"
-  version = "0.19.2"
+  version = "0.15.0"
   count   = module.this.enabled && local.create_sns_topic ? 1 : 0
 
   attributes      = concat(module.this.attributes, ["config"])
   subscribers     = var.subscribers
   sqs_dlq_enabled = false
 
-  encryption_enabled = var.sns_encryption_enabled
-  kms_master_key_id  = var.sns_encryption_key_id
+  kms_master_key_id           = var.sns_encryption_key_id
+  sqs_queue_kms_master_key_id = var.sqs_queue_kms_master_key_id
 
   tags = module.this.tags
 

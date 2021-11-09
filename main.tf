@@ -97,7 +97,7 @@ module "iam_role" {
   policy_documents = var.create_sns_topic ? [
     data.aws_iam_policy_document.config_s3_policy[0].json,
     data.aws_iam_policy_document.config_sns_policy[0].json
-  ] : [
+    ] : [
     data.aws_iam_policy_document.config_s3_policy[0].json
   ]
 

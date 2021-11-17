@@ -66,7 +66,11 @@ module "sns_topic" {
   attributes      = concat(module.this.attributes, ["config"])
   subscribers     = var.subscribers
   sqs_dlq_enabled = false
-  tags            = module.this.tags
+
+  kms_master_key_id           = var.sns_encryption_key_id
+  sqs_queue_kms_master_key_id = var.sqs_queue_kms_master_key_id
+
+  tags = module.this.tags
 
   context = module.this.context
 }
@@ -94,12 +98,14 @@ module "iam_role" {
 
   use_fullname = true
 
-  policy_documents = [
+  policy_documents = var.create_sns_topic ? [
     data.aws_iam_policy_document.config_s3_policy[0].json,
     data.aws_iam_policy_document.config_sns_policy[0].json
+    ] : [
+    data.aws_iam_policy_document.config_s3_policy[0].json
   ]
 
-  policy_document_count = 2
+  policy_document_count = var.create_sns_topic ? 2 : 1
   policy_description    = "AWS Config IAM policy"
   role_description      = "AWS Config IAM role"
 

@@ -20,25 +20,16 @@ variable "create_sns_topic" {
 
 variable "subscribers" {
   type = map(object({
-    protocol               = string
-    endpoint               = string
+    protocol = string
+    # The protocol to use. The possible values for this are: sqs, sms, lambda, application. (http or https are partially supported, see below) (email is an option but is unsupported, see below).
+    endpoint = string
+    # The endpoint to send data to, the contents will vary with the protocol. (see below for more information)
     endpoint_auto_confirms = bool
+    # Boolean indicating whether the end point is capable of auto confirming subscription e.g., PagerDuty (default is false)
+    raw_message_delivery = bool
+    # Boolean indicating whether or not to enable raw message delivery (the original message is directly passed, not wrapped in JSON with the original message in the message property) (default is false)
   }))
-  description = <<-DOC
-    A map of subscription configurations for SNS topics
-      
-    For more information, see:
-    https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription#argument-reference
-  
-    protocol:         
-      The protocol to use. The possible values for this are: sqs, sms, lambda, application. (http or https are partially 
-      supported, see link) (email is an option but is unsupported in terraform, see link).
-    endpoint:         
-      The endpoint to send data to, the contents will vary with the protocol. (see link for more information)
-    endpoint_auto_confirms:
-      Boolean indicating whether the end point is capable of auto confirming subscription e.g., PagerDuty. Default is 
-      false
-  DOC
+  description = "Required configuration for subscibres to SNS topic."
   default     = {}
 }
 

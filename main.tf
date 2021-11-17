@@ -66,7 +66,11 @@ module "sns_topic" {
   attributes      = concat(module.this.attributes, ["config"])
   subscribers     = var.subscribers
   sqs_dlq_enabled = false
-  tags            = module.this.tags
+
+  kms_master_key_id           = var.sns_encryption_key_id
+  sqs_queue_kms_master_key_id = var.sqs_queue_kms_master_key_id
+
+  tags = module.this.tags
 
   context = module.this.context
 }

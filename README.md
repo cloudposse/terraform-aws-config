@@ -161,8 +161,8 @@ Available targets:
 | <a name="module_aws_config_aggregator_label"></a> [aws\_config\_aggregator\_label](#module\_aws\_config\_aggregator\_label) | cloudposse/label/null | 0.25.0 |
 | <a name="module_aws_config_findings_label"></a> [aws\_config\_findings\_label](#module\_aws\_config\_findings\_label) | cloudposse/label/null | 0.25.0 |
 | <a name="module_aws_config_label"></a> [aws\_config\_label](#module\_aws\_config\_label) | cloudposse/label/null | 0.25.0 |
-| <a name="module_iam_role"></a> [iam\_role](#module\_iam\_role) | cloudposse/iam-role/aws | 0.13.0 |
-| <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | cloudposse/sns-topic/aws | 0.15.0 |
+| <a name="module_iam_role"></a> [iam\_role](#module\_iam\_role) | cloudposse/iam-role/aws | 0.14.0 |
+| <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | cloudposse/sns-topic/aws | 0.20.1 |
 | <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
 
 ## Resources

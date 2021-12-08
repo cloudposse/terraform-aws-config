@@ -35,6 +35,7 @@ variable "subscribers" {
     protocol               = string
     endpoint               = string
     endpoint_auto_confirms = bool
+    raw_message_delivery   = bool
   }))
   description = <<-DOC
     A map of subscription configurations for SNS topics

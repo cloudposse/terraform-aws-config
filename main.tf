@@ -2,7 +2,7 @@
 # Enable and configure AWS Config
 # ----------------------------------------------------------------------------------------------------------------------
 module "aws_config_label" {
-  source  = "cloudposse/label/null"
+  source  =     "cloudposse/label/null"
   version = "0.25.0"
 
   attributes = ["config"]

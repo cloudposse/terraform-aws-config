@@ -2,7 +2,7 @@
 # Enable and configure AWS Config
 # ----------------------------------------------------------------------------------------------------------------------
 module "aws_config_label" {
-  source  =     "cloudposse/label/null"
+  source  = "cloudposse/label/null"
   version = "0.25.0"
 
   attributes = ["config"]
@@ -63,8 +63,13 @@ module "sns_topic" {
   version = "0.20.1"
   count   = module.this.enabled && local.create_sns_topic ? 1 : 0
 
-  attributes      = concat(module.this.attributes, ["config"])
-  subscribers     = var.subscribers
+  attributes = concat(module.this.attributes, ["config"])
+  subscribers = {
+    protocol               = lookup(var.subscribers, "protocol")
+    endpoint               = lookup(var.subscribers, "endpoint")
+    endpoint_auto_confirms = try(lookup(var.subscribers, "endpoint_auto_confirms"), false)
+    raw_message_delivery   = try(lookup(var.subscribers, "raw_message_delivery"), false)
+  }
   sqs_dlq_enabled = false
 
   kms_master_key_id           = var.sns_encryption_key_id
@@ -215,7 +220,7 @@ data "aws_region" "this" {}
 data "aws_caller_identity" "this" {}
 
 locals {
-  enabled = module.this.enabled && ! contains(var.disabled_aggregation_regions, data.aws_region.this.name)
+  enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, data.aws_region.this.name)
 
   is_central_account                = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
   is_global_recorder_region         = var.global_resource_collector_region == data.aws_region.this.name

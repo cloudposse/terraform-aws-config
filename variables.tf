@@ -31,11 +31,7 @@ variable "sqs_queue_kms_master_key_id" {
 }
 
 variable "subscribers" {
-  type = map(object({
-    protocol               = string
-    endpoint               = string
-    endpoint_auto_confirms = bool
-  }))
+  type        = map(any)
   description = <<-DOC
     A map of subscription configurations for SNS topics
 
@@ -47,9 +43,11 @@ variable "subscribers" {
       supported, see link) (email is an option but is unsupported in terraform, see link).
     endpoint:
       The endpoint to send data to, the contents will vary with the protocol. (see link for more information)
-    endpoint_auto_confirms:
+    endpoint_auto_confirms (Optional):
       Boolean indicating whether the end point is capable of auto confirming subscription e.g., PagerDuty. Default is
       false
+    raw_message_delivery (Optional):
+      Boolean indicating whether or not to enable raw message delivery (the original message is directly passed, not wrapped in JSON with the original message in the message property). Default is false.
   DOC
   default     = {}
 }

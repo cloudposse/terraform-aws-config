@@ -60,11 +60,18 @@ resource "aws_config_config_rule" "rules" {
 #-----------------------------------------------------------------------------------------------------------------------
 module "sns_topic" {
   source  = "cloudposse/sns-topic/aws"
-  version = "0.15.0"
+  version = "0.20.1"
   count   = module.this.enabled && local.create_sns_topic ? 1 : 0
 
-  attributes      = concat(module.this.attributes, ["config"])
-  subscribers     = var.subscribers
+  attributes = concat(module.this.attributes, ["config"])
+  subscribers = {
+    for subscriber in var.subscribers : subscriber => {
+      protocol               = lookup(subscriber, "protocol")
+      endpoint               = lookup(subscriber, "endpoint")
+      endpoint_auto_confirms = lookup(subscriber, "endpoint_auto_confirms", false)
+      raw_message_delivery   = lookup(subscriber, "raw_message_delivery", false)
+    }
+  }
   sqs_dlq_enabled = false
 
   kms_master_key_id           = var.sns_encryption_key_id
@@ -90,7 +97,7 @@ module "aws_config_findings_label" {
 module "iam_role" {
   count   = module.this.enabled && local.create_iam_role ? 1 : 0
   source  = "cloudposse/iam-role/aws"
-  version = "0.13.0"
+  version = "0.14.0"
 
   principals = {
     "Service" = ["config.amazonaws.com"]

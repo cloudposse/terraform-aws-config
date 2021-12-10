@@ -65,10 +65,12 @@ module "sns_topic" {
 
   attributes = concat(module.this.attributes, ["config"])
   subscribers = {
-    protocol               = lookup(var.subscribers, "protocol")
-    endpoint               = lookup(var.subscribers, "endpoint")
-    endpoint_auto_confirms = try(lookup(var.subscribers, "endpoint_auto_confirms"), false)
-    raw_message_delivery   = try(lookup(var.subscribers, "raw_message_delivery"), false)
+    for subscriber in var.subscribers : subscriber => {
+      protocol               = lookup(subscriber, "protocol")
+      endpoint               = lookup(subscriber, "endpoint")
+      endpoint_auto_confirms = try(lookup(subscriber, "endpoint_auto_confirms"), false)
+      raw_message_delivery   = try(lookup(subscriber, "raw_message_delivery"), false)
+    }
   }
   sqs_dlq_enabled = false
 

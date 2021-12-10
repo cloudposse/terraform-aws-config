@@ -68,8 +68,8 @@ module "sns_topic" {
     for subscriber in var.subscribers : subscriber => {
       protocol               = lookup(subscriber, "protocol")
       endpoint               = lookup(subscriber, "endpoint")
-      endpoint_auto_confirms = try(lookup(subscriber, "endpoint_auto_confirms"), false)
-      raw_message_delivery   = try(lookup(subscriber, "raw_message_delivery"), false)
+      endpoint_auto_confirms = lookup(subscriber, "endpoint_auto_confirms", false)
+      raw_message_delivery   = lookup(subscriber, "raw_message_delivery", false)
     }
   }
   sqs_dlq_enabled = false

@@ -1,4 +1,4 @@
-# AWS Config HIPAA Conformance Pack
+# AWS Config Conformance Pack
 
 This module deploys a [Conformance Pack](https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html). A conformance pack is a collection of AWS Config rules and remediation actions that can be easily deployed as a single entity in an account and a Region or across an organization in AWS Organizations.Conformance packs are created by authoring a YAML template that contains the list of AWS Config managed or custom rules and remediation actions.
 

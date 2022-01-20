@@ -65,7 +65,7 @@ module "sns_topic" {
 
   attributes = concat(module.this.attributes, ["config"])
   subscribers = {
-    for subscriber in var.subscribers : subscriber => {
+    for key, subscriber in var.subscribers : key => {
       protocol               = lookup(subscriber, "protocol")
       endpoint               = lookup(subscriber, "endpoint")
       endpoint_auto_confirms = lookup(subscriber, "endpoint_auto_confirms", false)

@@ -124,6 +124,18 @@ variable "managed_rules" {
   default = {}
 }
 
+variable "recording_group_all_supported" {
+  type = bool
+  description = " (Optional) Specifies whether AWS Config records configuration changes for every supported type of regional resource (which includes any new type that will become supported in the future). Conflicts with resource_types."
+  default = true
+}
+
+variable "recording_group_resource_types" {
+  type = list(string)
+  description = "(Optional) A list that specifies the types of AWS resources for which AWS Config records configuration changes"
+  default = []
+}
+
 variable "s3_key_prefix" {
   type        = string
   description = <<-DOC
@@ -145,3 +157,4 @@ variable "disabled_aggregation_regions" {
   description = "A list of regions where config aggregation is disabled"
   default     = ["ap-northeast-3"]
 }
+

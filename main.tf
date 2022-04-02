@@ -97,7 +97,7 @@ module "aws_config_findings_label" {
 module "iam_role" {
   count   = module.this.enabled && local.create_iam_role ? 1 : 0
   source  = "cloudposse/iam-role/aws"
-  version = "0.15.0"
+  version = "0.16.0"
 
   principals = {
     "Service" = ["config.amazonaws.com"]

@@ -189,6 +189,7 @@ resource "aws_config_configuration_aggregator" "this" {
     account_ids = local.child_resource_collector_accounts
     all_regions = true
   }
+  tags = var.tags
 }
 
 resource "aws_config_aggregate_authorization" "child" {
@@ -201,6 +202,7 @@ resource "aws_config_aggregate_authorization" "child" {
 
   account_id = var.central_resource_collector_account
   region     = var.global_resource_collector_region
+  tags = var.tags
 }
 
 resource "aws_config_aggregate_authorization" "central" {
@@ -212,6 +214,7 @@ resource "aws_config_aggregate_authorization" "central" {
 
   account_id = data.aws_caller_identity.this.account_id
   region     = var.global_resource_collector_region
+  tags = var.tags
 }
 
 

@@ -25,7 +25,9 @@ variable "cloudtrail_bucket_name" {
 }
 
 variable "config_rules_paths" {
-  default = [
+  description = "Set of PATH'es to files with config rules"
+  type        = set(string)
+  default     = [
     "../../catalog/cloudtrail.yaml",
     "../../catalog/cmk.yaml",
     "../../catalog/iam.yaml",

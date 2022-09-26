@@ -15,7 +15,17 @@ resource "aws_config_configuration_recorder" "recorder" {
   role_arn = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
   recording_group {
     all_supported = false
-    resource_types = ["AWS::EC2::Host", "AWS::EC2::Instance", "AWS::EC2::VPC",
+    resource_types = [
+      "AWS::AccessAnalyzer::Analyzer",
+      "AWS::ApiGateway::Stage",
+      "AWS::ApiGatewayV2::Stage",
+      "AWS::CloudFront::Distribution",
+      "AWS::ElasticLoadBalancing::LoadBalancer",
+      "AWS::Route53Resolver::ResolverEndpoint",
+      "AWS::Route53Resolver::ResolverRule",
+      "AWS::Route53Resolver::ResolverRuleAssociation",
+      "AWS::StepFunctions::Activity",
+      "AWS::EC2::Host", "AWS::EC2::Instance", "AWS::EC2::VPC",
       "AWS::ElasticLoadBalancingV2::LoadBalancer", "AWS::IAM::Group", "AWS::IAM::Policy",
       "AWS::IAM::Role", "AWS::Lambda::Function", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance",
       "AWS::S3::AccountPublicAccessBlock", "AWS::S3::Bucket", "AWS::EC2::Volume", "AWS::EKS::Cluster",

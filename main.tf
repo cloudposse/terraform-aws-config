@@ -77,6 +77,9 @@ module "sns_topic" {
   kms_master_key_id           = var.sns_encryption_key_id
   sqs_queue_kms_master_key_id = var.sqs_queue_kms_master_key_id
 
+  allowed_aws_services_for_sns_published = var.allowed_aws_services_for_sns_published
+  allowed_iam_arns_for_sns_publish       = var.allowed_iam_arns_for_sns_publish
+
   tags = module.this.tags
 
   context = module.this.context

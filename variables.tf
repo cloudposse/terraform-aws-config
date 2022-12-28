@@ -145,3 +145,16 @@ variable "disabled_aggregation_regions" {
   description = "A list of regions where config aggregation is disabled"
   default     = ["ap-northeast-3"]
 }
+
+variable "allowed_aws_services_for_sns_published" {
+  type        = list(string)
+  description = "AWS services that will have permission to publish to SNS topic. Used when no external JSON policy is used"
+  default     = []
+}
+
+variable "allowed_iam_arns_for_sns_publish" {
+  type        = list(string)
+  description = "IAM role/user ARNs that will have permission to publish to SNS topic. Used when no external json policy is used."
+  default     = []
+}
+

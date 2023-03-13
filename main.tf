@@ -1,6 +1,8 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # Enable and configure AWS Config
 # ----------------------------------------------------------------------------------------------------------------------
+data "aws_partition" "current" {}
+
 module "aws_config_label" {
   source  = "cloudposse/label/null"
   version = "0.25.0"
@@ -132,7 +134,42 @@ resource "aws_iam_role_policy_attachment" "config_policy_attachment" {
 }
 
 data "aws_iam_policy" "aws_config_built_in_role" {
-  arn = "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
+  arn = "arn:${data.aws_partition.current.partition}:iam::aws:policy/service-role/AWS_ConfigRole"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Optionally create an IAM Role for an Aggregator to query Organizations data (if we're the central AWS Config account)
+#-----------------------------------------------------------------------------------------------------------------------
+module "iam_role_organization_aggregator" {
+  count   = module.this.enabled && var.aggregate_organization_wide && local.create_iam_role ? 1 : 0
+  source  = "cloudposse/iam-role/aws"
+  version = "0.9.3"
+
+  principals = {
+    "Service" = ["config.amazonaws.com"]
+  }
+
+  policy_document_count = 0
+  policy_description    = "AWS Config IAM policy for Organization Aggregation"
+  role_description      = "AWS Config IAM role for Organization Aggregation"
+
+  name         = "aggregator"
+  use_fullname = true
+
+  attributes = ["config"]
+
+  context = module.this.context
+}
+
+resource "aws_iam_role_policy_attachment" "config_organization_aggregator_policy_attachment" {
+  count = module.this.enabled && var.aggregate_organization_wide && local.create_iam_role ? 1 : 0
+
+  role       = module.iam_role_organization_aggregator[0].name
+  policy_arn = data.aws_iam_policy.aws_config_built_in_role_for_organizations.arn
+}
+
+data "aws_iam_policy" "aws_config_built_in_role_for_organizations" {
+  arn = "arn:${data.aws_partition.current.partition}:iam::aws:policy/service-role/AWSConfigRoleForOrganizations"
 }
 
 data "aws_iam_policy_document" "config_s3_policy" {
@@ -188,9 +225,19 @@ resource "aws_config_configuration_aggregator" "this" {
   count = local.enabled && local.is_central_account && local.is_global_recorder_region ? 1 : 0
 
   name = module.aws_config_aggregator_label.id
-  account_aggregation_source {
-    account_ids = local.child_resource_collector_accounts
-    all_regions = true
+  dynamic "account_aggregation_source" {
+    for_each = var.aggregate_organization_wide ? [] : [1]
+    content {
+      account_ids = local.child_resource_collector_accounts
+      all_regions = true
+    }
+  }
+  dynamic "organization_aggregation_source" {
+    for_each = var.aggregate_organization_wide ? [1] : []
+    content {
+      all_regions = true
+      role_arn    = local.create_iam_role ? module.iam_role_organization_aggregator[0].arn : var.iam_role_organization_aggregator_arn
+    }
   }
 
   tags = module.this.tags

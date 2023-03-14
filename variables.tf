@@ -158,3 +158,9 @@ variable "allowed_iam_arns_for_sns_publish" {
   default     = []
 }
 
+# https://docs.aws.amazon.com/config/latest/APIReference/API_ResourceIdentifier.html#config-Type-ResourceIdentifier-resourceType
+variable "recorded_resource_types" {
+  type        = list(string)
+  description = "An allowlist of which evaluations to save as records."
+  default     = []
+}

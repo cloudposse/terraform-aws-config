@@ -14,8 +14,9 @@ resource "aws_config_configuration_recorder" "recorder" {
   name     = module.aws_config_label.id
   role_arn = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
   recording_group {
-    all_supported                 = true
-    include_global_resource_types = local.is_global_recorder_region
+    all_supported                 = (length(var.recorded_resource_types) == 0) ? true : false
+    include_global_resource_types = (length(var.recorded_resource_types) == 0) ? local.is_global_recorder_region : null
+    resource_types                = var.recorded_resource_types
   }
 }
 
@@ -231,7 +232,7 @@ data "aws_region" "this" {}
 data "aws_caller_identity" "this" {}
 
 locals {
-  enabled = module.this.enabled && ! contains(var.disabled_aggregation_regions, data.aws_region.this.name)
+  enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, data.aws_region.this.name)
 
   is_central_account                = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
   is_global_recorder_region         = var.global_resource_collector_region == data.aws_region.this.name

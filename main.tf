@@ -65,7 +65,7 @@ module "sns_topic" {
 
   attributes = concat(module.this.attributes, ["config"])
   subscribers = {
-    for subscriber in var.subscribers : subscriber => {
+    for key, subscriber in var.subscribers : key => {
       protocol               = lookup(subscriber, "protocol")
       endpoint               = lookup(subscriber, "endpoint")
       endpoint_auto_confirms = lookup(subscriber, "endpoint_auto_confirms", false)
@@ -231,7 +231,7 @@ data "aws_region" "this" {}
 data "aws_caller_identity" "this" {}
 
 locals {
-  enabled = module.this.enabled && ! contains(var.disabled_aggregation_regions, data.aws_region.this.name)
+  enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, data.aws_region.this.name)
 
   is_central_account                = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
   is_global_recorder_region         = var.global_resource_collector_region == data.aws_region.this.name

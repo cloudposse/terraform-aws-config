@@ -1,5 +1,5 @@
 output "aws_config_configuration_recorder_id" {
-  value       = join("", aws_config_configuration_recorder.recorder.*.id)
+  value       = join("", aws_config_configuration_recorder.recorder[*].id)
   description = "The ID of the AWS Config Recorder"
 }
 

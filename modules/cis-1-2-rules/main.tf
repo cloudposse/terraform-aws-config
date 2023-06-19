@@ -10,9 +10,9 @@ locals {
   region_exclusion_tag    = "region/excluded/${local.current_region}"
 
   tagged_rules          = { for key, rule in local.rules_with_tags : key => rule if lookup(rule.tags, local.compliance_standard_tag, false) == true }
-  logging_account_rules = { for key, rule in local.tagged_rules : key => rule if var.is_logging_account && lookup(rule.tags, local.logging_only_tag, false) && ! lookup(rule.tags, local.region_exclusion_tag, false) }
-  global_resource_rules = { for key, rule in local.tagged_rules : key => rule if var.is_global_resource_region && lookup(rule.tags, local.global_only_tag, false) && ! lookup(rule.tags, local.region_exclusion_tag, false) }
-  base_rules            = { for key, rule in local.tagged_rules : key => rule if(! lookup(rule.tags, local.logging_only_tag, false) && ! lookup(rule.tags, local.global_only_tag, false) && ! lookup(rule.tags, local.region_exclusion_tag, false)) }
+  logging_account_rules = { for key, rule in local.tagged_rules : key => rule if var.is_logging_account && lookup(rule.tags, local.logging_only_tag, false) && !lookup(rule.tags, local.region_exclusion_tag, false) }
+  global_resource_rules = { for key, rule in local.tagged_rules : key => rule if var.is_global_resource_region && lookup(rule.tags, local.global_only_tag, false) && !lookup(rule.tags, local.region_exclusion_tag, false) }
+  base_rules            = { for key, rule in local.tagged_rules : key => rule if(!lookup(rule.tags, local.logging_only_tag, false) && !lookup(rule.tags, local.global_only_tag, false) && !lookup(rule.tags, local.region_exclusion_tag, false)) }
   all_rules             = merge(local.base_rules, local.logging_account_rules, local.global_resource_rules)
 
   base_params = {

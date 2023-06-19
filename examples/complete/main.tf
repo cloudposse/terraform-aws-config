@@ -1,5 +1,8 @@
 provider "aws" {
   region = var.region
+}
+
+locals {
   subscribers = {
     opsgenie = {
       protocol               = "https"

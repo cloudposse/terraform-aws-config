@@ -4,9 +4,9 @@ provider "aws" {
 
 locals {
   subscribers = {
-    opsgenie = {
-      protocol               = "https"
-      endpoint               = "https://api.example.com/v1/"
+    email = {
+      protocol               = "email"
+      endpoint               = "test@example.com"
       endpoint_auto_confirms = true
     }
   }

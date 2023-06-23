@@ -9,7 +9,7 @@ resource "aws_config_conformance_pack" "default" {
     }
   }
 
-  template_body = data.http.conformance_pack.body
+  template_body = data.http.conformance_pack.response_body
 }
 
 data "http" "conformance_pack" {

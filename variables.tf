@@ -1,9 +1,3 @@
-variable "attributes" {
-  description = "ID element. Additional attributes (e.g. config) to add to id, in the order they appear in the list. New attributes are appended to the end of the list. The elements of the list are joined by the delimiter and treated as a single ID element."
-  type        = list(string)
-  default     = ["config"]
-}
-
 variable "s3_bucket_id" {
   description = "The id (name) of the S3 bucket used to store the configuration history"
   type        = string

@@ -119,7 +119,7 @@ module "iam_role" {
   policy_description    = "AWS Config IAM policy"
   role_description      = "AWS Config IAM role"
 
-  attributes = ["config"]
+  attributes = var.iam_attributes
 
   context = module.this.context
 }

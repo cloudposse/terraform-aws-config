@@ -158,3 +158,8 @@ variable "allowed_iam_arns_for_sns_publish" {
   default     = []
 }
 
+variable "resource_types" {
+  type        = list(string)
+  default     = null
+  description = "A list that specifies the types of AWS resources for which AWS Config records configuration changes (for example, AWS::EC2::Instance or AWS::CloudTrail::Trail)."
+}

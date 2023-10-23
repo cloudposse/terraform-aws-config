@@ -158,3 +158,14 @@ variable "allowed_iam_arns_for_sns_publish" {
   default     = []
 }
 
+variable "resource_types" {
+  description = "Defines what resources will be excluded from recorder"
+  type = set(string)
+  default = []
+}
+
+variable "recording_strategy" {
+  description = "Defines recording strategy"
+  type = string
+  default = "all"
+}

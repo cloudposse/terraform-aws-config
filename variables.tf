@@ -164,8 +164,12 @@ variable "resource_types" {
   default = []
 }
 
-variable "recording_strategy" {
-  description = "Defines recording strategy"
-  type = string
-  default = "all"
+variable "enable_exclusion" {
+  type        = bool
+  default     = false
+}
+
+variable "enable_inclusion" {
+  type        = bool
+  default     = false
 }

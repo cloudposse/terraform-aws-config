@@ -14,15 +14,20 @@ resource "aws_config_configuration_recorder" "recorder" {
   name     = module.aws_config_label.id
   role_arn = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
   recording_group {
-    all_supported  =  var.recording_strategy != "all" && length(var.resource_types) > 0 ? false : true
+    all_supported  = var.enable_exclusion == true || var.enable_inclusion == true ? false : true
     
     recording_strategy {
-      use_only = var.recording_strategy == "exclude" ? "EXCLUSION_BY_RESOURCE_TYPES" : "ALL_SUPPORTED_RESOURCE_TYPES"
+      use_only = var.enable_exclusion == true ? "EXCLUSION_BY_RESOURCE_TYPES" : (var.enable_inclusion == true ? "INCLUSION_BY_RESOURCE_TYPES" : "ALL_SUPPORTED_RESOURCE_TYPES")
     }
 
-    exclusion_by_resource_types   {
-      resource_types = length(var.resource_types) > 0 ? var.resource_types : []
+    dynamic "exclusion_by_resource_types" {
+      for_each = var.enable_exclusion ? [1] : []
+      content {
+        resource_types = length(var.resource_types) > 0 ? var.resource_types : []
+      }
     }
+
+    resource_types = var.enable_inclusion == true && length(var.resource_types) > 0 ? var.resource_types : []
 
     include_global_resource_types = local.is_global_recorder_region
     

@@ -160,8 +160,8 @@ variable "allowed_iam_arns_for_sns_publish" {
 
 variable "resource_types" {
   description = "Defines what resources will be excluded from recorder"
-  type = set(string)
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 variable "enable_exclusion" {

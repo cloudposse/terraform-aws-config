@@ -18,3 +18,7 @@
 # Crash log files
 crash.log
 test.log
+
+# MacOS service files
+.DS_Store
+

@@ -137,9 +137,6 @@ module "iam_role_organization_aggregator" {
 
   use_fullname = true
 
-  #policy_documents = [ data.aws_iam_policy_document.config_organization_aggregator_policy[0].json ]
-
-
   policy_document_count = 0
   policy_description    = "AWS Config IAM policy for organization aggregator"
   role_description      = "AWS Config IAM role for organization aggregator"
@@ -164,11 +161,11 @@ resource "aws_iam_role_policy_attachment" "organization_config_policy_attachment
   policy_arn = data.aws_iam_policy.aws_config_organization_role.arn
 }
 data "aws_iam_policy" "aws_config_built_in_role" {
-  arn = "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
+  arn = "arn:${data.aws_partition.current.partition}:iam::aws:policy/service-role/AWS_ConfigRole"
 }
 
 data "aws_iam_policy" "aws_config_organization_role" {
-  arn = "arn:aws:iam::aws:policy/service-role/AWSConfigRoleForOrganizations"
+  arn = "arn:${data.aws_partition.current.partition}:iam::aws:policy/service-role/AWSConfigRoleForOrganizations"
 }
 
 data "aws_iam_policy_document" "config_s3_policy" {
@@ -291,6 +288,7 @@ resource "aws_config_aggregate_authorization" "central" {
 #-----------------------------------------------------------------------------------------------------------------------
 data "aws_region" "this" {}
 data "aws_caller_identity" "this" {}
+data "aws_partition" "current" {}
 
 locals {
   enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, data.aws_region.this.name)

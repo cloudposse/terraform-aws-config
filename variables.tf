@@ -69,6 +69,14 @@ variable "create_iam_role" {
   default     = false
 }
 
+variable "create_organization_aggregator_iam_role" {
+  description = "Flag to indicate whether an IAM Role should be created to grant the proper permissions for AWS Config to send logs from organization accounts"
+  type        = bool
+  default     = false
+}
+
+
+
 variable "iam_role_arn" {
   description = <<-DOC
     The ARN for an IAM Role AWS Config uses to make read or write requests to the delivery channel and to describe the
@@ -76,6 +84,21 @@ variable "iam_role_arn" {
 
     If you want to use an existing IAM Role, set the value of this to the ARN of the existing topic and set
     create_iam_role to false.
+
+    See the AWS Docs for further information:
+    http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
+  DOC
+  default     = null
+  type        = string
+}
+
+variable "iam_role_organization_aggregator_arn" {
+  description = <<-DOC
+    The ARN for an IAM Role AWS Config uses for the organization aggregator that  fetches AWS config data from aws accounts. 
+    This is only used if create_organization_aggregator_iam_role is false.
+
+    If you want to use an existing IAM Role, set the value of this to the ARN of the existing topic and set
+    create_organization_aggregator_iam_role to false.
 
     See the AWS Docs for further information:
     http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
@@ -144,6 +167,12 @@ variable "disabled_aggregation_regions" {
   type        = list(string)
   description = "A list of regions where config aggregation is disabled"
   default     = ["ap-northeast-3"]
+}
+
+variable "is_organization_aggregator" {
+  type      = bool 
+  default   = false 
+  description = "The aggregator is an AWS Organizations aggrgator"
 }
 
 variable "allowed_aws_services_for_sns_published" {

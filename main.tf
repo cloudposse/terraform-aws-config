@@ -137,10 +137,10 @@ module "iam_role_organization_aggregator" {
 
   use_fullname = true
 
- #policy_documents = [ data.aws_iam_policy_document.config_organization_aggregator_policy[0].json ]
+  #policy_documents = [ data.aws_iam_policy_document.config_organization_aggregator_policy[0].json ]
 
 
-  policy_document_count =  0
+  policy_document_count = 0
   policy_description    = "AWS Config IAM policy for organization aggregator"
   role_description      = "AWS Config IAM role for organization aggregator"
 
@@ -193,11 +193,11 @@ data "aws_iam_policy_document" "config_s3_policy" {
   }
 }
 data "aws_iam_policy_document" "config_organization_aggregator_policy" {
-  
+
   count = local.organization_aggregator ? 1 : 0
 
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
   }
 }
@@ -234,26 +234,26 @@ resource "aws_config_configuration_aggregator" "this" {
 
   name = module.aws_config_aggregator_label.id
 
-# Create normal account aggregation source
+  # Create normal account aggregation source
   dynamic "account_aggregation_source" {
-    for_each = local.organization_aggregator ? []: [1]
-    content { 
+    for_each = local.organization_aggregator ? [] : [1]
+    content {
       account_ids = local.child_resource_collector_accounts
       all_regions = true
     }
   }
 
-# Create organization aggregation source
+  # Create organization aggregation source
   dynamic "organization_aggregation_source" {
-    for_each = local.organization_aggregator ? [1]: []
-    content { 
+    for_each = local.organization_aggregator ? [1] : []
+    content {
       all_regions = true
       role_arn    = local.create_organization_aggregator_iam_role ? module.iam_role_organization_aggregator[0].arn : var.iam_role_organization_aggregator_arn
     }
   }
 
-    
-  
+
+
 
   tags = module.this.tags
 }
@@ -303,7 +303,7 @@ locals {
   findings_notification_arn         = local.enable_notifications ? (var.findings_notification_arn != null ? var.findings_notification_arn : module.sns_topic[0].sns_topic.arn) : null
   create_iam_role                   = module.this.enabled && var.create_iam_role
 
-  organization_aggregator         = var.is_organization_aggregator 
+  organization_aggregator = var.is_organization_aggregator
 
   create_organization_aggregator_iam_role = var.create_organization_aggregator_iam_role
 }

@@ -170,8 +170,8 @@ variable "disabled_aggregation_regions" {
 }
 
 variable "is_organization_aggregator" {
-  type      = bool 
-  default   = false 
+  type        = bool
+  default     = false
   description = "The aggregator is an AWS Organizations aggrgator"
 }
 

@@ -97,7 +97,7 @@ variable "iam_role_organization_aggregator_arn" {
     If you want to use an existing IAM Role, set the value of this to the ARN of the existing role and set
     create_organization_aggregator_iam_role to false.
 
-    See the AWS Docs for further information:
+    See the AWS docs for further information:
     http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
   DOC
   default     = null

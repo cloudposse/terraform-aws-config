@@ -94,7 +94,7 @@ variable "iam_role_organization_aggregator_arn" {
     The ARN for an IAM Role that AWS Config uses for the organization aggregator that fetches AWS config data from AWS accounts. 
     This is only used if create_organization_aggregator_iam_role is false.
 
-    If you want to use an existing IAM Role, set the value of this to the ARN of the existing topic and set
+    If you want to use an existing IAM Role, set the value of this to the ARN of the existing role and set
     create_organization_aggregator_iam_role to false.
 
     See the AWS Docs for further information:

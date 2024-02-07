@@ -127,7 +127,7 @@ module "iam_role" {
 
 # Create Optional IAM ROLE for organization wide aggregator
 module "iam_role_organization_aggregator" {
-  count   = module.this.enabled && local.create_organization_aggregator_iam_role ? 1 : 0
+  count   = local.create_organization_aggregator_iam_role ? 1 : 0
   source  = "cloudposse/iam-role/aws"
   version = "0.15.0"
 

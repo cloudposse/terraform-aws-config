@@ -62,7 +62,6 @@ variable "findings_notification_arn" {
   type        = string
 }
 
-
 variable "create_iam_role" {
   description = "Flag to indicate whether an IAM Role should be created to grant the proper permissions for AWS Config"
   type        = bool
@@ -74,8 +73,6 @@ variable "create_organization_aggregator_iam_role" {
   type        = bool
   default     = false
 }
-
-
 
 variable "iam_role_arn" {
   description = <<-DOC
@@ -186,4 +183,3 @@ variable "allowed_iam_arns_for_sns_publish" {
   description = "IAM role/user ARNs that will have permission to publish to SNS topic. Used when no external json policy is used."
   default     = []
 }
-

@@ -62,9 +62,14 @@ variable "findings_notification_arn" {
   type        = string
 }
 
-
 variable "create_iam_role" {
   description = "Flag to indicate whether an IAM Role should be created to grant the proper permissions for AWS Config"
+  type        = bool
+  default     = false
+}
+
+variable "create_organization_aggregator_iam_role" {
+  description = "Flag to indicate whether an IAM Role should be created to grant the proper permissions for AWS Config to send logs from organization accounts"
   type        = bool
   default     = false
 }
@@ -78,6 +83,21 @@ variable "iam_role_arn" {
     create_iam_role to false.
 
     See the AWS Docs for further information:
+    http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
+  DOC
+  default     = null
+  type        = string
+}
+
+variable "iam_role_organization_aggregator_arn" {
+  description = <<-DOC
+    The ARN for an IAM Role that AWS Config uses for the organization aggregator that fetches AWS config data from AWS accounts. 
+    This is only used if create_organization_aggregator_iam_role is false.
+
+    If you want to use an existing IAM Role, set the value of this to the ARN of the existing role and set
+    create_organization_aggregator_iam_role to false.
+
+    See the AWS docs for further information:
     http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
   DOC
   default     = null
@@ -146,6 +166,12 @@ variable "disabled_aggregation_regions" {
   default     = ["ap-northeast-3"]
 }
 
+variable "is_organization_aggregator" {
+  type        = bool
+  default     = false
+  description = "The aggregator is an AWS Organizations aggregator"
+}
+
 variable "allowed_aws_services_for_sns_published" {
   type        = list(string)
   description = "AWS services that will have permission to publish to SNS topic. Used when no external JSON policy is used"
@@ -157,4 +183,3 @@ variable "allowed_iam_arns_for_sns_publish" {
   description = "IAM role/user ARNs that will have permission to publish to SNS topic. Used when no external json policy is used."
   default     = []
 }
-

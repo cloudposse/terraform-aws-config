@@ -169,7 +169,7 @@ variable "disabled_aggregation_regions" {
 variable "is_organization_aggregator" {
   type        = bool
   default     = false
-  description = "The aggregator is an AWS Organizations aggrgator"
+  description = "The aggregator is an AWS Organizations aggregator"
 }
 
 variable "allowed_aws_services_for_sns_published" {

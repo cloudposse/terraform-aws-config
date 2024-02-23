@@ -144,6 +144,27 @@ variable "managed_rules" {
   default = {}
 }
 
+variable "recording_mode" {
+  description = <<-DOC
+    The mode for AWS Config to record configuration changes. Possible values are:
+    - Continuous
+    - Daily
+
+    You can also override the recording frequency for specific resource types.
+    See the following for more information:
+    https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
+  DOC
+  type = object({
+    recording_frequency     = string
+    recording_mode_override = optional(list(object({
+      description         = string
+      recording_frequency = string
+      resource_types      = list(string)
+    })))
+  })
+  default = null
+}
+
 variable "s3_key_prefix" {
   type        = string
   description = <<-DOC

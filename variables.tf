@@ -146,21 +146,45 @@ variable "managed_rules" {
 
 variable "recording_mode" {
   description = <<-DOC
-    The mode for AWS Config to record configuration changes. Possible values are:
-    - Continuous
-    - Daily
+    The mode for AWS Config to record configuration changes. 
+
+    recording_frequency:
+    The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
+    - CONTINUOUS
+    - DAILY
 
     You can also override the recording frequency for specific resource types.
+    recording_mode_override:
+      description:
+        A description for the override.
+      recording_frequency:
+        The frequency with which AWS Config records configuration changes for the specified resource types.
+        - CONTINUOUS
+        - DAILY
+      resource_types:
+        A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
+    
     See the following for more information:
     https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
+
+    /*
+    recording_mode = {
+      recording_frequency = "DAILY"
+      recording_mode_override = {
+        description         = "Override for specific resource types"
+        recording_frequency = "CONTINUOUS"
+        resource_types      = ["AWS::EC2::Instance"]
+      }
+    }
+    */
   DOC
   type = object({
     recording_frequency     = string
-    recording_mode_override = optional(list(object({
+    recording_mode_override = optional(object({
       description         = string
       recording_frequency = string
       resource_types      = list(string)
-    })))
+    }))
   })
   default = null
 }

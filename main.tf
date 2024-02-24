@@ -27,7 +27,7 @@ resource "aws_config_configuration_recorder" "recorder" {
         content {
           description         = var.recording_mode.recording_mode_override.description
           recording_frequency = var.recording_mode.recording_mode_override.recording_frequency
-          resource_types      = var.recording_mode.recording_mode_override.value
+          resource_types      = var.recording_mode.recording_mode_override.resource_types
         }
       }
     }

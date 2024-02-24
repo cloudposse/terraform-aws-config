@@ -44,6 +44,6 @@ func TestExamplesComplete(t *testing.T) {
 
 	// Ensure we get the attribute included in the IDs
 	assert.Equal(t, fmt.Sprintf("eg-ue2-test-%s-config", randID), configRecorderID)
-	assert.Equal(t, fmt.Sprintf("eg-ue2-test-aws-config-%s",randID), bucketID)
+	assert.Equal(t, fmt.Sprintf("eg-ue2-test-%s-aws-config",randID), bucketID)
 	assert.NotEqual(t, nil, iamRoleArn)
 }

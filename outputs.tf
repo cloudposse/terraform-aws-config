@@ -1,5 +1,5 @@
 output "aws_config_configuration_recorder_id" {
-  value       = join("", aws_config_configuration_recorder.recorder.*.id)
+  value       = join("", aws_config_configuration_recorder.recorder[*].id)
   description = "The ID of the AWS Config Recorder"
 }
 
@@ -19,6 +19,14 @@ output "iam_role" {
   the account.
   DOC
   value       = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
+}
+
+output "iam_role_organization_aggregator" {
+  description = <<-DOC
+  IAM Role used to make read or write requests to the delivery channel and to describe the AWS resources associated with 
+  the account.
+  DOC
+  value       = local.create_organization_aggregator_iam_role ? module.iam_role_organization_aggregator[0].arn : var.iam_role_organization_aggregator_arn
 }
 
 output "sns_topic" {

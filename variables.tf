@@ -179,7 +179,7 @@ variable "recording_mode" {
     */
   DOC
   type = object({
-    recording_frequency     = string
+    recording_frequency = string
     recording_mode_override = optional(object({
       description         = string
       recording_frequency = string

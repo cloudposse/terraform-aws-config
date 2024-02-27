@@ -115,14 +115,14 @@ Available targets:
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.38.0 |
 | <a name="requirement_http"></a> [http](#requirement\_http) | >= 3.4.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.38.0 |
 
 ## Modules
 
@@ -190,6 +190,7 @@ Available targets:
 | <a name="input_managed_rules"></a> [managed\_rules](#input\_managed\_rules) | A list of AWS Managed Rules that should be enabled on the account.<br><br>See the following for a list of possible rules to enable:<br>https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html | <pre>map(object({<br>    description      = string<br>    identifier       = string<br>    input_parameters = any<br>    tags             = map(string)<br>    enabled          = bool<br>  }))</pre> | `{}` | no |
 | <a name="input_name"></a> [name](#input\_name) | ID element. Usually the component or solution name, e.g. 'app' or 'jenkins'.<br>This is the only ID element not also included as a `tag`.<br>The "name" tag is set to the full `id` string. There is no tag with the value of the `name` input. | `string` | `null` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | ID element. Usually an abbreviation of your organization name, e.g. 'eg' or 'cp', to help ensure generated IDs are globally unique | `string` | `null` | no |
+| <a name="input_recording_mode"></a> [recording\_mode](#input\_recording\_mode) | The mode for AWS Config to record configuration changes. <br><br>recording\_frequency:<br>The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).<br>- CONTINUOUS<br>- DAILY<br><br>You can also override the recording frequency for specific resource types.<br>recording\_mode\_override:<br>  description:<br>    A description for the override.<br>  recording\_frequency:<br>    The frequency with which AWS Config records configuration changes for the specified resource types.<br>    - CONTINUOUS<br>    - DAILY<br>  resource\_types:<br>    A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.<br><br>See the following for more information:<br>https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html<br><br>/*<br>recording\_mode = {<br>  recording\_frequency = "DAILY"<br>  recording\_mode\_override = {<br>    description         = "Override for specific resource types"<br>    recording\_frequency = "CONTINUOUS"<br>    resource\_types      = ["AWS::EC2::Instance"]<br>  }<br>}<br>*/ | <pre>object({<br>    recording_frequency = string<br>    recording_mode_override = optional(object({<br>      description         = string<br>      recording_frequency = string<br>      resource_types      = list(string)<br>    }))<br>  })</pre> | `null` | no |
 | <a name="input_regex_replace_chars"></a> [regex\_replace\_chars](#input\_regex\_replace\_chars) | Terraform regular expression (regex) string.<br>Characters matching the regex will be removed from the ID elements.<br>If not set, `"/[^a-zA-Z0-9-]/"` is used to remove all characters other than hyphens, letters and digits. | `string` | `null` | no |
 | <a name="input_s3_bucket_arn"></a> [s3\_bucket\_arn](#input\_s3\_bucket\_arn) | The ARN of the S3 bucket used to store the configuration history | `string` | n/a | yes |
 | <a name="input_s3_bucket_id"></a> [s3\_bucket\_id](#input\_s3\_bucket\_id) | The id (name) of the S3 bucket used to store the configuration history | `string` | n/a | yes |

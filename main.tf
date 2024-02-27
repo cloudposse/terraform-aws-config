@@ -17,6 +17,21 @@ resource "aws_config_configuration_recorder" "recorder" {
     all_supported                 = true
     include_global_resource_types = local.is_global_recorder_region
   }
+
+  dynamic "recording_mode" {
+    for_each = var.recording_mode != null ? [1] : []
+    content {
+      recording_frequency = var.recording_mode.recording_frequency
+      dynamic "recording_mode_override" {
+        for_each = var.recording_mode.recording_mode_override != null ? [1] : []
+        content {
+          description         = var.recording_mode.recording_mode_override.description
+          recording_frequency = var.recording_mode.recording_mode_override.recording_frequency
+          resource_types      = var.recording_mode.recording_mode_override.resource_types
+        }
+      }
+    }
+  }
 }
 
 resource "aws_config_delivery_channel" "channel" {

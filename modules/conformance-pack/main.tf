@@ -13,5 +13,7 @@ resource "aws_config_conformance_pack" "default" {
 }
 
 data "http" "conformance_pack" {
-  url = var.conformance_pack
+
+  url             = var.conformance_pack
+  request_headers = var.access_token == "" ? {} : { Authorization = "token ${var.access_token}" }
 }

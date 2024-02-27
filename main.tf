@@ -17,6 +17,21 @@ resource "aws_config_configuration_recorder" "recorder" {
     all_supported                 = true
     include_global_resource_types = local.is_global_recorder_region
   }
+
+  dynamic "recording_mode" {
+    for_each = var.recording_mode != null ? [1] : []
+    content {
+      recording_frequency = var.recording_mode.recording_frequency
+      dynamic "recording_mode_override" {
+        for_each = var.recording_mode.recording_mode_override != null ? [1] : []
+        content {
+          description         = var.recording_mode.recording_mode_override.description
+          recording_frequency = var.recording_mode.recording_mode_override.recording_frequency
+          resource_types      = var.recording_mode.recording_mode_override.resource_types
+        }
+      }
+    }
+  }
 }
 
 resource "aws_config_delivery_channel" "channel" {
@@ -95,8 +110,9 @@ module "aws_config_findings_label" {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
-# Optionally create an IAM Role
+# Optionally create IAM Roles
 #-----------------------------------------------------------------------------------------------------------------------
+# Create Optional IAM ROLE for S3 bucket and SNS  
 module "iam_role" {
   count   = module.this.enabled && local.create_iam_role ? 1 : 0
   source  = "cloudposse/iam-role/aws"
@@ -124,6 +140,27 @@ module "iam_role" {
   context = module.this.context
 }
 
+# Create Optional IAM ROLE for organization wide aggregator
+module "iam_role_organization_aggregator" {
+  count   = local.create_organization_aggregator_iam_role ? 1 : 0
+  source  = "cloudposse/iam-role/aws"
+  version = "0.15.0"
+
+  principals = {
+    "Service" = ["config.amazonaws.com"]
+  }
+
+  use_fullname = true
+
+  policy_document_count = 0
+  policy_description    = "AWS Config IAM policy for organization aggregator"
+  role_description      = "AWS Config IAM role for organization aggregator"
+
+  attributes = ["aggregator", "config"]
+
+  context = module.this.context
+}
+
 resource "aws_iam_role_policy_attachment" "config_policy_attachment" {
   count = module.this.enabled && local.create_iam_role ? 1 : 0
 
@@ -131,8 +168,19 @@ resource "aws_iam_role_policy_attachment" "config_policy_attachment" {
   policy_arn = data.aws_iam_policy.aws_config_built_in_role.arn
 }
 
+resource "aws_iam_role_policy_attachment" "organization_config_policy_attachment" {
+  count = module.this.enabled && local.create_iam_role && var.is_organization_aggregator ? 1 : 0
+
+  role       = module.iam_role_organization_aggregator[0].name
+  policy_arn = data.aws_iam_policy.aws_config_organization_role.arn
+}
+
 data "aws_iam_policy" "aws_config_built_in_role" {
-  arn = "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
+  arn = "arn:${local.partition}:iam::aws:policy/service-role/AWS_ConfigRole"
+}
+
+data "aws_iam_policy" "aws_config_organization_role" {
+  arn = "arn:${local.partition}:iam::aws:policy/service-role/AWSConfigRoleForOrganizations"
 }
 
 data "aws_iam_policy_document" "config_s3_policy" {
@@ -188,11 +236,24 @@ resource "aws_config_configuration_aggregator" "this" {
   count = local.enabled && local.is_central_account && local.is_global_recorder_region ? 1 : 0
 
   name = module.aws_config_aggregator_label.id
-  account_aggregation_source {
-    account_ids = local.child_resource_collector_accounts
-    all_regions = true
+
+  # Create normal account aggregation source
+  dynamic "account_aggregation_source" {
+    for_each = var.is_organization_aggregator ? [] : [1]
+    content {
+      account_ids = local.child_resource_collector_accounts
+      all_regions = true
+    }
   }
 
+  # Create organization aggregation source
+  dynamic "organization_aggregation_source" {
+    for_each = var.is_organization_aggregator ? [1] : []
+    content {
+      all_regions = true
+      role_arn    = local.create_organization_aggregator_iam_role ? module.iam_role_organization_aggregator[0].arn : var.iam_role_organization_aggregator_arn
+    }
+  }
   tags = module.this.tags
 }
 
@@ -202,7 +263,7 @@ resource "aws_config_aggregate_authorization" "child" {
   #
   # Authorize each region in a child account to send its data to the global_resource_collector_region of the
   # central_resource_collector_account
-  count = local.enabled && var.central_resource_collector_account != null ? 1 : 0
+  count = local.enabled && var.central_resource_collector_account != null && var.is_organization_aggregator == false ? 1 : 0
 
   account_id = var.central_resource_collector_account
   region     = var.global_resource_collector_region
@@ -215,7 +276,7 @@ resource "aws_config_aggregate_authorization" "central" {
   # Multi-Account Multi-Region Data Aggregation and only enabling Multi-Region aggregation within the same account:
   #
   # Authorize each region to send its data to the global_resource_collector_region
-  count = local.enabled && var.central_resource_collector_account == null ? 1 : 0
+  count = local.enabled && var.central_resource_collector_account == null && var.is_organization_aggregator == false ? 1 : 0
 
   account_id = data.aws_caller_identity.this.account_id
   region     = var.global_resource_collector_region
@@ -223,21 +284,23 @@ resource "aws_config_aggregate_authorization" "central" {
   tags = module.this.tags
 }
 
-
 #-----------------------------------------------------------------------------------------------------------------------
 # LOCALS AND DATA SOURCES
 #-----------------------------------------------------------------------------------------------------------------------
 data "aws_region" "this" {}
 data "aws_caller_identity" "this" {}
+data "aws_partition" "current" {}
 
 locals {
   enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, data.aws_region.this.name)
 
-  is_central_account                = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
-  is_global_recorder_region         = var.global_resource_collector_region == data.aws_region.this.name
-  child_resource_collector_accounts = var.child_resource_collector_accounts != null ? var.child_resource_collector_accounts : []
-  enable_notifications              = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
-  create_sns_topic                  = module.this.enabled && var.create_sns_topic
-  findings_notification_arn         = local.enable_notifications ? (var.findings_notification_arn != null ? var.findings_notification_arn : module.sns_topic[0].sns_topic.arn) : null
-  create_iam_role                   = module.this.enabled && var.create_iam_role
+  is_central_account                      = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
+  is_global_recorder_region               = var.global_resource_collector_region == data.aws_region.this.name
+  child_resource_collector_accounts       = var.child_resource_collector_accounts != null ? var.child_resource_collector_accounts : []
+  enable_notifications                    = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
+  create_sns_topic                        = module.this.enabled && var.create_sns_topic
+  findings_notification_arn               = local.enable_notifications ? (var.findings_notification_arn != null ? var.findings_notification_arn : module.sns_topic[0].sns_topic.arn) : null
+  create_iam_role                         = module.this.enabled && var.create_iam_role
+  create_organization_aggregator_iam_role = module.this.enabled && var.create_organization_aggregator_iam_role
+  partition                               = data.aws_partition.current.partition
 }

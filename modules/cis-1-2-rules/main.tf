@@ -44,7 +44,7 @@ locals {
 
 module "aws_config_rules_yaml_config" {
   source  = "cloudposse/config/yaml"
-  version = "1.0.1"
+  version = "1.0.2"
 
   map_config_local_base_path = path.module
   map_config_paths           = var.config_rules_paths

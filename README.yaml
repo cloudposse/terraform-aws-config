@@ -29,6 +29,9 @@ badges:
   - name: Last Updated
     image: https://img.shields.io/github/last-commit/cloudposse/terraform-aws-config.svg?style=for-the-badge
     url: https://github.com/cloudposse/terraform-aws-config/commits
+  - name: Last Updated
+    image: https://img.shields.io/github/last-commit/cloudposse/terraform-aws-config.svg?style=for-the-badge
+    url: https://github.com/cloudposse/terraform-aws-config/commits
   - name: Latest Release
     image: https://img.shields.io/github/release/cloudposse/terraform-aws-config.svg?style=for-the-badge
     url: https://github.com/cloudposse/terraform-aws-config/releases/latest

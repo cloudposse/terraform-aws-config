@@ -13,8 +13,23 @@ resource "aws_config_configuration_recorder" "recorder" {
   count    = module.this.enabled ? 1 : 0
   name     = module.aws_config_label.id
   role_arn = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
+
   recording_group {
-    all_supported                 = true
+    all_supported                 = var.enable_exclusion == true || var.enable_inclusion == true ? false : true
+
+    recording_strategy {
+      use_only = var.enable_exclusion == true ? "EXCLUSION_BY_RESOURCE_TYPES" : (var.enable_inclusion == true ? "INCLUSION_BY_RESOURCE_TYPES" : "ALL_SUPPORTED_RESOURCE_TYPES")
+    }
+
+    # Only if inclusion enabled
+    resource_types = var.enable_inclusion == true && length(var.strategy_resource_types) > 0 ? var.strategy_resource_types : []
+
+    dynamic "exclusion_by_resource_types" {
+      for_each = var.enable_exclusion ? [1] : []
+      content {
+        resource_types = length(var.strategy_resource_types) > 0 ? var.strategy_resource_types : []
+      }
+    }
     include_global_resource_types = local.is_global_recorder_region
   }
 
@@ -295,7 +310,7 @@ locals {
   enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, data.aws_region.this.name)
 
   is_central_account                      = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
-  is_global_recorder_region               = var.global_resource_collector_region == data.aws_region.this.name
+  is_global_recorder_region               = var.global_resource_collector_region == data.aws_region.this.name && !(length(var.strategy_resource_types) > 0)
   child_resource_collector_accounts       = var.child_resource_collector_accounts != null ? var.child_resource_collector_accounts : []
   enable_notifications                    = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
   create_sns_topic                        = module.this.enabled && var.create_sns_topic

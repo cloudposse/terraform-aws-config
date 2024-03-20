@@ -189,6 +189,22 @@ variable "recording_mode" {
   default = null
 }
 
+variable "enable_exclusion" {
+  type        = bool
+  default     = false
+}
+
+variable "enable_inclusion" {
+  type        = bool
+  default     = false
+}
+
+variable "strategy_resource_types" {
+  description = "Defines what resources will be excluded from recorder"
+  type        = list(string)
+  default     = []
+}
+
 variable "s3_key_prefix" {
   type        = string
   description = <<-DOC

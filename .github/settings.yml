@@ -1,0 +1,7 @@
+# Upstream changes from _extends are only recognized when modifications are made to this file in the default branch.
+_extends: .github
+repository:
+  name: terraform-aws-config
+  description: This module configures AWS Config, a service that enables you to assess, audit, and evaluate the configurations of your AWS resources.
+  homepage: https://cloudposse.com/accelerate
+  topics: compliance, terraform, terraform-modules, terraform-module

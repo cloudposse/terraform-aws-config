@@ -124,7 +124,7 @@ module "iam_role" {
 
   use_fullname = true
 
-  policy_documents = var.create_sns_topic ? [
+  policy_documents = var.enable_notifications ? [
     data.aws_iam_policy_document.config_s3_policy[0].json,
     data.aws_iam_policy_document.config_sns_policy[0].json
     ] : [

@@ -131,7 +131,7 @@ module "iam_role" {
     data.aws_iam_policy_document.config_s3_policy[0].json
   ]
 
-  policy_document_count = var.create_sns_topic ? 2 : 1
+  policy_document_count = var.enable_notifications ? 2 : 1
   policy_description    = "AWS Config IAM policy"
   role_description      = "AWS Config IAM role"
 

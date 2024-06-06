@@ -206,7 +206,7 @@ data "aws_iam_policy_document" "config_s3_policy" {
 }
 
 data "aws_iam_policy_document" "config_sns_policy" {
-  count = local.create_iam_role && local.create_sns_topic ? 1 : 0
+  count = local.create_iam_role && local.enable_notifications ? 1 : 0
 
   statement {
     sid       = "ConfigSNS"

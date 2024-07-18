@@ -5,3 +5,4 @@ repository:
   description: This module configures AWS Config, a service that enables you to assess, audit, and evaluate the configurations of your AWS resources.
   homepage: https://cloudposse.com/accelerate
   topics: compliance, terraform, terraform-modules, terraform-module
+

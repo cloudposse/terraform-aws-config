@@ -9,9 +9,11 @@ resource "aws_config_conformance_pack" "default" {
     }
   }
 
-  template_body = data.http.conformance_pack.body
+  template_body = data.http.conformance_pack.response_body
 }
 
 data "http" "conformance_pack" {
-  url = var.conformance_pack
+
+  url             = var.conformance_pack
+  request_headers = var.access_token == "" ? {} : { Authorization = "token ${var.access_token}" }
 }

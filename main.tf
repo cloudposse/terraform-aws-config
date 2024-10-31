@@ -55,7 +55,7 @@ resource "aws_config_configuration_recorder_status" "recorder_status" {
 }
 
 resource "aws_config_config_rule" "rules" {
-  for_each   = module.this.enabled ? var.managed_rules : {}
+  for_each   = module.this.enabled ? { for k, v in var.managed_rules : k => v if v.enabled } : {}
   depends_on = [aws_config_configuration_recorder_status.recorder_status]
 
   name        = each.key

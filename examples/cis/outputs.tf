@@ -1,5 +1,6 @@
 output "enabled_rules" {
-  value = module.cis_rules.rules
+  value       = module.cis_rules.rules
+  description = "The output of the enabled CIS rules"
 }
 
 output "config_recorder_id" {

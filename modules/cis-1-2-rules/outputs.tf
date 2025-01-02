@@ -1,4 +1,4 @@
 output "rules" {
   value       = local.enabled_rules
-  description = "Enable rules"
+  description = "Enabled rules"
 }

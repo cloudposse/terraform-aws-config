@@ -124,14 +124,14 @@ module "iam_role" {
 
   use_fullname = true
 
-  policy_documents = var.create_sns_topic ? [
+  policy_documents = local.enable_notifications ? [
     data.aws_iam_policy_document.config_s3_policy[0].json,
     data.aws_iam_policy_document.config_sns_policy[0].json
     ] : [
     data.aws_iam_policy_document.config_s3_policy[0].json
   ]
 
-  policy_document_count = var.create_sns_topic ? 2 : 1
+  policy_document_count = local.enable_notifications ? 2 : 1
   policy_description    = "AWS Config IAM policy"
   role_description      = "AWS Config IAM role"
 
@@ -206,7 +206,7 @@ data "aws_iam_policy_document" "config_s3_policy" {
 }
 
 data "aws_iam_policy_document" "config_sns_policy" {
-  count = local.create_iam_role && local.create_sns_topic ? 1 : 0
+  count = local.create_iam_role && local.enable_notifications ? 1 : 0
 
   statement {
     sid       = "ConfigSNS"

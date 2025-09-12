@@ -298,7 +298,7 @@ data "aws_partition" "current" {}
 locals {
   enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, local.region)
 
-  region                                  = var.region != null ? var.region : data.aws_region.this.name
+  region                                  = var.region != null ? var.region : data.aws_region.this.region
   is_central_account                      = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
   is_global_recorder_region               = var.global_resource_collector_region == local.region
   is_central_recorder_region              = local.is_central_account && local.is_global_recorder_region

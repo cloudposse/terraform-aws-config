@@ -173,7 +173,7 @@ resource "aws_iam_role_policy_attachment" "config_policy_attachment" {
 }
 
 resource "aws_iam_role_policy_attachment" "organization_config_policy_attachment" {
-  count = module.this.enabled && local.create_iam_role && var.is_organization_aggregator ? 1 : 0
+  count = local.create_organization_aggregator_iam_role && local.is_central_recorder_region && var.is_organization_aggregator ? 1 : 0
 
   role       = module.iam_role_organization_aggregator[0].name
   policy_arn = data.aws_iam_policy.aws_config_organization_role.arn

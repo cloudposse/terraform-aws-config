@@ -13,6 +13,8 @@ resource "aws_config_configuration_recorder" "recorder" {
   count    = module.this.enabled ? 1 : 0
   name     = module.aws_config_label.id
   role_arn = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
+  region   = local.region
+
   recording_group {
     all_supported                 = true
     include_global_resource_types = local.is_global_recorder_region
@@ -37,6 +39,7 @@ resource "aws_config_configuration_recorder" "recorder" {
 resource "aws_config_delivery_channel" "channel" {
   count          = module.this.enabled ? 1 : 0
   name           = module.aws_config_label.id
+  region         = local.region
   s3_bucket_name = var.s3_bucket_id
   s3_key_prefix  = var.s3_key_prefix
   sns_topic_arn  = local.findings_notification_arn
@@ -50,6 +53,7 @@ resource "aws_config_delivery_channel" "channel" {
 resource "aws_config_configuration_recorder_status" "recorder_status" {
   count      = module.this.enabled ? 1 : 0
   name       = aws_config_configuration_recorder.recorder[0].name
+  region     = local.region
   is_enabled = true
   depends_on = [aws_config_delivery_channel.channel]
 }
@@ -112,7 +116,7 @@ module "aws_config_findings_label" {
 #-----------------------------------------------------------------------------------------------------------------------
 # Optionally create IAM Roles
 #-----------------------------------------------------------------------------------------------------------------------
-# Create Optional IAM ROLE for S3 bucket and SNS  
+# Create Optional IAM ROLE for S3 bucket and SNS
 module "iam_role" {
   count   = module.this.enabled && local.create_iam_role ? 1 : 0
   source  = "cloudposse/iam-role/aws"
@@ -292,10 +296,11 @@ data "aws_caller_identity" "this" {}
 data "aws_partition" "current" {}
 
 locals {
-  enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, data.aws_region.this.name)
+  enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, local.region)
 
+  region                                  = var.region != null ? var.region : data.aws_region.this.name
   is_central_account                      = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
-  is_global_recorder_region               = var.global_resource_collector_region == data.aws_region.this.name
+  is_global_recorder_region               = var.global_resource_collector_region == local.region
   child_resource_collector_accounts       = var.child_resource_collector_accounts != null ? var.child_resource_collector_accounts : []
   enable_notifications                    = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
   create_sns_topic                        = module.this.enabled && var.create_sns_topic

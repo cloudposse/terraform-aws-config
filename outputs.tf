@@ -15,7 +15,7 @@ output "storage_bucket_arn" {
 
 output "iam_role" {
   description = <<-DOC
-  IAM Role used to make read or write requests to the delivery channel and to describe the AWS resources associated with 
+  IAM Role used to make read or write requests to the delivery channel and to describe the AWS resources associated with
   the account.
   DOC
   value       = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
@@ -23,10 +23,10 @@ output "iam_role" {
 
 output "iam_role_organization_aggregator" {
   description = <<-DOC
-  IAM Role used to make read or write requests to the delivery channel and to describe the AWS resources associated with 
+  IAM Role used to make read or write requests to the delivery channel and to describe the AWS resources associated with
   the account.
   DOC
-  value       = local.create_organization_aggregator_iam_role ? module.iam_role_organization_aggregator[0].arn : var.iam_role_organization_aggregator_arn
+  value       = local.is_central_recorder_region && local.create_organization_aggregator_iam_role ? module.iam_role_organization_aggregator[0].arn : var.iam_role_organization_aggregator_arn
 }
 
 output "sns_topic" {

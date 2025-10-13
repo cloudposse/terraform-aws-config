@@ -16,12 +16,12 @@ resource "aws_config_configuration_recorder" "recorder" {
 
   recording_group {
     # if resource exclusion mode, set false; otherwise true
-    all_supported                 = local.is_exclusion_by_resource_types ? false : true
+    all_supported                 = local.is_exclusion_by_type_enabled ? false : true
     include_global_resource_types = local.is_global_recorder_region
 
-    # include ONLY when is_exclusion_by_resource_types = true
+    # include ONLY when is_exclusion_by_type_enabled = true
     dynamic "recording_strategy" {
-      for_each = local.is_exclusion_by_resource_types ? [1] : []
+      for_each = local.is_exclusion_by_type_enabled ? [1] : []
       content {
         use_only = "EXCLUSION_BY_RESOURCE_TYPES"
       }
@@ -29,7 +29,7 @@ resource "aws_config_configuration_recorder" "recorder" {
 
     # include ONLY when is_exclusion_by_resource_types = true
     dynamic "exclusion_by_resource_types" {
-      for_each = local.is_exclusion_by_resource_types ? [1] : []
+      for_each = local.is_exclusion_by_type_enabled ? [1] : []
       content {
         resource_types = var.exclusion_by_resource_types
       }
@@ -321,5 +321,5 @@ locals {
   create_iam_role                         = module.this.enabled && var.create_iam_role
   create_organization_aggregator_iam_role = module.this.enabled && var.create_organization_aggregator_iam_role
   partition                               = data.aws_partition.current.partition
-  is_exclusion_by_resource_types          = (var.exclusion_by_resource_types == null || length(var.exclusion_by_resource_types) == 0) ? false : true
+  is_exclusion_by_type_enabled          = (var.exclusion_by_resource_types == null || length(var.exclusion_by_resource_types) == 0) ? false : true
 }

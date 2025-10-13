@@ -91,7 +91,7 @@ variable "iam_role_arn" {
 
 variable "iam_role_organization_aggregator_arn" {
   description = <<-DOC
-    The ARN for an IAM Role that AWS Config uses for the organization aggregator that fetches AWS config data from AWS accounts. 
+    The ARN for an IAM Role that AWS Config uses for the organization aggregator that fetches AWS config data from AWS accounts.
     This is only used if create_organization_aggregator_iam_role is false.
 
     If you want to use an existing IAM Role, set the value of this to the ARN of the existing role and set
@@ -146,7 +146,7 @@ variable "managed_rules" {
 
 variable "recording_mode" {
   description = <<-DOC
-    The mode for AWS Config to record configuration changes. 
+    The mode for AWS Config to record configuration changes.
 
     recording_frequency:
     The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
@@ -163,7 +163,7 @@ variable "recording_mode" {
         - DAILY
       resource_types:
         A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-    
+
     See the following for more information:
     https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
 
@@ -187,6 +187,24 @@ variable "recording_mode" {
     }))
   })
   default = null
+}
+
+variable "exclusion_by_resource_types" {
+  type        = list(string)
+  description = <<-DOC
+    A list of resource types to exclude from recording.
+    Supported resource types are listed here https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html.
+    Implies recording strategy of `EXCLUSION_BY_RESOURCE_TYPES` and `all_supported` = `false`.
+    Conflicts with `resource_types` (no implemented yet).
+
+    Example:
+
+    exclusion_by_resource_types = [
+      "AWS::Config::ResourceCompliance",
+      "AWS::CloudWatch::Alarm"
+    ]
+  DOC
+  default     = null
 }
 
 variable "s3_key_prefix" {

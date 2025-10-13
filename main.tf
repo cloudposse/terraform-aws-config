@@ -17,7 +17,7 @@ resource "aws_config_configuration_recorder" "recorder" {
   recording_group {
     # if resource exclusion mode, set false; otherwise true
     all_supported                 = local.is_exclusion_by_type_enabled ? false : true
-    include_global_resource_types = local.is_global_recorder_region
+    include_global_resource_types = local.is_exclusion_by_type_enabled ? false : local.is_global_recorder_region
 
     # include ONLY when is_exclusion_by_type_enabled = true
     dynamic "recording_strategy" {

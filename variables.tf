@@ -194,8 +194,9 @@ variable "exclusion_by_resource_types" {
   description = <<-DOC
     A list of resource types to exclude from recording.
     Supported resource types are listed here https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html.
-    Implies recording strategy of `EXCLUSION_BY_RESOURCE_TYPES` and `all_supported` = `false`.
-    Conflicts with `resource_types` (no implemented yet).
+    Implies recording strategy of `EXCLUSION_BY_RESOURCE_TYPES`, `all_supported` = `false` and
+    `include_global_resource_types` = `false`.
+    Conflicts with `resource_types` (not implemented yet).
 
     Example:
 

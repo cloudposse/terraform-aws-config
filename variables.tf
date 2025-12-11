@@ -91,7 +91,7 @@ variable "iam_role_arn" {
 
 variable "iam_role_organization_aggregator_arn" {
   description = <<-DOC
-    The ARN for an IAM Role that AWS Config uses for the organization aggregator that fetches AWS config data from AWS accounts. 
+    The ARN for an IAM Role that AWS Config uses for the organization aggregator that fetches AWS config data from AWS accounts.
     This is only used if create_organization_aggregator_iam_role is false.
 
     If you want to use an existing IAM Role, set the value of this to the ARN of the existing role and set
@@ -107,6 +107,12 @@ variable "iam_role_organization_aggregator_arn" {
 variable "global_resource_collector_region" {
   description = "The region that collects AWS Config data for global resources such as IAM"
   type        = string
+}
+
+variable "region" {
+  description = "Region where the resources will be managed. Defaults to the Region set in the provider configuration."
+  type        = string
+  default     = null
 }
 
 variable "central_resource_collector_account" {
@@ -146,7 +152,7 @@ variable "managed_rules" {
 
 variable "recording_mode" {
   description = <<-DOC
-    The mode for AWS Config to record configuration changes. 
+    The mode for AWS Config to record configuration changes.
 
     recording_frequency:
     The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
@@ -163,7 +169,7 @@ variable "recording_mode" {
         - DAILY
       resource_types:
         A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-    
+
     See the following for more information:
     https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
 

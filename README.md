@@ -163,6 +163,7 @@ Here is an example of using this module:
 | <a name="input_findings_notification_arn"></a> [findings\_notification\_arn](#input\_findings\_notification\_arn) | The ARN for an SNS topic to send findings notifications to. This is only used if create\_sns\_topic is false.<br/>If you want to send findings to an existing SNS topic, set the value of this to the ARN of the existing topic and set<br/>create\_sns\_topic to false. | `string` | `null` | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable | `bool` | `false` | no |
 | <a name="input_global_resource_collector_region"></a> [global\_resource\_collector\_region](#input\_global\_resource\_collector\_region) | The region that collects AWS Config data for global resources such as IAM | `string` | n/a | yes |
+| <a name="region"></a> [region](#region) | Region where the resources will be managed. Defaults to the Region set in the provider configuration. | `string` | `null` | no |
 | <a name="input_iam_role_arn"></a> [iam\_role\_arn](#input\_iam\_role\_arn) | The ARN for an IAM Role AWS Config uses to make read or write requests to the delivery channel and to describe the<br/>AWS resources associated with the account. This is only used if create\_iam\_role is false.<br/><br/>If you want to use an existing IAM Role, set the value of this to the ARN of the existing topic and set<br/>create\_iam\_role to false.<br/><br/>See the AWS Docs for further information:<br/>http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html | `string` | `null` | no |
 | <a name="input_iam_role_organization_aggregator_arn"></a> [iam\_role\_organization\_aggregator\_arn](#input\_iam\_role\_organization\_aggregator\_arn) | The ARN for an IAM Role that AWS Config uses for the organization aggregator that fetches AWS config data from AWS accounts. <br/>This is only used if create\_organization\_aggregator\_iam\_role is false.<br/><br/>If you want to use an existing IAM Role, set the value of this to the ARN of the existing role and set<br/>create\_organization\_aggregator\_iam\_role to false.<br/><br/>See the AWS docs for further information:<br/>http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html | `string` | `null` | no |
 | <a name="input_id_length_limit"></a> [id\_length\_limit](#input\_id\_length\_limit) | Limit `id` to this many characters (minimum 6).<br/>Set to `0` for unlimited length.<br/>Set to `null` for keep the existing setting, which defaults to `0`.<br/>Does not affect `id_full`. | `number` | `null` | no |
@@ -304,15 +305,15 @@ Setup dependencies:
 
 To run tests:
 
-- Run all tests:  
+- Run all tests:
   ```sh
   atmos test run
   ```
-- Clean up test artifacts:  
+- Clean up test artifacts:
   ```sh
   atmos test clean
   ```
-- Explore additional test options:  
+- Explore additional test options:
   ```sh
   atmos test --help
   ```

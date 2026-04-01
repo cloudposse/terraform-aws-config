@@ -70,6 +70,62 @@ resource "aws_config_config_rule" "rules" {
   tags             = merge(module.this.tags, each.value.tags)
 }
 
+resource "aws_config_config_rule" "custom_lambda_rules" {
+  for_each   = module.this.enabled ? { for k, v in var.custom_lambda_rules : k => v if v.enabled } : {}
+  depends_on = [aws_config_configuration_recorder_status.recorder_status]
+
+  name        = each.key
+  description = each.value.description
+
+  source {
+    owner             = "CUSTOM_LAMBDA"
+    source_identifier = each.value.lambda_function_arn
+  }
+
+  input_parameters = length(each.value.input_parameters) > 0 ? jsonencode(each.value.input_parameters) : null
+
+  dynamic "scope" {
+    for_each = each.value.scope != null ? [1] : []
+    content {
+      compliance_resource_types = each.value.scope.compliance_resource_types
+    }
+  }
+
+  tags = merge(module.this.tags, each.value.tags)
+}
+
+resource "aws_config_config_rule" "custom_policy_rules" {
+  for_each   = module.this.enabled ? { for k, v in var.custom_policy_rules : k => v if v.enabled } : {}
+  depends_on = [aws_config_configuration_recorder_status.recorder_status]
+
+  name        = each.key
+  description = each.value.description
+
+  source {
+    owner             = "CUSTOM_POLICY"
+    source_identifier = "custom-policy"
+
+    dynamic "custom_policy_details" {
+      for_each = (each.value.policy != null || each.value.policy_arn != null) ? [1] : []
+      content {
+        policy_text     = each.value.policy
+        policy_file_uri = each.value.policy_arn
+      }
+    }
+  }
+
+  input_parameters = length(each.value.input_parameters) > 0 ? jsonencode(each.value.input_parameters) : null
+
+  dynamic "scope" {
+    for_each = each.value.scope != null ? [1] : []
+    content {
+      compliance_resource_types = each.value.scope.compliance_resource_types
+    }
+  }
+
+  tags = merge(module.this.tags, each.value.tags)
+}
+
 #-----------------------------------------------------------------------------------------------------------------------
 # Optionally create an SNS topic and subscriptions
 #-----------------------------------------------------------------------------------------------------------------------

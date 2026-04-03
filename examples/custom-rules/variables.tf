@@ -1,30 +1,35 @@
 variable "region" {
-  type    = string
-  default = "us-east-1"
+  description = "The AWS region where resources will be created."
+  type        = string
+  default     = "us-east-1"
 }
 
 variable "force_destroy" {
-  type    = bool
-  default = true
+  description = "Whether to force destroy resources that have dependencies."
+  type        = bool
+  default     = true
 }
 
 variable "create_sns_topic" {
-  type    = bool
-  default = true
+  description = "Whether to create an SNS topic for Config notifications."
+  type        = bool
+  default     = true
 }
 
 variable "create_iam_role" {
-  type    = bool
-  default = true
+  description = "Whether to create an IAM role for Config."
+  type        = bool
+  default     = true
 }
 
 variable "global_resource_collector_region" {
-  type    = string
-  default = "us-east-1"
+  description = "The AWS region for the global resource collector."
+  type        = string
+  default     = "us-east-1"
 }
 
 variable "managed_rules" {
-  description = "AWS managed rules configuration"
+  description = "Configuration for AWS managed rules."
   type = map(object({
     description      = string
     identifier       = string
@@ -34,7 +39,7 @@ variable "managed_rules" {
   }))
   default = {
     account-part-of-organizations = {
-      description      = "Checks whether AWS account is part of AWS Organizations"
+      description      = "Checks whether AWS account is part of AWS Organizations."
       identifier       = "ACCOUNT_PART_OF_ORGANIZATIONS"
       input_parameters = {}
       tags             = {}
@@ -44,7 +49,7 @@ variable "managed_rules" {
 }
 
 variable "custom_lambda_rules" {
-  description = "Custom Lambda-based Config rules"
+  description = "Custom Lambda-based Config rules."
   type = map(object({
     description         = string
     lambda_function_arn = string
@@ -58,7 +63,7 @@ variable "custom_lambda_rules" {
   }))
   default = {
     example_custom_lambda = {
-      description         = "Custom Lambda rule for evaluating EC2 instance tags"
+      description         = "Custom Lambda rule for evaluating EC2 instance tags."
       lambda_function_arn = "arn:aws:lambda:us-east-1:123456789012:function:ConfigRuleFunction"
       input_parameters = {
         requiredTags = "Environment,CostCenter"
@@ -75,7 +80,7 @@ variable "custom_lambda_rules" {
 }
 
 variable "custom_policy_rules" {
-  description = "Custom policy-based Config rules (CFN Guard)"
+  description = "Custom policy-based Config rules using CFN Guard."
   type = map(object({
     description      = string
     policy           = optional(string, null)
@@ -89,7 +94,7 @@ variable "custom_policy_rules" {
   }))
   default = {
     example_cfn_guard_rule = {
-      description = "CFN Guard rule for checking security group configurations"
+      description = "CFN Guard rule for checking security group configurations."
       policy      = <<-EOT
         rule sg_restricted_ingress {
           aws_security_group.SecurityGroupIngress[*]  {

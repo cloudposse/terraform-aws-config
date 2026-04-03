@@ -261,8 +261,8 @@ variable "custom_policy_rules" {
   DOC
   type = map(object({
     description      = string
-    policy           = optional(string, null)  # Policy text or CFN Guard rules
-    policy_arn       = optional(string, null)  # S3 ARN to policy file
+    policy           = optional(string, null) # Policy text or CFN Guard rules
+    policy_arn       = optional(string, null) # S3 ARN to policy file
     input_parameters = optional(any, {})
     scope = optional(object({
       compliance_resource_types = optional(list(string), [])

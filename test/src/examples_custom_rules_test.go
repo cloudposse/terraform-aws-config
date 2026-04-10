@@ -12,8 +12,8 @@ import (
 )
 
 func TestExamplesCustomRules(t *testing.T) {
-	rand.Seed(time.Now().UnixNano())
-	randID := strconv.Itoa(rand.Intn(100000))
+	rng := rand.New(rand.NewSource(time.Now().UnixNano()))
+	randID := strconv.Itoa(rng.Intn(100000))
 	attributes := []string{randID}
 
 	terraformOptions := &terraform.Options{

@@ -84,7 +84,7 @@ variable "custom_policy_rules" {
   type = map(object({
     description      = string
     policy           = optional(string, null)
-    policy_arn       = optional(string, null)
+    policy_runtime   = optional(string, "guard-2.x.x")
     input_parameters = optional(any, {})
     scope = optional(object({
       compliance_resource_types = optional(list(string), [])
@@ -94,8 +94,9 @@ variable "custom_policy_rules" {
   }))
   default = {
     example_cfn_guard_rule = {
-      description = "CFN Guard rule for checking security group configurations."
-      policy      = <<-EOT
+      description    = "CFN Guard rule for checking security group configurations."
+      policy_runtime = "guard-2.x.x"
+      policy         = <<-EOT
         rule sg_restricted_ingress {
           aws_security_group.SecurityGroupIngress[*]  {
             cidr_ip != "0.0.0.0/0"

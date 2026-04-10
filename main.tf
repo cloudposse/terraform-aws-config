@@ -102,14 +102,13 @@ resource "aws_config_config_rule" "custom_policy_rules" {
   description = each.value.description
 
   source {
-    owner             = "CUSTOM_POLICY"
-    source_identifier = "custom-policy"
+    owner = "CUSTOM_POLICY"
 
     dynamic "custom_policy_details" {
-      for_each = (each.value.policy != null || each.value.policy_arn != null) ? [1] : []
+      for_each = each.value.policy != null ? [1] : []
       content {
-        policy_text     = each.value.policy
-        policy_file_uri = each.value.policy_arn
+        policy_runtime = each.value.policy_runtime
+        policy_text    = each.value.policy
       }
     }
   }

@@ -254,15 +254,15 @@ variable "custom_lambda_rules" {
 variable "custom_policy_rules" {
   description = <<-DOC
     A map of custom policy-based Config rules (CFN Guard, etc.).
-    Uses Policy and PolicyArn for rule evaluation.
-    
+    Uses inline policy_text for rule evaluation.
+
     See the following for more information:
     https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules_cfn-guard.html
   DOC
   type = map(object({
     description      = string
-    policy           = optional(string, null) # Policy text or CFN Guard rules
-    policy_arn       = optional(string, null) # S3 ARN to policy file
+    policy           = optional(string, null) # Inline CFN Guard policy text
+    policy_runtime   = optional(string, "guard-2.x.x")
     input_parameters = optional(any, {})
     scope = optional(object({
       compliance_resource_types = optional(list(string), [])

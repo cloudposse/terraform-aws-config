@@ -228,3 +228,47 @@ variable "allowed_iam_arns_for_sns_publish" {
   description = "IAM role/user ARNs that will have permission to publish to SNS topic. Used when no external json policy is used."
   default     = []
 }
+
+variable "custom_lambda_rules" {
+  description = <<-DOC
+    A map of custom Lambda-based Config rules.
+    Each rule requires a Lambda function ARN and custom runtime logic.
+    
+    See the following for more information:
+    https://docs.aws.amazon.com/config/latest/developerguide/custom-lambda-rules.html
+  DOC
+  type = map(object({
+    description         = string
+    lambda_function_arn = string
+    input_parameters    = optional(any, {})
+    source_identifier   = optional(string, null)
+    scope = optional(object({
+      compliance_resource_types = optional(list(string), [])
+    }), null)
+    tags    = optional(map(string), {})
+    enabled = bool
+  }))
+  default = {}
+}
+
+variable "custom_policy_rules" {
+  description = <<-DOC
+    A map of custom policy-based Config rules (CFN Guard, etc.).
+    Uses inline policy_text for rule evaluation.
+
+    See the following for more information:
+    https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules_cfn-guard.html
+  DOC
+  type = map(object({
+    description      = string
+    policy           = optional(string, null) # Inline CFN Guard policy text
+    policy_runtime   = optional(string, "guard-2.x.x")
+    input_parameters = optional(any, {})
+    scope = optional(object({
+      compliance_resource_types = optional(list(string), [])
+    }), null)
+    tags    = optional(map(string), {})
+    enabled = bool
+  }))
+  default = {}
+}

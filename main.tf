@@ -321,7 +321,7 @@ resource "aws_config_aggregate_authorization" "child" {
   count = local.enabled && var.central_resource_collector_account != null && var.is_organization_aggregator == false ? 1 : 0
 
   account_id = var.central_resource_collector_account
-  region     = var.global_resource_collector_region
+  authorized_aws_region = var.global_resource_collector_region
 
   tags = module.this.tags
 }
@@ -334,7 +334,7 @@ resource "aws_config_aggregate_authorization" "central" {
   count = local.enabled && var.central_resource_collector_account == null && var.is_organization_aggregator == false ? 1 : 0
 
   account_id = data.aws_caller_identity.this.account_id
-  region     = var.global_resource_collector_region
+  authorized_aws_region = var.global_resource_collector_region
 
   tags = module.this.tags
 }
@@ -347,10 +347,10 @@ data "aws_caller_identity" "this" {}
 data "aws_partition" "current" {}
 
 locals {
-  enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, data.aws_region.this.name)
+  enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, data.aws_region.this.id)
 
   is_central_account                      = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
-  is_global_recorder_region               = var.global_resource_collector_region == data.aws_region.this.name
+  is_global_recorder_region               = var.global_resource_collector_region == data.aws_region.this.id
   child_resource_collector_accounts       = var.child_resource_collector_accounts != null ? var.child_resource_collector_accounts : []
   enable_notifications                    = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
   create_sns_topic                        = module.this.enabled && var.create_sns_topic

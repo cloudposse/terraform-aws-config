@@ -347,10 +347,10 @@ data "aws_caller_identity" "this" {}
 data "aws_partition" "current" {}
 
 locals {
-  enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, data.aws_region.this.name)
+  enabled = module.this.enabled && !contains(var.disabled_aggregation_regions, data.aws_region.this.region)
 
   is_central_account                      = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
-  is_global_recorder_region               = var.global_resource_collector_region == data.aws_region.this.name
+  is_global_recorder_region               = var.global_resource_collector_region == data.aws_region.this.region
   child_resource_collector_accounts       = var.child_resource_collector_accounts != null ? var.child_resource_collector_accounts : []
   enable_notifications                    = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
   create_sns_topic                        = module.this.enabled && var.create_sns_topic

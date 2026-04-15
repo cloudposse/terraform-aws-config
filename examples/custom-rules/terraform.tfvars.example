@@ -1,0 +1,59 @@
+# Example AWS Config with Custom Rules
+# Uncomment and customize values as needed
+
+region                           = "us-east-1"
+global_resource_collector_region = "us-east-1"
+create_sns_topic                 = true
+create_iam_role                  = true
+force_destroy                    = false
+
+# AWS-managed rules example
+managed_rules = {
+  account-part-of-organizations = {
+    description      = "Checks whether AWS account is part of AWS Organizations"
+    identifier       = "ACCOUNT_PART_OF_ORGANIZATIONS"
+    input_parameters = {}
+    tags             = {}
+    enabled          = false # Change to true to enable
+  }
+}
+
+# Custom Lambda rules example
+custom_lambda_rules = {
+  # example_lambda_rule = {
+  #   description         = "Custom Lambda rule for EC2 instance compliance"
+  #   lambda_function_arn = "arn:aws:lambda:us-east-1:123456789012:function:ConfigRuleFunction"
+  #   input_parameters = {
+  #     requiredTags = "Environment,CostCenter"
+  #   }
+  #   scope = {
+  #     compliance_resource_types = ["AWS::EC2::Instance"]
+  #   }
+  #   tags = {
+  #     Type = "Custom"
+  #   }
+  #   enabled = true
+  # }
+}
+
+# Custom policy rules example (CFN Guard)
+custom_policy_rules = {
+  # example_policy_rule = {
+  #   description = "CFN Guard rule for security group validation"
+  #   policy = <<-EOT
+  #     rule sg_restricted_ingress {
+  #       aws_security_group.SecurityGroupIngress[*] {
+  #         cidr_ip != "0.0.0.0/0"
+  #       }
+  #     }
+  #   EOT
+  #   input_parameters = {}
+  #   scope = {
+  #     compliance_resource_types = ["AWS::EC2::SecurityGroup"]
+  #   }
+  #   tags = {
+  #     Type = "Policy"
+  #   }
+  #   enabled = true
+  # }
+}

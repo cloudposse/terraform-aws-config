@@ -38,3 +38,17 @@ output "sns_topic_subscriptions" {
   description = "SNS topic subscriptions"
   value       = local.create_sns_topic ? module.sns_topic[0].aws_sns_topic_subscriptions : null
 }
+
+output "custom_lambda_rule_arns" {
+  description = "Map of custom Lambda rule names to their ARNs"
+  value = {
+    for k, v in aws_config_config_rule.custom_lambda_rules : k => v.arn
+  }
+}
+
+output "custom_policy_rule_arns" {
+  description = "Map of custom policy rule names to their ARNs"
+  value = {
+    for k, v in aws_config_config_rule.custom_policy_rules : k => v.arn
+  }
+}

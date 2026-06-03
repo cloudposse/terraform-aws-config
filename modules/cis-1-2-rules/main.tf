@@ -1,5 +1,5 @@
 locals {
-  current_region = module.utils.region_az_alt_code_maps.to_fixed[data.aws_region.current.name]
+  current_region = module.utils.region_az_alt_code_maps.to_fixed[data.aws_region.current.region]
 
   file_rules      = module.aws_config_rules_yaml_config.map_configs
   rules_with_tags = { for k, rule in local.file_rules : k => rule if rule.tags != null }
@@ -56,5 +56,5 @@ data "aws_region" "current" {}
 
 module "utils" {
   source  = "cloudposse/utils/aws"
-  version = "1.0.0"
+  version = "1.4.0"
 }

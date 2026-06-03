@@ -4,7 +4,7 @@ provider "aws" {
 
 module "test_label" {
   source  = "cloudposse/label/null"
-  version = "0.22.1"
+  version = "0.25.0"
 
   attributes = ["test", "policy"]
   context    = module.this.context
@@ -66,7 +66,7 @@ module "cis_rules" {
 
 module "aws_config_storage" {
   source  = "cloudposse/config-storage/aws"
-  version = "1.0.0"
+  version = "1.0.2"
 
   force_destroy = var.force_destroy
   tags          = module.this.tags

@@ -140,6 +140,7 @@ variable "managed_rules" {
     input_parameters = any
     tags             = map(string)
     enabled          = bool
+    evaluation_mode  = optional(string, null)
   }))
   default = {}
 }
@@ -187,6 +188,12 @@ variable "recording_mode" {
     }))
   })
   default = null
+}
+
+variable "s3_kms_key_arn" {
+  type        = string
+  description = "The ARN of the KMS key used to encrypt objects delivered by AWS Config to the S3 bucket. Must be in the same region as the S3 bucket."
+  default     = null
 }
 
 variable "s3_key_prefix" {
@@ -242,6 +249,7 @@ variable "custom_lambda_rules" {
     lambda_function_arn = string
     input_parameters    = optional(any, {})
     source_identifier   = optional(string, null)
+    evaluation_mode     = optional(string, null)
     scope = optional(object({
       compliance_resource_types = optional(list(string), [])
     }), null)
@@ -260,10 +268,12 @@ variable "custom_policy_rules" {
     https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules_cfn-guard.html
   DOC
   type = map(object({
-    description      = string
-    policy           = optional(string, null) # Inline CFN Guard policy text
-    policy_runtime   = optional(string, "guard-2.x.x")
-    input_parameters = optional(any, {})
+    description               = string
+    policy                    = optional(string, null)
+    policy_runtime            = optional(string, "guard-2.x.x")
+    enable_debug_log_delivery = optional(bool, false)
+    evaluation_mode           = optional(string, null)
+    input_parameters          = optional(any, {})
     scope = optional(object({
       compliance_resource_types = optional(list(string), [])
     }), null)

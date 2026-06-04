@@ -14,7 +14,7 @@ locals {
 
 module "aws_config_storage" {
   source  = "cloudposse/config-storage/aws"
-  version = "1.0.0"
+  version = "1.0.2"
 
   force_destroy = var.force_destroy
   tags          = module.this.tags

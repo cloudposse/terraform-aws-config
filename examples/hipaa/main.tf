@@ -4,7 +4,7 @@ provider "aws" {
 
 module "aws_config_storage" {
   source  = "cloudposse/config-storage/aws"
-  version = "1.0.0"
+  version = "1.0.2"
 
   force_destroy = var.force_destroy
   tags          = module.this.tags
@@ -20,7 +20,7 @@ module "aws_config" {
   force_destroy                    = var.force_destroy
   s3_bucket_id                     = module.aws_config_storage.bucket_id
   s3_bucket_arn                    = module.aws_config_storage.bucket_arn
-  global_resource_collector_region = data.aws_region.current.name
+  global_resource_collector_region = data.aws_region.current.region
 
   context = module.this.context
 }

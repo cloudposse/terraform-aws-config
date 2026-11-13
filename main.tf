@@ -399,5 +399,5 @@ locals {
   create_iam_role                         = module.this.enabled && var.create_iam_role
   create_organization_aggregator_iam_role = module.this.enabled && var.create_organization_aggregator_iam_role
   partition                               = data.aws_partition.current.partition
-  is_exclusion_by_type_enabled          = length(var.exclusion_by_resource_types) > 0
+  is_exclusion_by_type_enabled            = length(var.exclusion_by_resource_types) > 0
 }

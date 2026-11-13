@@ -13,9 +13,27 @@ resource "aws_config_configuration_recorder" "recorder" {
   count    = module.this.enabled ? 1 : 0
   name     = module.aws_config_label.id
   role_arn = local.create_iam_role ? module.iam_role[0].arn : var.iam_role_arn
+
   recording_group {
-    all_supported                 = true
-    include_global_resource_types = local.is_global_recorder_region
+    # if resource exclusion mode, set false; otherwise true
+    all_supported                 = local.is_exclusion_by_type_enabled ? false : true
+    include_global_resource_types = local.is_exclusion_by_type_enabled ? false : local.is_global_recorder_region
+
+    # include ONLY when is_exclusion_by_type_enabled = true
+    dynamic "recording_strategy" {
+      for_each = local.is_exclusion_by_type_enabled ? [1] : []
+      content {
+        use_only = "EXCLUSION_BY_RESOURCE_TYPES"
+      }
+    }
+
+    # include ONLY when is_exclusion_by_resource_types = true
+    dynamic "exclusion_by_resource_types" {
+      for_each = local.is_exclusion_by_type_enabled ? [1] : []
+      content {
+        resource_types = local.exclusion_by_resource_types
+      }
+    }
   }
 
   dynamic "recording_mode" {
@@ -190,7 +208,7 @@ module "aws_config_findings_label" {
 #-----------------------------------------------------------------------------------------------------------------------
 # Optionally create IAM Roles
 #-----------------------------------------------------------------------------------------------------------------------
-# Create Optional IAM ROLE for S3 bucket and SNS  
+# Create Optional IAM ROLE for S3 bucket and SNS
 module "iam_role" {
   count   = module.this.enabled && local.create_iam_role ? 1 : 0
   source  = "cloudposse/iam-role/aws"
@@ -381,4 +399,12 @@ locals {
   create_iam_role                         = module.this.enabled && var.create_iam_role
   create_organization_aggregator_iam_role = module.this.enabled && var.create_organization_aggregator_iam_role
   partition                               = data.aws_partition.current.partition
+  is_exclusion_by_type_enabled            = length(var.exclusion_by_resource_types) > 0
+  # In exclusion mode `include_global_resource_types` has no effect: AWS records the global IAM types in every Region
+  # unless excluded, so exclude them outside the global recorder Region.
+  global_iam_resource_types = ["AWS::IAM::User", "AWS::IAM::Group", "AWS::IAM::Role", "AWS::IAM::Policy"]
+  exclusion_by_resource_types = distinct(concat(
+    var.exclusion_by_resource_types,
+    local.is_global_recorder_region ? [] : local.global_iam_resource_types
+  ))
 }

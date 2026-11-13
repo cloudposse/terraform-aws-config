@@ -224,6 +224,40 @@ variable "is_organization_aggregator" {
   description = "The aggregator is an AWS Organizations aggregator"
 }
 
+variable "aggregator_regions" {
+  type        = list(string)
+  default     = null
+  description = <<-DOC
+    A list of source regions for the configuration aggregator (account or organization aggregation source).
+    If `null` (the default), the aggregator collects data from all regions (`all_regions = true`).
+    Use this to keep an aggregator's data within a set of regions, e.g. for data residency requirements.
+    DOC
+
+  validation {
+    condition = var.aggregator_regions == null ? true : (
+      length(var.aggregator_regions) > 0
+      && alltrue([for r in var.aggregator_regions : can(regex("^[a-z]{2}(-[a-z]+)+-[0-9]+$", r))])
+    )
+    error_message = "The `aggregator_regions` must be `null` (all regions) or a non-empty list of AWS region names."
+  }
+}
+
+variable "aggregator_authorization_region" {
+  type        = string
+  default     = null
+  description = <<-DOC
+    The region of the aggregator that this account and region authorize to collect their AWS Config data
+    (`aws_config_aggregate_authorization`). If `null` (the default), `global_resource_collector_region` is used.
+    Use this to send a region's data to an aggregator in a region other than the global resource collector region
+    (which still decides where global resources such as IAM are recorded), e.g. for data residency requirements.
+    DOC
+
+  validation {
+    condition     = var.aggregator_authorization_region == null ? true : can(regex("^[a-z]{2}(-[a-z]+)+-[0-9]+$", var.aggregator_authorization_region))
+    error_message = "The `aggregator_authorization_region` must be `null` or an AWS region name, e.g. `eu-west-1`."
+  }
+}
+
 variable "allowed_aws_services_for_sns_published" {
   type        = list(string)
   description = "AWS services that will have permission to publish to SNS topic. Used when no external JSON policy is used"

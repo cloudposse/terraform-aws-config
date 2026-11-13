@@ -198,6 +198,8 @@ variable "exclusion_by_resource_types" {
     Implies recording strategy of `EXCLUSION_BY_RESOURCE_TYPES`, `all_supported` = `false` and
     `include_global_resource_types` = `false`.
     Conflicts with `resource_types` (not implemented yet).
+    Outside `global_resource_collector_region`, the global IAM types (`AWS::IAM::User`, `AWS::IAM::Group`,
+    `AWS::IAM::Role`, `AWS::IAM::Policy`) are automatically added to the exclusions.
 
     Example:
 

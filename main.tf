@@ -320,7 +320,8 @@ resource "aws_config_configuration_aggregator" "this" {
     for_each = var.is_organization_aggregator ? [] : [1]
     content {
       account_ids = local.child_resource_collector_accounts
-      all_regions = true
+      all_regions = var.aggregator_regions == null ? true : null
+      regions     = var.aggregator_regions
     }
   }
 
@@ -328,7 +329,8 @@ resource "aws_config_configuration_aggregator" "this" {
   dynamic "organization_aggregation_source" {
     for_each = var.is_organization_aggregator ? [1] : []
     content {
-      all_regions = true
+      all_regions = var.aggregator_regions == null ? true : null
+      regions     = var.aggregator_regions
       role_arn    = local.create_organization_aggregator_iam_role ? module.iam_role_organization_aggregator[0].arn : var.iam_role_organization_aggregator_arn
     }
   }
@@ -340,11 +342,11 @@ resource "aws_config_aggregate_authorization" "child" {
   # `var.central_resource_collector_account` with an AWS Account ID:
   #
   # Authorize each region in a child account to send its data to the global_resource_collector_region of the
-  # central_resource_collector_account
+  # central_resource_collector_account (or to `var.aggregator_authorization_region`, when set)
   count = local.enabled && var.central_resource_collector_account != null && var.is_organization_aggregator == false ? 1 : 0
 
   account_id            = var.central_resource_collector_account
-  authorized_aws_region = var.global_resource_collector_region
+  authorized_aws_region = local.aggregator_authorization_region
 
   tags = module.this.tags
 }
@@ -353,11 +355,12 @@ resource "aws_config_aggregate_authorization" "central" {
   # The following only occurs when `var.central_resource_collector_account` is omitted, thus disabling
   # Multi-Account Multi-Region Data Aggregation and only enabling Multi-Region aggregation within the same account:
   #
-  # Authorize each region to send its data to the global_resource_collector_region
+  # Authorize each region to send its data to the global_resource_collector_region (or to
+  # `var.aggregator_authorization_region`, when set)
   count = local.enabled && var.central_resource_collector_account == null && var.is_organization_aggregator == false ? 1 : 0
 
   account_id            = data.aws_caller_identity.this.account_id
-  authorized_aws_region = var.global_resource_collector_region
+  authorized_aws_region = local.aggregator_authorization_region
 
   tags = module.this.tags
 }
@@ -374,6 +377,7 @@ locals {
 
   is_central_account                      = var.central_resource_collector_account == data.aws_caller_identity.this.account_id
   is_global_recorder_region               = var.global_resource_collector_region == data.aws_region.this.region
+  aggregator_authorization_region         = coalesce(var.aggregator_authorization_region, var.global_resource_collector_region)
   child_resource_collector_accounts       = var.child_resource_collector_accounts != null ? var.child_resource_collector_accounts : []
   enable_notifications                    = module.this.enabled && (var.create_sns_topic || var.findings_notification_arn != null)
   create_sns_topic                        = module.this.enabled && var.create_sns_topic

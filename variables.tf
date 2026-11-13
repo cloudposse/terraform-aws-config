@@ -206,7 +206,8 @@ variable "exclusion_by_resource_types" {
       "AWS::CloudWatch::Alarm"
     ]
   DOC
-  default     = null
+  default     = []
+  nullable    = false
 }
 
 variable "s3_kms_key_arn" {
